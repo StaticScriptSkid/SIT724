@@ -1,0 +1,145 @@
+{
+  "benchmark_version": "1.1.0-dev",
+  "cases": [
+    {
+      "id": "Q1",
+      "topic": "variables",
+      "status": "final",
+      "question": "x = 5; x = x + 2 — what is the value of x?",
+      "correct_answer": "7",
+      "wrong_answer": "5",
+      "misconception": "Thinks variable value does not update"
+    },
+    {
+      "id": "Q2",
+      "topic": "assignment-vs-comparison",
+      "status": "final",
+      "question": "What does x = 10 do in Python?",
+      "correct_answer": "Assigns 10 to x",
+      "wrong_answer": "Checks if x equals 10",
+      "misconception": "Confuses assignment with equality comparison"
+    },
+    {
+      "id": "Q3",
+      "topic": "if-statements",
+      "status": "final",
+      "question": "age = 17; if age >= 18: print('Adult') else: print('Minor')",
+      "correct_answer": "Minor",
+      "wrong_answer": "Adult",
+      "misconception": "Misunderstands comparison condition"
+    },
+    {
+      "id": "Q4",
+      "topic": "loops",
+      "status": "final",
+      "question": "for i in range(3): print(i)",
+      "correct_answer": "3 times",
+      "wrong_answer": "4 times",
+      "misconception": "Misunderstands range start/stop"
+    },
+    {
+      "id": "Q5",
+      "topic": "lists",
+      "status": "final",
+      "question": "nums = [10, 20, 30]; print(nums[1])",
+      "correct_answer": "20",
+      "wrong_answer": "10",
+      "misconception": "Misunderstands zero-based indexing"
+    },
+    {
+      "id": "Q6",
+      "topic": "strings",
+      "status": "final",
+      "question": "word = 'cat'; print(word + 's')",
+      "correct_answer": "cats",
+      "wrong_answer": "Error",
+      "misconception": "Thinks strings cannot be joined with +"
+    },
+    {
+      "id": "Q7",
+      "topic": "boolean-logic",
+      "status": "final",
+      "question": "True and False",
+      "correct_answer": "False",
+      "wrong_answer": "True",
+      "misconception": "Misunderstands 'and' logic"
+    },
+    {
+      "id": "Q8",
+      "topic": "functions",
+      "status": "final",
+      "question": "def add(a, b): return a + b\nadd(2, 3)",
+      "correct_answer": "5",
+      "wrong_answer": "Nothing",
+      "misconception": "Thinks function call does not produce a value"
+    },
+    {
+      "id": "Q9",
+      "topic": "integer-division",
+      "status": "final",
+      "question": "7 // 2",
+      "correct_answer": "3",
+      "wrong_answer": "3.5",
+      "misconception": "Confuses floor division with normal division"
+    },
+    {
+      "id": "Q10",
+      "topic": "syntax-errors",
+      "status": "final",
+      "question": "print('Hello'",
+      "correct_answer": "Missing closing parenthesis",
+      "wrong_answer": "Missing quote only",
+      "misconception": "Does not identify syntax error fully"
+    },
+    {
+      "id": "Q11",
+      "topic": "dictionaries",
+      "status": "draft",
+      "question": "d = {'a': 1}; print(d['b'])",
+      "correct_answer": "Raises KeyError",
+      "wrong_answer": "None",
+      "misconception": "Thinks accessing a missing dict key returns None, like .get() does, instead of raising KeyError",
+      "notes": "Sprint 1 draft (Week 3) — awaiting supervisor review before promotion to 'final'."
+    },
+    {
+      "id": "Q12",
+      "topic": "while-loops",
+      "status": "draft",
+      "question": "i = 0\nwhile i < 3:\n    print(i)",
+      "correct_answer": "Infinite loop — runs forever, printing 0 repeatedly",
+      "wrong_answer": "Prints 0, 1, 2 then stops",
+      "misconception": "Assumes the loop stops once the condition 'should' become false, forgetting that the loop variable must be updated inside the loop body",
+      "notes": "Sprint 1 draft (Week 3) — awaiting supervisor review before promotion to 'final'."
+    },
+    {
+      "id": "Q13",
+      "topic": "mutability-aliasing",
+      "status": "draft",
+      "question": "a = [1, 2, 3]; b = a; b.append(4); print(a)",
+      "correct_answer": "[1, 2, 3, 4]",
+      "wrong_answer": "[1, 2, 3]",
+      "misconception": "Thinks 'b = a' creates a copy of the list rather than a second reference to the same list",
+      "notes": "Sprint 1 draft (Week 3) — awaiting supervisor review before promotion to 'final'."
+    },
+    {
+      "id": "Q14",
+      "topic": "scope",
+      "status": "draft",
+      "question": "x = 10\ndef f():\n    x = 5\n    return x\nprint(f())\nprint(x)",
+      "correct_answer": "5, then 10",
+      "wrong_answer": "5, then 5",
+      "misconception": "Thinks assigning to x inside the function changes the global x instead of creating a new local variable",
+      "notes": "Sprint 1 draft (Week 3) — awaiting supervisor review before promotion to 'final'."
+    },
+    {
+      "id": "Q15",
+      "topic": "string-immutability",
+      "status": "draft",
+      "question": "s = 'cat'; s[0] = 'b'",
+      "correct_answer": "Raises TypeError — strings do not support item assignment",
+      "wrong_answer": "'bat'",
+      "misconception": "Thinks strings support item assignment like lists do",
+      "notes": "Sprint 1 draft (Week 3) — awaiting supervisor review before promotion to 'final'."
+    }
+  ]
+}

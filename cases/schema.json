@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Beginner Python Mistake Case",
+  "description": "Schema for one benchmark case used by the SIT724 feedback-evaluation pipeline. Q1-Q10 are the SIT723 baseline cases (status: final, verbatim from the SIT723 thesis). Q11+ are SIT724 Sprint 1 expansion cases (status: draft until reviewed by the supervisor).",
+  "type": "object",
+  "required": [
+    "id",
+    "topic",
+    "status",
+    "question",
+    "correct_answer",
+    "wrong_answer",
+    "misconception"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^Q[0-9]+$",
+      "description": "Unique case identifier, e.g. Q1, Q11."
+    },
+    "topic": {
+      "type": "string",
+      "description": "Lower-kebab-case topic tag used for coverage reporting, e.g. 'integer-division'."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["final", "draft"],
+      "description": "'final' cases are locked and enter evaluation runs. 'draft' cases are excluded from runs until promoted to 'final' by the validator config or a supervisor sign-off note in decision_log.md."
+    },
+    "question": {
+      "type": "string",
+      "description": "The code snippet or question shown to the student."
+    },
+    "correct_answer": {
+      "type": "string",
+      "description": "The correct answer/behaviour."
+    },
+    "wrong_answer": {
+      "type": "string",
+      "description": "The common wrong answer a beginner gives."
+    },
+    "misconception": {
+      "type": "string",
+      "description": "One-sentence label for the underlying misconception."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional free-text notes (e.g. supervisor review status)."
+    }
+  },
+  "additionalProperties": false
+}

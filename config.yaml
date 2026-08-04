@@ -1,0 +1,52 @@
+# SIT724 feedback-evaluation pipeline configuration
+
+prompt_version: "1.0.0"
+benchmark_version: "1.1.0-dev"
+
+generation_params:
+  temperature: 0.0
+  max_tokens: 400
+  retries: 3
+  retry_backoff_seconds: 5
+
+# Model list carried over from SIT723 (Section 3.3 of the thesis), mapped to
+# API-facing slugs. Fill in real API model IDs before a live (non-dry-run) run.
+models:
+  - name: deepseek-chat
+    provider: openai-compatible
+    api_base_env: DEEPSEEK_API_BASE
+    api_key_env: DEEPSEEK_API_KEY
+    model_id: deepseek-chat
+  - name: gemini-flash
+    provider: gemini
+    api_key_env: GEMINI_API_KEY
+    model_id: gemini-1.5-flash
+  - name: openai-gpt
+    provider: openai-compatible
+    api_base_env: OPENAI_API_BASE
+    api_key_env: OPENAI_API_KEY
+    model_id: gpt-4o
+  - name: claude-sonnet
+    provider: anthropic
+    api_key_env: ANTHROPIC_API_KEY
+    model_id: claude-sonnet-4-6
+  - name: kimi
+    provider: openai-compatible
+    api_base_env: KIMI_API_BASE
+    api_key_env: KIMI_API_KEY
+    model_id: kimi-k2.6-instant
+
+# Pricing left unfilled — needed before --estimate gives a real dollar figure.
+# Fill in USD per 1K tokens (input/output) once the model list is confirmed with Jack.
+pricing_usd_per_1k_tokens:
+  deepseek-chat: { input: null, output: null }
+  gemini-flash: { input: null, output: null }
+  openai-gpt: { input: null, output: null }
+  claude-sonnet: { input: null, output: null }
+  kimi: { input: null, output: null }
+
+paths:
+  cases_file: cases/cases.json
+  schema_file: cases/schema.json
+  prompt_template: prompts/template.txt
+  outputs_dir: outputs

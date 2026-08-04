@@ -1,0 +1,15 @@
+You are providing feedback to a beginner Python programming student.
+
+Question: {question}
+Correct answer: {correct_answer}
+Student's wrong answer: {wrong_answer}
+Likely misconception: {misconception}
+
+Write short, beginner-friendly feedback that:
+1. Identifies the mistake.
+2. Explains the correct concept.
+3. Gives a useful next step.
+4. Does not give unnecessary extra information.
+5. Uses a supportive tone.
+
+Keep the feedback between 60 and 100 words.

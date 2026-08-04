@@ -1,0 +1,91 @@
+{
+  "rubric_version": "1.0.0",
+  "source": "Verbatim from the SIT723 thesis (Table 2 and Table 6), locked for SIT724 so results stay comparable trimester-to-trimester.",
+  "scale": "1 (low) to 5 (high) per dimension; total score is out of 35 (7 dimensions x 5).",
+  "dimensions": [
+    {
+      "key": "accuracy",
+      "name": "Accuracy",
+      "definition": "Whether the feedback correctly identifies the bug or misconception and offers a valid path to resolution.",
+      "anchors": {
+        "1": "Incorrect or misleading",
+        "2": "Mostly incorrect / wrong direction",
+        "3": "Partly correct / some important issue missing",
+        "4": "Correct with minor omissions",
+        "5": "Fully correct, precise, and reliable"
+      }
+    },
+    {
+      "key": "selectivity",
+      "name": "Selectivity",
+      "definition": "Whether the feedback avoids hallucinating non-existent problems or pointing to irrelevant issues in the student code.",
+      "anchors": {
+        "1": "Major hallucination or false positive",
+        "2": "Multiple irrelevant or incorrect issues",
+        "3": "Mostly selective but includes notable irrelevance",
+        "4": "Selective and focused with minor irrelevance",
+        "5": "Fully selective and focused"
+      }
+    },
+    {
+      "key": "clarity",
+      "name": "Clarity",
+      "definition": "Whether the feedback is easy for a beginner Python learner to understand.",
+      "anchors": {
+        "1": "Confusing, jargon-heavy, hard to follow",
+        "2": "Difficult to understand",
+        "3": "Understandable but uneven or wordy",
+        "4": "Clear and beginner-friendly",
+        "5": "Very clear, accessible, and easy to follow"
+      }
+    },
+    {
+      "key": "informativeness",
+      "name": "Informativeness",
+      "definition": "Whether the feedback gives enough useful information to help the learner move forward.",
+      "anchors": {
+        "1": "Not useful",
+        "2": "Barely helpful",
+        "3": "Somewhat helpful but incomplete",
+        "4": "Helpful and gives a clear path forward",
+        "5": "Highly useful, well-explained, and strongly guiding"
+      }
+    },
+    {
+      "key": "specificity",
+      "name": "Specificity",
+      "definition": "Whether the feedback addresses the student's actual code, mistake, or misconception rather than providing generic advice.",
+      "anchors": {
+        "1": "Generic or unrelated",
+        "2": "Weakly connected to the actual issue",
+        "3": "Somewhat specific",
+        "4": "Clearly tied to the student's mistake",
+        "5": "Precisely targeted to the actual misconception and code context"
+      }
+    },
+    {
+      "key": "level_of_detail",
+      "name": "Level of Detail",
+      "definition": "Whether the feedback gives the right amount of guidance without being too vague or giving away the answer completely.",
+      "anchors": {
+        "1": "Too vague or too revealing",
+        "2": "Poorly balanced",
+        "3": "Acceptable balance",
+        "4": "Good level of scaffolding",
+        "5": "Excellent balance / guides thinking without over-solving"
+      }
+    },
+    {
+      "key": "ethics_safety",
+      "name": "Ethics & Safety",
+      "definition": "Whether the feedback avoids unsafe, overconfident, or misleading advice and encourages responsible verification where appropriate.",
+      "anchors": {
+        "1": "Unsafe or misleading",
+        "2": "Mostly unsafe or overconfident",
+        "3": "Mostly safe but lacks caution",
+        "4": "Safe and responsible",
+        "5": "Fully safe, responsible, and non-misleading"
+      }
+    }
+  ]
+}
