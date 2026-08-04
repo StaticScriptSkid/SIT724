@@ -39,21 +39,40 @@ def validate_case_manually(case: dict, required_fields: list) -> list:
     return errors
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Validate the SIT724 benchmark case set.")
-    parser.add_argument("--cases", default="cases/cases.json", help="Path to cases.json")
-    parser.add_argument("--schema", default="cases/schema.json", help="Path to schema.json")
-    args = parser.parse_args()
+def validate_benchmark(cases_path: str | Path, schema_path: str | Path) -> dict:
+    """
+    Validate the benchmark case set against the schema and compute coverage.
 
-    cases_path = Path(args.cases)
-    schema_path = Path(args.schema)
+    Returns a dict with keys:
+        ok, errors, benchmark_version, n_cases, final_count, draft_count,
+        topic_counts, cases_path
+    Does not print or exit — callers (CLI or GUI) decide how to present results.
+    """
+    cases_path = Path(cases_path)
+    schema_path = Path(schema_path)
 
     if not cases_path.exists():
-        print(f"ERROR: cases file not found: {cases_path}", file=sys.stderr)
-        sys.exit(1)
+        return {
+            "ok": False,
+            "errors": [f"cases file not found: {cases_path}"],
+            "benchmark_version": "unknown",
+            "n_cases": 0,
+            "final_count": 0,
+            "draft_count": 0,
+            "topic_counts": {},
+            "cases_path": str(cases_path),
+        }
     if not schema_path.exists():
-        print(f"ERROR: schema file not found: {schema_path}", file=sys.stderr)
-        sys.exit(1)
+        return {
+            "ok": False,
+            "errors": [f"schema file not found: {schema_path}"],
+            "benchmark_version": "unknown",
+            "n_cases": 0,
+            "final_count": 0,
+            "draft_count": 0,
+            "topic_counts": {},
+            "cases_path": str(cases_path),
+        }
 
     data = load_json(cases_path)
     schema = load_json(schema_path)
@@ -72,27 +91,58 @@ def main():
             all_errors.extend(validate_case_manually(case, schema.get("required", [])))
         ids_seen[case.get("id")] += 1
 
-    # Duplicate ID check
     for case_id, count in ids_seen.items():
         if count > 1:
             all_errors.append(f"Duplicate case id used {count} times: {case_id}")
 
-    if all_errors:
-        print(f"FAILED: {len(all_errors)} error(s) found in {cases_path}\n", file=sys.stderr)
-        for err in all_errors:
-            print(f"  - {err}", file=sys.stderr)
-        sys.exit(1)
-
+    topic_counts = Counter(c.get("topic", "untagged") for c in cases)
     final_count = sum(1 for c in cases if c.get("status") == "final")
     draft_count = sum(1 for c in cases if c.get("status") == "draft")
 
-    print(f"{len(cases)} cases total: {final_count} final, {draft_count} draft")
-    print("Topic coverage (final+draft):")
-    topic_counts = Counter(c.get("topic", "untagged") for c in cases)
-    for topic in sorted(topic_counts):
-        print(f"  {topic:<28}{topic_counts[topic]}")
+    return {
+        "ok": len(all_errors) == 0,
+        "errors": all_errors,
+        "benchmark_version": benchmark_version,
+        "n_cases": len(cases),
+        "final_count": final_count,
+        "draft_count": draft_count,
+        "topic_counts": dict(sorted(topic_counts.items())),
+        "cases_path": str(cases_path),
+    }
 
-    print(f"OK: benchmark v{benchmark_version} is valid")
+
+def main():
+    parser = argparse.ArgumentParser(description="Validate the SIT724 benchmark case set.")
+    parser.add_argument("--cases", default="cases/cases.json", help="Path to cases.json")
+    parser.add_argument("--schema", default="cases/schema.json", help="Path to schema.json")
+    args = parser.parse_args()
+
+    result = validate_benchmark(args.cases, args.schema)
+
+    if not result["ok"]:
+        # Preserve prior CLI messaging for missing-file vs validation errors.
+        file_missing = any("not found" in e for e in result["errors"])
+        if file_missing:
+            for err in result["errors"]:
+                print(f"ERROR: {err}", file=sys.stderr)
+            sys.exit(1)
+        print(
+            f"FAILED: {len(result['errors'])} error(s) found in {result['cases_path']}\n",
+            file=sys.stderr,
+        )
+        for err in result["errors"]:
+            print(f"  - {err}", file=sys.stderr)
+        sys.exit(1)
+
+    print(
+        f"{result['n_cases']} cases total: "
+        f"{result['final_count']} final, {result['draft_count']} draft"
+    )
+    print("Topic coverage (final+draft):")
+    for topic, count in result["topic_counts"].items():
+        print(f"  {topic:<28}{count}")
+
+    print(f"OK: benchmark v{result['benchmark_version']} is valid")
 
 
 if __name__ == "__main__":

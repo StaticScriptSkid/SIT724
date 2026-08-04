@@ -8,6 +8,7 @@ Student: Andrei Angeles (s222225013) — Supervisor: Jack Li
 ## Structure
 
 ```
+app.py                 Local Streamlit GUI (thin layer over the CLI pipeline modules)
 cases/schema.json      JSON schema every case must satisfy
 cases/cases.json       Benchmark cases — Q1-Q10 final (verbatim from SIT723), Q11+ draft (Sprint 1 expansion)
 cases/baseline.json    Non-AI baseline responses (PLACEHOLDER — see file header, needs verbatim SIT723 text)
@@ -38,6 +39,21 @@ python pipeline/generate.py --estimate
 # 4. Real run
 python pipeline/generate.py
 ```
+
+## GUI
+
+A local Streamlit UI wraps the same validation and generation functions used by the CLI
+(`pipeline/validate_cases.py`, `pipeline/generate.py`) — browse cases, view the rubric,
+run dry/live pipelines, inspect past outputs, and confirm `config.yaml` (API keys are
+never shown; only env var names).
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+Opens in your browser at the URL Streamlit prints (typically http://localhost:8501).
+No external hosting or login is required.
 
 ## Status (as of this build)
 
