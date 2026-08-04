@@ -1,0 +1,48 @@
+---
+description: SIT724 research project constraints from PROJECT_CONTEXT.md
+alwaysApply: true
+---
+
+# SIT724 — persistent project context
+
+Before any change to this repo, read and follow `PROJECT_CONTEXT.md`.
+This rule exists so those constraints apply on every request, not only when the file is mentioned.
+
+## What this repo is
+
+Assessed research artifact for SIT724 (*Evaluating the Accuracy and Educational Quality of AI-Generated Feedback for Beginner Programming Mistakes*). It extends SIT723. Prefer small, explainable diffs — the student must be able to defend every committed line to the supervisor (Jack Li).
+
+## Before changing anything (Section 6 gate)
+
+Explicitly classify the change against `PROJECT_CONTEXT.md` Section 6:
+
+1. **Load-bearing / locked** — stop and flag to the user; do not edit.
+2. **Safe to evolve** — proceed with a small, explainable diff.
+
+If a change would touch a locked file, **stop and flag it** instead of proceeding.
+
+### Locked (do not change without explicit supervisor-facing justification)
+
+- `prompts/template.txt` — locked at `prompt_version: 1.0.0`; see `prompts/PROMPT_LOCK.md`. Any edit requires a version bump in `config.yaml` and a full re-run.
+- `rubric/rubric.json` — locked verbatim from the SIT723 thesis.
+- Cases **Q1–Q10** in `cases/cases.json` — original SIT723 cases; do not edit their question/answer/misconception text. New cases start at Q11+.
+- Case `status` field — leave new cases as `"status": "draft"` until supervisor (Jack) sign-off; do not silently promote to `"final"`.
+
+### Safe to evolve
+
+- `config.yaml` (models, pricing, generation params)
+- `docs/decision_log.md` (append decisions)
+- New cases Q11+ with `"status": "draft"`
+- GUI / tooling (`app.py`, etc.) on top of the stable pipeline core
+- `outputs/` grows with runs — **never delete or rewrite past runs** (audit trail). Do **not** add `outputs/` to `.gitignore`.
+
+## Pipeline reuse (CLI and GUI must stay in sync)
+
+Any GUI or new tooling must **import and reuse** `pipeline/generate.py` and `pipeline/validate_cases.py` (e.g. `run_pipeline`, `validate_benchmark`). Do **not** reimplement validation or generation logic in a second place.
+
+## Other hard constraints
+
+- Scope: judge feedback *text quality* vs baseline — not student learning outcomes; no real-student testing.
+- New dependencies go in `requirements.txt`, not ad hoc installs.
+- Keep abstractions simple enough to explain in a supervisor meeting.
+- Prefer updating `docs/decision_log.md` when a real methodology decision is made.
