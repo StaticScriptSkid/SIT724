@@ -40,12 +40,14 @@ python pipeline/generate.py --estimate
 python pipeline/generate.py
 ```
 
+API keys: copy `.env.example` to `.env` and fill in the values. `.env` is gitignored and is loaded automatically by the CLI and GUI. Do not put keys in `config.yaml`.
+
 ## GUI
 
 A local Streamlit UI wraps the same validation and generation functions used by the CLI
 (`pipeline/validate_cases.py`, `pipeline/generate.py`) — browse cases, view the rubric,
 run dry/live pipelines, inspect past outputs, and confirm `config.yaml` (API keys are
-never shown; only env var names).
+never shown; only env var names — put real keys in `.env`).
 
 ```bash
 pip install -r requirements.txt

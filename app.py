@@ -24,12 +24,14 @@ from pipeline.generate import (
     MissingAPIKeysError,
     api_key_status,
     load_config,
+    load_dotenv,
     missing_api_key_envs,
     run_pipeline,
 )
 from pipeline.validate_cases import load_json, validate_benchmark
 
 ROOT = Path(__file__).resolve().parent
+load_dotenv(ROOT / ".env")
 CASES_PATH = ROOT / "cases" / "cases.json"
 SCHEMA_PATH = ROOT / "cases" / "schema.json"
 RUBRIC_PATH = ROOT / "rubric" / "rubric.json"
@@ -288,7 +290,8 @@ def view_run_pipeline() -> None:
             st.caption(
                 "Live mode calls only models with a key set"
                 + (f" (will run: {', '.join(ready_names)})." if ready_names else ".")
-                + " Still missing — set in this shell then restart Streamlit: "
+                + " Put keys in `.env` (copy from `.env.example`) or export them in this shell, "
+                "then restart Streamlit. Still missing: "
                 + ", ".join(missing)
             )
         else:
