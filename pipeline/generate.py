@@ -30,6 +30,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 import time
 import uuid
@@ -157,10 +158,11 @@ def call_gemini(model_cfg: dict, rendered_prompt: str, params: dict) -> str:
         raise RuntimeError(f"Missing API key env var: {model_cfg['api_key_env']}")
     url = (
         f"https://generativelanguage.googleapis.com/v1beta/models/"
-        f"{model_cfg['model_id']}:generateContent?key={api_key}"
+        f"{model_cfg['model_id']}:generateContent"
     )
     resp = requests.post(
         url,
+        headers={"x-goog-api-key": api_key, "content-type": "application/json"},
         json={
             "contents": [{"parts": [{"text": rendered_prompt}]}],
             "generationConfig": {
@@ -181,12 +183,18 @@ PROVIDER_FUNCS = {
 }
 
 
+def _redact_secrets(message: str) -> str:
+    """Strip API keys from logged error strings (e.g. Gemini ?key= query param)."""
+    return re.sub(r"([?&]key=)[^&\s]+", r"\1REDACTED", message, flags=re.IGNORECASE)
+
+
 def _is_permanent_error(message: str) -> bool:
     """Errors that will not succeed on retry (missing keys, unknown provider, etc.)."""
     permanent_markers = (
         "Missing API key",
         "Unknown provider",
         "The 'requests' package is not installed",
+        "404 Client Error",
     )
     return any(marker in message for marker in permanent_markers)
 
@@ -215,7 +223,7 @@ def call_model_with_retries(model_cfg: dict, rendered_prompt: str, params: dict)
             text = func(model_cfg, rendered_prompt, params)
             return {"response_text": text, "error": None, "attempts": attempt}
         except Exception as e:  # noqa: BLE001 — deliberately broad: log and retry
-            last_error = str(e)
+            last_error = _redact_secrets(str(e))
             if _is_permanent_error(last_error):
                 return {"response_text": None, "error": last_error, "attempts": attempt}
             if attempt < params["retries"]:

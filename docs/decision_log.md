@@ -12,6 +12,7 @@ Running record of key methodology/build decisions and why they were made, for th
 | 2026-07-21 | Every rendered prompt is SHA-256 hashed and stored per record | Detect prompt drift even if prompt_version wasn't bumped; reproducibility |
 | 2026-07-21 | Output run directories are write-once (fail on collision) | Prevent accidentally overwriting a previous run's results |
 | 2026-08-12 | Live runs call only models whose API key env var is set; missing keys are skipped (logged in manifest) rather than blocking the whole run | Lets a partial live test proceed (e.g. DeepSeek only) without requiring every provider key up front; a full SIT724 comparison still needs all models |
+| 2026-08-12 | Gemini API slug updated from `gemini-1.5-flash` (retired, 404) to `gemini-3.5-flash` | Matches the SIT723 “Gemini 3.5 Flash” label; 1.5 Flash is no longer served on generateContent |
 
 ## Open decisions (pending discussion with Jack)
 

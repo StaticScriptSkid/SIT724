@@ -20,7 +20,7 @@ models:
   - name: gemini-flash
     provider: gemini
     api_key_env: GEMINI_API_KEY
-    model_id: gemini-1.5-flash
+    model_id: gemini-3.5-flash
   - name: openai-gpt
     provider: openai-compatible
     api_base_env: OPENAI_API_BASE
