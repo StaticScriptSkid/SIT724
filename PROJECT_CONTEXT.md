@@ -100,6 +100,8 @@ docs/decision_log.md   Running log of methodology decisions and open questions â
                         a real decision is made, it feeds directly into the thesis methodology chapter
 outputs/<run_id>/      One folder per pipeline run â€” write-once, never edit or delete past runs;
                         they are evidence of what the pipeline actually produced and when
+judgement_log/         Reliability judgement/reflection log (Jack): per-response accept/reject/refine
+                        + reasoning, alongside weighted Cohen's kappa. See judgement_log/PROCESS.md
 ```
 
 ### Things that must NOT change without explicit supervisor-facing justification:
