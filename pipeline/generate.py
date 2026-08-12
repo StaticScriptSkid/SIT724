@@ -152,6 +152,37 @@ def call_anthropic(model_cfg: dict, rendered_prompt: str, params: dict) -> str:
     return resp.json()["content"][0]["text"]
 
 
+def _gemini_visible_text(payload: dict) -> str:
+    """Return the student-facing answer, not thought/scratchpad fragments.
+
+    Gemini 3.x often puts internal reasoning in parts[0] (or thought parts).
+    Reading only parts[0] made live runs look 'ok' while storing a cutoff stub.
+    """
+    candidates = payload.get("candidates") or []
+    if not candidates:
+        raise RuntimeError(f"Gemini returned no candidates: {payload}")
+    cand = candidates[0]
+    parts = (cand.get("content") or {}).get("parts") or []
+    visible = []
+    for part in parts:
+        if part.get("thought"):
+            continue
+        text = part.get("text")
+        if text:
+            visible.append(text)
+    text = "".join(visible).strip()
+    finish = cand.get("finishReason")
+    if not text:
+        raise RuntimeError(
+            f"Gemini returned empty visible text (finishReason={finish!r})."
+        )
+    if finish == "MAX_TOKENS" and len(text) < 120:
+        raise RuntimeError(
+            f"Gemini output still truncated (finishReason=MAX_TOKENS, {len(text)} chars)."
+        )
+    return text
+
+
 def call_gemini(model_cfg: dict, rendered_prompt: str, params: dict) -> str:
     api_key = os.environ.get(model_cfg["api_key_env"])
     if not api_key:
@@ -160,6 +191,10 @@ def call_gemini(model_cfg: dict, rendered_prompt: str, params: dict) -> str:
         f"https://generativelanguage.googleapis.com/v1beta/models/"
         f"{model_cfg['model_id']}:generateContent"
     )
+    # Gemini 3.x uses some of maxOutputTokens for internal reasoning before the
+    # visible reply. Shared config max_tokens=400 is enough for DeepSeek but
+    # cuts Gemini off mid-sentence. Give Gemini more room; other models unchanged.
+    gemini_max_tokens = max(int(params["max_tokens"]), 2048)
     resp = requests.post(
         url,
         headers={"x-goog-api-key": api_key, "content-type": "application/json"},
@@ -167,13 +202,13 @@ def call_gemini(model_cfg: dict, rendered_prompt: str, params: dict) -> str:
             "contents": [{"parts": [{"text": rendered_prompt}]}],
             "generationConfig": {
                 "temperature": params["temperature"],
-                "maxOutputTokens": params["max_tokens"],
+                "maxOutputTokens": gemini_max_tokens,
             },
         },
         timeout=60,
     )
     resp.raise_for_status()
-    return resp.json()["candidates"][0]["content"]["parts"][0]["text"]
+    return _gemini_visible_text(resp.json())
 
 
 PROVIDER_FUNCS = {

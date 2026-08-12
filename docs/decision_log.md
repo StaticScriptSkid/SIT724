@@ -13,6 +13,9 @@ Running record of key methodology/build decisions and why they were made, for th
 | 2026-07-21 | Output run directories are write-once (fail on collision) | Prevent accidentally overwriting a previous run's results |
 | 2026-08-12 | Live runs call only models whose API key env var is set; missing keys are skipped (logged in manifest) rather than blocking the whole run | Lets a partial live test proceed (e.g. DeepSeek only) without requiring every provider key up front; a full SIT724 comparison still needs all models |
 | 2026-08-12 | Gemini API slug updated from `gemini-1.5-flash` (retired, 404) to `gemini-3.5-flash` | Matches the SIT723 “Gemini 3.5 Flash” label; 1.5 Flash is no longer served on generateContent |
+| 2026-08-12 | Gemini calls use `thinkingLevel: minimal` and only visible (non-thought) text parts | Gemini 3.5 thinking was consuming `max_tokens: 400`, so live “ok” records were truncated stubs; minimal thinking keeps the shared token cap comparable across models |
+| 2026-08-12 | Reverted Gemini `thinkingLevel` (back to default thinking + `parts[0].text`) to test paid quota vs thinking as the truncation cause | Student added Gemini credit after a free-plan run; keep 3.5-flash slug and header auth |
+| 2026-08-12 | Gemini live calls use maxOutputTokens ≥ 2048 and join non-thought text parts (not only parts[0]) | Paid quota did not fix 38–70 char stubs; Gemini was being cut off / returning a thought fragment as `parts[0]`. Other models still use config `max_tokens: 400` |
 
 ## Open decisions (pending discussion with Jack)
 
