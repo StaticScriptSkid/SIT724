@@ -5,7 +5,7 @@
       "id": "Q1",
       "topic": "variables",
       "status": "final",
-      "question": "x = 5; x = x + 2 — what is the value of x?",
+      "question": "x = 5; x = x + 2 \u2014 what is the value of x?",
       "correct_answer": "7",
       "wrong_answer": "5",
       "misconception": "Thinks variable value does not update"
@@ -99,17 +99,17 @@
       "correct_answer": "Raises KeyError",
       "wrong_answer": "None",
       "misconception": "Thinks accessing a missing dict key returns None, like .get() does, instead of raising KeyError",
-      "notes": "Sprint 1 draft (Week 3) — awaiting supervisor review before promotion to 'final'."
+      "notes": "Sprint 1 draft (Week 3) \u2014 awaiting supervisor review before promotion to 'final'."
     },
     {
       "id": "Q12",
       "topic": "while-loops",
       "status": "draft",
       "question": "i = 0\nwhile i < 3:\n    print(i)",
-      "correct_answer": "Infinite loop — runs forever, printing 0 repeatedly",
+      "correct_answer": "Infinite loop \u2014 runs forever, printing 0 repeatedly",
       "wrong_answer": "Prints 0, 1, 2 then stops",
       "misconception": "Assumes the loop stops once the condition 'should' become false, forgetting that the loop variable must be updated inside the loop body",
-      "notes": "Sprint 1 draft (Week 3) — awaiting supervisor review before promotion to 'final'."
+      "notes": "Sprint 1 draft (Week 3) \u2014 awaiting supervisor review before promotion to 'final'."
     },
     {
       "id": "Q13",
@@ -119,7 +119,7 @@
       "correct_answer": "[1, 2, 3, 4]",
       "wrong_answer": "[1, 2, 3]",
       "misconception": "Thinks 'b = a' creates a copy of the list rather than a second reference to the same list",
-      "notes": "Sprint 1 draft (Week 3) — awaiting supervisor review before promotion to 'final'."
+      "notes": "Sprint 1 draft (Week 3) \u2014 awaiting supervisor review before promotion to 'final'."
     },
     {
       "id": "Q14",
@@ -129,17 +129,167 @@
       "correct_answer": "5, then 10",
       "wrong_answer": "5, then 5",
       "misconception": "Thinks assigning to x inside the function changes the global x instead of creating a new local variable",
-      "notes": "Sprint 1 draft (Week 3) — awaiting supervisor review before promotion to 'final'."
+      "notes": "Sprint 1 draft (Week 3) \u2014 awaiting supervisor review before promotion to 'final'."
     },
     {
       "id": "Q15",
       "topic": "string-immutability",
       "status": "draft",
       "question": "s = 'cat'; s[0] = 'b'",
-      "correct_answer": "Raises TypeError — strings do not support item assignment",
+      "correct_answer": "Raises TypeError \u2014 strings do not support item assignment",
       "wrong_answer": "'bat'",
       "misconception": "Thinks strings support item assignment like lists do",
-      "notes": "Sprint 1 draft (Week 3) — awaiting supervisor review before promotion to 'final'."
+      "notes": "Sprint 1 draft (Week 3) \u2014 awaiting supervisor review before promotion to 'final'."
+    },
+    {
+      "id": "Q16",
+      "topic": "mutable default arguments",
+      "status": "draft",
+      "question": "def add_item(item, basket=[]):\n    basket.append(item)\n    return basket\n\nprint(add_item('apple'))\nprint(add_item('banana'))",
+      "correct_answer": "['apple']\n['apple', 'banana']",
+      "wrong_answer": "['apple']\n['banana']",
+      "misconception": "Believes a mutable default argument (basket=[]) is freshly created on every function call, like a local variable would be. In fact the default list is created once, when the function is defined, and is reused (and mutated) across all calls that don't pass their own basket.",
+      "notes": "Classic 'gotcha' \u2014 worth checking whether feedback explains the fix (basket=None, then basket = basket or []) rather than just naming the bug."
+    },
+    {
+      "id": "Q17",
+      "topic": "floating point comparison",
+      "status": "draft",
+      "question": "x = 0.1 + 0.2\nif x == 0.3:\n    print('equal')\nelse:\n    print('not equal')",
+      "correct_answer": "not equal",
+      "wrong_answer": "equal",
+      "misconception": "Assumes decimal arithmetic is exact in floating point, and that 0.1 + 0.2 == 0.3 evaluates to True. Doesn't know binary floating-point representation introduces small rounding errors, so direct equality comparison of floats is unreliable.",
+      "notes": "Good candidate for testing whether feedback mentions math.isclose() or an epsilon-based comparison, not just 'floats are imprecise.'"
+    },
+    {
+      "id": "Q18",
+      "topic": "integer overflow (arbitrary precision ints)",
+      "status": "draft",
+      "question": "x = 2 ** 63\nprint(x)",
+      "correct_answer": "9223372036854775808",
+      "wrong_answer": "-9223372036854775808",
+      "misconception": "Assumes Python integers have a fixed bit-width (e.g. 64-bit signed, like C, Java, or JavaScript's typed integers) and will overflow/wrap around to a negative number once they exceed that range. Python ints have arbitrary precision \u2014 they grow as large as needed and never silently overflow or wrap around.",
+      "notes": "Distinct from Q17 (floating-point precision) \u2014 this is about integer representation, not decimal rounding, and distinct from Q13/Q22 (aliasing) \u2014 no shared object semantics involved at all. Common trip-up for students coming from a C/Java background. Verified: 2**63 == 9223372036854775808 in Python (no wraparound); wrong_answer mirrors the two's-complement wraparound a 64-bit signed integer would produce in a fixed-width language."
+    },
+    {
+      "id": "Q19",
+      "topic": "implicit None return",
+      "status": "draft",
+      "question": "def square(n):\n    result = n * n\n\nvalue = square(5)\nprint(value)",
+      "correct_answer": "None",
+      "wrong_answer": "25",
+      "misconception": "Assumes a function automatically returns the value of its last computed expression, similar to some other languages or to a calculator. Doesn't realise Python functions return None unless an explicit return statement is used.",
+      "notes": "Tests whether feedback points at the missing 'return result' line specifically, not just 'the function is wrong.'"
+    },
+    {
+      "id": "Q20",
+      "topic": "type coercion / string-int concatenation",
+      "status": "draft",
+      "question": "age = 25\nmessage = 'I am ' + age + ' years old'\nprint(message)",
+      "correct_answer": "TypeError: can only concatenate str (not \"int\") to str",
+      "wrong_answer": "I am 25 years old",
+      "misconception": "Assumes Python automatically converts numbers to strings when used with the + operator on a string, the way some languages (e.g. JavaScript) implicitly coerce types. Doesn't know Python requires explicit str(age) or an f-string.",
+      "notes": "Good test of whether feedback suggests both fixes (str(age) and f-string), or just one."
+    },
+    {
+      "id": "Q21",
+      "topic": "list index out of range",
+      "status": "draft",
+      "question": "numbers = [10, 20, 30]\nfor i in range(1, len(numbers) + 1):\n    print(numbers[i])",
+      "correct_answer": "IndexError: list index out of range (fails on the third iteration, when i = 3)",
+      "wrong_answer": "10\n20\n30",
+      "misconception": "Off-by-one error from assuming range(1, len(numbers)+1) aligns list positions with 1-based counting, without accounting for the fact that list indices are still 0-based. Range starting at 1 doesn't shift the underlying index space.",
+      "notes": "Different failure mode from Q5 (basic zero-based indexing) \u2014 this is an off-by-one bug introduced by a 'fix' that misunderstands why the original zero-based version was correct."
+    },
+    {
+      "id": "Q22",
+      "topic": "chained/multiple assignment aliasing",
+      "status": "draft",
+      "question": "a = b = []\na.append(1)\nprint(b)",
+      "correct_answer": "[1]",
+      "wrong_answer": "[]",
+      "misconception": "Doesn't realise 'a = b = []' makes both a and b point to the SAME list object (one list, two names), not two separate empty lists. Mutating through one name is visible through the other.",
+      "notes": "A less obvious variant of the aliasing misconception (Q13/Q18) via chained assignment syntax specifically \u2014 worth keeping if the benchmark wants to test whether feedback generalises the concept or just pattern-matches on 'copy ='."
+    },
+    {
+      "id": "Q23",
+      "topic": "for loop mutating list during iteration",
+      "status": "draft",
+      "question": "nums = [1, 2, 4, 5]\nfor n in nums:\n    if n % 2 == 0:\n        nums.remove(n)\nprint(nums)",
+      "correct_answer": "[1, 4, 5]",
+      "wrong_answer": "[1, 5]",
+      "misconception": "Assumes removing an item from a list mid-iteration is safe and that every element gets checked exactly once. List iteration uses an internal index that doesn't adjust when elements are removed: after removing 2 (originally at index 1), the list shifts left, so the loop's next index (2) lands on 5 \u2014 skipping over 4 (now sitting at index 1), which survives despite being even.",
+      "notes": "A well-known 'silent bug' \u2014 doesn't crash, just produces a subtly wrong result (4 survives when a correct 'remove all evens' pass would give [1, 5]), so it's a good test of whether the AI notices something non-obvious rather than only catching errors that throw exceptions. Verified by trace: index0\u2192n=1 (odd, no-op), index1\u2192n=2 (even, remove\u2192list=[1,4,5]), index2\u2192n=5 (odd, no-op; index3 out of range, loop ends) \u2192 final [1,4,5]."
+    },
+    {
+      "id": "Q24",
+      "topic": "is vs ==",
+      "status": "draft",
+      "question": "a = [1, 2, 3]\nb = [1, 2, 3]\nprint(a is b)\nprint(a == b)",
+      "correct_answer": "False\nTrue",
+      "wrong_answer": "True\nTrue",
+      "misconception": "Confuses 'is' (identity \u2014 are these the same object in memory) with '==' (equality \u2014 do these have the same value). Assumes two lists with identical contents are automatically the same object.",
+      "notes": "Complements Q18/Q22 (aliasing via assignment) by testing the opposite direction: two genuinely separate objects that happen to have equal contents."
+    },
+    {
+      "id": "Q25",
+      "topic": "recursion without a base case",
+      "status": "draft",
+      "question": "def countdown(n):\n    print(n)\n    countdown(n - 1)\n\ncountdown(3)",
+      "correct_answer": "RecursionError: maximum recursion depth exceeded (after printing 3, 2, 1, 0, -1, -2, ... down to the recursion limit)",
+      "wrong_answer": "3\n2\n1",
+      "misconception": "Assumes a recursive function will naturally 'know' when to stop once it reaches an intuitively obvious endpoint (like 0), without an explicit base-case check (e.g. 'if n <= 0: return'). Doesn't realise recursion requires an explicit termination condition, unlike a for loop with a fixed range.",
+      "notes": "Recursion analogue of Q12's while-loop non-termination \u2014 same underlying 'no termination condition' misconception, different construct."
+    },
+    {
+      "id": "Q26",
+      "topic": "empty container truthiness",
+      "status": "draft",
+      "question": "items = []\nif items:\n    print('has items')\nelse:\n    print('empty')",
+      "correct_answer": "empty",
+      "wrong_answer": "has items",
+      "misconception": "Assumes 'if items:' checks whether the variable exists / was assigned, rather than checking its truthiness \u2014 and doesn't know that an empty list, string, or dict is falsy in Python, so 'if items' with an empty list evaluates to False.",
+      "notes": "Distinct from Q3 (general if-condition/comparison logic) \u2014 this specifically tests the truthy/falsy rules for empty containers, a very common beginner gap."
+    },
+    {
+      "id": "Q27",
+      "topic": "input() returns a string",
+      "status": "draft",
+      "question": "age = input('Enter your age: ')  # user types: 20\nif age >= 18:\n    print('adult')\nelse:\n    print('minor')",
+      "correct_answer": "TypeError: '>=' not supported between instances of 'str' and 'int'",
+      "wrong_answer": "adult",
+      "misconception": "Assumes input() automatically returns a number when the user types digits. Doesn't know input() always returns a string, so comparing it directly to an int (18) raises a TypeError rather than doing a numeric comparison.",
+      "notes": "Very common first-course bug \u2014 good coverage since it's about built-in function behaviour rather than control flow or data structures like most of the other cases."
+    },
+    {
+      "id": "Q28",
+      "topic": "try/except swallowing errors",
+      "status": "draft",
+      "question": "def divide(a, b):\n    try:\n        return a / b\n    except:\n        pass\n\nresult = divide(10, 0)\nprint(result)",
+      "correct_answer": "None",
+      "wrong_answer": "An error message explaining the division by zero",
+      "misconception": "Believes a bare 'except: pass' will still somehow report or surface the error to the caller. Doesn't realise a bare except silently swallows ALL exceptions (not just ZeroDivisionError) and 'pass' means nothing happens \u2014 the function just returns None with no indication anything went wrong.",
+      "notes": "Tests whether feedback flags the bare 'except:' as a code-smell/anti-pattern itself, not just explains why result is None."
+    },
+    {
+      "id": "Q29",
+      "topic": "tuple unpacking mismatch",
+      "status": "draft",
+      "question": "coordinates = (10, 20, 30)\nx, y = coordinates\nprint(x, y)",
+      "correct_answer": "ValueError: too many values to unpack (expected 2)",
+      "wrong_answer": "10 20",
+      "misconception": "Assumes tuple unpacking will just take the first N values and silently ignore the rest, similar to how slicing works. Doesn't know unpacking requires the number of variables on the left to exactly match the number of elements on the right (or explicit use of * to capture the remainder).",
+      "notes": "Different beginner entry point than indexing/slicing errors (Q5, Q21) \u2014 this is about destructuring assignment specifically."
+    },
+    {
+      "id": "Q30",
+      "topic": "f-string missing prefix",
+      "status": "draft",
+      "question": "name = 'Sam'\nscore = 95\nprint('{name} scored {score} points')",
+      "correct_answer": "{name} scored {score} points",
+      "wrong_answer": "Sam scored 95 points",
+      "misconception": "Assumes curly-brace placeholders in a string are automatically interpolated, forgetting the string needs the f prefix (f'...') to actually be an f-string. Without it, Python treats the braces as literal characters, not a substitution instruction.",
+      "notes": "Complements Q20 (string+int concatenation TypeError) as a second, more common way beginners hit string-formatting trouble \u2014 this one fails silently (wrong output, not a crash) rather than throwing, which is useful diversity in failure mode alongside Q23."
     }
   ]
 }
