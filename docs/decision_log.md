@@ -11,6 +11,7 @@ Running record of key methodology/build decisions and why they were made, for th
 | 2026-07-21 | Retry policy: 3 attempts, 5s fixed backoff, failures logged not fatal | Fallback plan for API rate limits / transient downtime (Jack's feedback, 22 Jul) — one failed call should not lose the rest of a batch run |
 | 2026-07-21 | Every rendered prompt is SHA-256 hashed and stored per record | Detect prompt drift even if prompt_version wasn't bumped; reproducibility |
 | 2026-07-21 | Output run directories are write-once (fail on collision) | Prevent accidentally overwriting a previous run's results |
+| 2026-08-12 | Live runs call only models whose API key env var is set; missing keys are skipped (logged in manifest) rather than blocking the whole run | Lets a partial live test proceed (e.g. DeepSeek only) without requiring every provider key up front; a full SIT724 comparison still needs all models |
 
 ## Open decisions (pending discussion with Jack)
 

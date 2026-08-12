@@ -170,6 +170,9 @@ def _render_job_summary(summary: dict) -> None:
     )
     if summary["dry_run"]:
         st.info("Dry run — no API calls were made, no cost incurred.")
+    skipped = summary.get("models_skipped_missing_key") or []
+    if skipped:
+        st.caption(f"Skipped (no API key): {', '.join(skipped)}")
     st.session_state["selected_run"] = Path(summary["run_dir"]).name
     st.write("**Output folder** (open the Past Runs tab to inspect this run):")
     st.code(summary["run_dir"], language=None)
@@ -281,9 +284,11 @@ def view_run_pipeline() -> None:
             hide_index=True,
         )
         if missing:
+            ready_names = [r["name"] for r in key_rows if r["present"]]
             st.caption(
-                "Dry-run works without keys. For live mode, set these in your shell "
-                "then restart `streamlit run app.py`: "
+                "Live mode calls only models with a key set"
+                + (f" (will run: {', '.join(ready_names)})." if ready_names else ".")
+                + " Still missing — set in this shell then restart Streamlit: "
                 + ", ".join(missing)
             )
         else:
@@ -303,15 +308,25 @@ def view_run_pipeline() -> None:
         submitted = st.form_submit_button("Run", type="primary", disabled=running)
 
     if submitted and not running:
-        if mode == "live" and missing:
+        ready_names = [r["name"] for r in key_rows if r["present"]]
+        skipped_names = [r["name"] for r in key_rows if not r["present"]]
+        if mode == "live" and not ready_names:
             st.error(
-                "Cannot start a live run — missing: "
-                + ", ".join(missing)
-                + ". Use dry-run, or set the env vars and restart Streamlit."
+                "Cannot start a live run — no API keys set. "
+                "Export at least one (e.g. DEEPSEEK_API_KEY) in this shell "
+                "and restart Streamlit."
             )
         else:
             if mode == "live":
-                st.warning("Live mode will call model APIs and may incur cost.")
+                st.warning(
+                    "Live mode will call APIs and may incur cost. "
+                    f"Running: {', '.join(ready_names)}."
+                    + (
+                        f" Skipping (no key): {', '.join(skipped_names)}."
+                        if skipped_names
+                        else ""
+                    )
+                )
             _start_pipeline_job(dry_run=(mode == "dry-run"), include_drafts=include_drafts)
             st.rerun()
 

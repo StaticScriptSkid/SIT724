@@ -212,8 +212,9 @@ class MissingAPIKeysError(RuntimeError):
         self.missing = missing
         names = ", ".join(missing)
         super().__init__(
-            f"Missing API key environment variable(s): {names}. "
-            "Set them before a live run (see Config tab / config.yaml)."
+            f"No API keys set. Need at least one of: {names}. "
+            "Export the env var(s) then restart Streamlit / the CLI "
+            "(see Config tab / config.yaml)."
         )
 
 
@@ -242,6 +243,18 @@ def api_key_status(models: list) -> list:
             "present": bool(env and os.environ.get(env)),
         })
     return rows
+
+
+def models_ready_for_live(models: list) -> tuple[list, list]:
+    """Split config models into (has_key, missing_key)."""
+    ready, skipped = [], []
+    for m in models:
+        env = m.get("api_key_env")
+        if env and os.environ.get(env):
+            ready.append(m)
+        else:
+            skipped.append(m)
+    return ready, skipped
 
 
 def run_pipeline(
@@ -273,12 +286,15 @@ def run_pipeline(
     cfg = load_config(config_path)
     params = cfg["generation_params"]
     models = cfg["models"]
+    skipped_names: list[str] = []
 
-    # Live runs: refuse immediately if any model key is missing (no partial burn).
+    # Live runs: call only models whose API key env var is set.
     if not dry_run:
-        missing = missing_api_key_envs(models)
-        if missing:
-            raise MissingAPIKeysError(missing)
+        ready, skipped = models_ready_for_live(models)
+        if not ready:
+            raise MissingAPIKeysError(missing_api_key_envs(models))
+        skipped_names = [m["name"] for m in skipped]
+        models = ready
 
     cases, benchmark_version = load_cases(cfg["paths"]["cases_file"], include_drafts)
     with open(cfg["paths"]["prompt_template"], "r", encoding="utf-8") as f:
@@ -302,8 +318,12 @@ def run_pipeline(
         "models": [m["name"] for m in models],
         "n_cases": len(cases),
     }
+    if skipped_names:
+        manifest["models_skipped_missing_key"] = skipped_names
 
     total = len(cases) * len(models)
+    if skipped_names:
+        emit(f"Skipping models with no API key: {', '.join(skipped_names)}")
     emit(f"Starting {mode} run {run_id}: {len(cases)} cases x {len(models)} models = {total} calls")
 
     records = []
@@ -382,6 +402,8 @@ def run_pipeline(
         "n_failed": len(failures),
         "dry_run": dry_run,
         "cancelled": was_cancelled,
+        "models": [m["name"] for m in models],
+        "models_skipped_missing_key": skipped_names,
     }
 
 
@@ -436,6 +458,9 @@ def main():
         print(f"Run {summary['run_id']} complete: {summary['n_records']} records written to {summary['run_dir']}")
     if not args.dry_run:
         print(f"  {summary['n_succeeded']} succeeded, {summary['n_failed']} failed after retries")
+        skipped = summary.get("models_skipped_missing_key") or []
+        if skipped:
+            print(f"  skipped (no API key): {', '.join(skipped)}")
     else:
         print("  (dry run — no API calls were made, no cost incurred)")
 
