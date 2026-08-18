@@ -16,6 +16,7 @@ Running record of key methodology/build decisions and why they were made, for th
 | 2026-08-12 | Gemini calls use `thinkingLevel: minimal` and only visible (non-thought) text parts | Gemini 3.5 thinking was consuming `max_tokens: 400`, so live “ok” records were truncated stubs; minimal thinking keeps the shared token cap comparable across models |
 | 2026-08-12 | Reverted Gemini `thinkingLevel` (back to default thinking + `parts[0].text`) to test paid quota vs thinking as the truncation cause | Student added Gemini credit after a free-plan run; keep 3.5-flash slug and header auth |
 | 2026-08-12 | Gemini live calls use maxOutputTokens ≥ 2048 and join non-thought text parts (not only parts[0]) | Paid quota did not fix 38–70 char stubs; Gemini was being cut off / returning a thought fragment as `parts[0]`. Other models still use config `max_tokens: 400` |
+| 2026-08-19 | Kimi model_id changed from `kimi-k2.6-instant` (404) to `kimi-k2.6`, with per-model `temperature: 1` and `max_tokens: 800` | Live run failed: Moonshot has no `kimi-k2.6-instant`; available list is kimi-k2.6 / kimi-k3 / code variants, and kimi-k2.6 rejects temperature 0.0 |
 
 ## Open decisions (pending discussion with Jack)
 

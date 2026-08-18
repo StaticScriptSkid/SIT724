@@ -34,7 +34,12 @@ models:
     provider: openai-compatible
     api_base_env: KIMI_API_BASE
     api_key_env: KIMI_API_KEY
-    model_id: kimi-k2.6-instant
+    # Closest current API slug to SIT723 "Kimi K2.6 Instant" (kimi-k2.6-instant 404s).
+    model_id: kimi-k2.6
+    # Moonshot requires temperature=1 for kimi-k2.6 (0.0 is rejected).
+    temperature: 1
+    # Extra room so reasoning tokens don't starve the visible reply.
+    max_tokens: 800
 
 # Pricing left unfilled — needed before --estimate gives a real dollar figure.
 # Fill in USD per 1K tokens (input/output) once the model list is confirmed with Jack.

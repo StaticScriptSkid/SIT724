@@ -111,22 +111,46 @@ def new_run_id(mode: str) -> str:
 
 def call_openai_compatible(model_cfg: dict, rendered_prompt: str, params: dict) -> str:
     api_key = os.environ.get(model_cfg["api_key_env"])
-    api_base = os.environ.get(model_cfg.get("api_base_env", ""), "https://api.openai.com/v1")
+    api_base = os.environ.get(model_cfg.get("api_base_env", ""), "https://api.openai.com/v1").rstrip("/")
     if not api_key:
         raise RuntimeError(f"Missing API key env var: {model_cfg['api_key_env']}")
+
+    temperature = model_cfg.get("temperature", params["temperature"])
+    max_tokens = model_cfg.get("max_tokens", params["max_tokens"])
+    body = {
+        "model": model_cfg["model_id"],
+        "messages": [{"role": "user", "content": rendered_prompt}],
+        "temperature": temperature,
+        "max_tokens": max_tokens,
+    }
+    # Provider-specific extras (e.g. Kimi thinking flags) from config.yaml.
+    extras = model_cfg.get("request_extras") or {}
+    if extras:
+        body.update(extras)
+
     resp = requests.post(
         f"{api_base}/chat/completions",
         headers={"Authorization": f"Bearer {api_key}"},
-        json={
-            "model": model_cfg["model_id"],
-            "messages": [{"role": "user", "content": rendered_prompt}],
-            "temperature": params["temperature"],
-            "max_tokens": params["max_tokens"],
-        },
+        json=body,
         timeout=60,
     )
-    resp.raise_for_status()
-    return resp.json()["choices"][0]["message"]["content"]
+    if not resp.ok:
+        detail = (resp.text or "").strip().replace("\n", " ")
+        if len(detail) > 300:
+            detail = detail[:300] + "..."
+        raise RuntimeError(f"{resp.status_code} Client Error for {api_base}/chat/completions: {detail}")
+    message = resp.json()["choices"][0]["message"]
+    content = (message.get("content") or "").strip()
+    if content:
+        return content
+    # Some Kimi models put draft text in reasoning_content when content is empty.
+    reasoning = (message.get("reasoning_content") or "").strip()
+    if reasoning:
+        raise RuntimeError(
+            "Model returned empty content (only reasoning_content). "
+            "Check model_id / temperature / thinking settings for this provider."
+        )
+    raise RuntimeError("Model returned empty content.")
 
 
 def call_anthropic(model_cfg: dict, rendered_prompt: str, params: dict) -> str:
