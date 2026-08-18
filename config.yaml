@@ -36,10 +36,13 @@ models:
     api_key_env: KIMI_API_KEY
     # Closest current API slug to SIT723 "Kimi K2.6 Instant" (kimi-k2.6-instant 404s).
     model_id: kimi-k2.6
-    # Moonshot requires temperature=1 for kimi-k2.6 (0.0 is rejected).
-    temperature: 1
-    # Extra room so reasoning tokens don't starve the visible reply.
-    max_tokens: 800
+    # With thinking disabled, Moonshot requires temperature=0.6 (not 0.0 / 1.0).
+    temperature: 0.6
+    max_tokens: 400
+    # Without this, kimi-k2.6 often returns empty content and only reasoning_content.
+    request_extras:
+      thinking:
+        type: disabled
 
 # Pricing left unfilled — needed before --estimate gives a real dollar figure.
 # Fill in USD per 1K tokens (input/output) once the model list is confirmed with Jack.
