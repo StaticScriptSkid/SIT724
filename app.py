@@ -17,9 +17,12 @@ import threading
 import time
 from pathlib import Path
 
+from datetime import datetime, timezone
+
 import streamlit as st
 import yaml
 
+from judgement_log.validate_log import validate_entries
 from pipeline.generate import (
     MissingAPIKeysError,
     api_key_status,
@@ -37,8 +40,20 @@ SCHEMA_PATH = ROOT / "cases" / "schema.json"
 RUBRIC_PATH = ROOT / "rubric" / "rubric.json"
 CONFIG_PATH = ROOT / "config.yaml"
 OUTPUTS_DIR = ROOT / "outputs"
+JUDGEMENT_ENTRIES = ROOT / "judgement_log" / "entries.json"
+JUDGEMENT_SCHEMA = ROOT / "judgement_log" / "schema.json"
 
 DF_WIDTH = "stretch"
+
+RUBRIC_DIM_KEYS = [
+    "accuracy",
+    "selectivity",
+    "clarity",
+    "informativeness",
+    "specificity",
+    "level_of_detail",
+    "ethics_safety",
+]
 
 
 def _load_cases_table() -> tuple[list[dict], str]:
@@ -466,6 +481,247 @@ def view_config() -> None:
         st.code(yaml.safe_dump(safe, sort_keys=False), language="yaml")
 
 
+def _load_judgement_entries() -> list[dict]:
+    if not JUDGEMENT_ENTRIES.exists():
+        return []
+    data = load_json(JUDGEMENT_ENTRIES)
+    return data if isinstance(data, list) else []
+
+
+def _next_entry_id(entries: list[dict]) -> str:
+    nums = []
+    for e in entries:
+        eid = e.get("entry_id") or ""
+        if eid.startswith("JL-"):
+            try:
+                nums.append(int(eid.split("-", 1)[1]))
+            except ValueError:
+                continue
+    n = (max(nums) + 1) if nums else 1
+    return f"JL-{n:04d}"
+
+
+def _scored_triples(entries: list[dict], rater_id: str) -> set[tuple[str, str, str]]:
+    return {
+        (e.get("case_id"), e.get("model"), e.get("rater_id"))
+        for e in entries
+        if e.get("rater_id") == rater_id
+    }
+
+
+def view_score() -> None:
+    st.subheader("Score")
+    st.caption(
+        "Write reliability judgements into `judgement_log/entries.json` "
+        "(Jack’s accept/reject/refine + 7 rubric scores). "
+        "Uses the same schema as `judgement_log/validate_log.py`."
+    )
+
+    runs = _list_run_dirs()
+    live_runs = [p for p in runs if not p.name.startswith("dryrun_")]
+    if not live_runs:
+        st.info("No live runs under `outputs/` yet — run the pipeline first.")
+        return
+
+    preferred = "20260819T010032Z-477c3a3e"
+    run_names = [p.name for p in live_runs]
+    default_idx = run_names.index(preferred) if preferred in run_names else 0
+
+    rater_id = st.text_input("Rater ID", value="andrei", help="Must stay consistent for kappa joins.")
+    run_name = st.selectbox("Pipeline run to score", options=run_names, index=default_idx)
+    run_dir = OUTPUTS_DIR / run_name
+    records = [
+        r for r in _load_responses(run_dir)
+        if r.get("response_text") and not r.get("error") and "DRY RUN" not in (r.get("response_text") or "")
+    ]
+    if not records:
+        st.warning("This run has no scorable live responses.")
+        return
+
+    cases_by_id = {c["id"]: c for c in _load_cases_table()[0]}
+    entries = _load_judgement_entries()
+    scored = _scored_triples(entries, rater_id.strip())
+
+    case_ids = sorted(
+        {r["case_id"] for r in records},
+        key=lambda x: (len(x), int(x[1:]) if x[1:].isdigit() else x),
+    )
+
+    show_unscored_only = st.checkbox("Only show unscored (case × model) for this rater", value=True)
+
+    c1, c2 = st.columns(2)
+    with c1:
+        case_id = st.selectbox("Case", options=case_ids)
+    with c2:
+        models_for_case = sorted({
+            r["model_name"] for r in records if r["case_id"] == case_id
+        })
+        if show_unscored_only:
+            models_for_case = [
+                m for m in models_for_case
+                if (case_id, m, rater_id.strip()) not in scored
+            ]
+        if not models_for_case:
+            st.info("All models for this case are already scored by this rater.")
+            model_name = None
+        else:
+            model_name = st.selectbox("Model", options=models_for_case)
+
+    st.caption(
+        f"Log coverage for `{rater_id.strip() or '?'}`: "
+        f"{sum(1 for e in entries if e.get('rater_id') == rater_id.strip())} entries "
+        f"· run has {len(records)} scorable responses"
+    )
+
+    if not model_name or not rater_id.strip():
+        return
+
+    record = next(
+        (
+            r for r in records
+            if r["case_id"] == case_id and r["model_name"] == model_name
+        ),
+        None,
+    )
+    if record is None:
+        st.error("No response found for that case × model.")
+        return
+
+    case = cases_by_id.get(case_id, {})
+    rubric = load_json(RUBRIC_PATH)
+    dims = {d["key"]: d for d in rubric.get("dimensions", [])}
+
+    st.divider()
+    left, right = st.columns(2)
+    with left:
+        st.write("**Case**")
+        st.markdown(f"**{case_id}** · `{case.get('topic', '')}` · status `{case.get('status', '')}`")
+        st.write("Question")
+        st.code(case.get("question", ""), language=None)
+        st.write(f"Correct: `{case.get('correct_answer', '')}`")
+        st.write(f"Wrong: `{case.get('wrong_answer', '')}`")
+        st.write(f"Misconception: {case.get('misconception', '')}")
+    with right:
+        st.write(f"**AI response** (`{model_name}`)")
+        st.text_area(
+            "response",
+            value=record.get("response_text") or "",
+            height=280,
+            disabled=True,
+            label_visibility="collapsed",
+        )
+
+    with st.expander("Rubric anchors (1–5)", expanded=False):
+        for key in RUBRIC_DIM_KEYS:
+            d = dims.get(key, {})
+            anchors = d.get("anchors", {})
+            st.markdown(
+                f"**{d.get('name', key)}** — {d.get('definition', '')}\n\n"
+                + " · ".join(f"{i}: {anchors.get(str(i), '')}" for i in range(1, 6))
+            )
+
+    already = (case_id, model_name, rater_id.strip()) in scored
+    if already:
+        st.warning("This rater already has an entry for this case × model. Saving would create a duplicate (validator will reject).")
+
+    with st.form("score_entry_form"):
+        st.write("**Rubric scores (1–5)**")
+        score_cols = st.columns(4)
+        scores: dict[str, int] = {}
+        for i, key in enumerate(RUBRIC_DIM_KEYS):
+            label = dims.get(key, {}).get("name", key)
+            with score_cols[i % 4]:
+                scores[key] = st.selectbox(label, options=[1, 2, 3, 4, 5], index=2, key=f"score_{key}")
+
+        judgement = st.radio(
+            "Judgement",
+            options=["accept", "reject", "refine"],
+            horizontal=True,
+            help="accept = counts as evidence; reject = unusable; refine = you revised after a second look.",
+        )
+        reasoning = st.text_area(
+            "Reasoning (required)",
+            height=140,
+            placeholder="What the AI said, what stood out, and why these scores / this judgement.",
+        )
+        refine_detail = st.text_area(
+            "Refine detail (required only if judgement=refine)",
+            height=80,
+            placeholder="What changed between first and final scores, and why.",
+        )
+        submitted = st.form_submit_button("Save to judgement log", type="primary", disabled=already)
+
+    if submitted:
+        if not reasoning.strip():
+            st.error("Reasoning is required.")
+            return
+        if judgement == "refine" and not refine_detail.strip():
+            st.error("refine_detail is required when judgement is refine.")
+            return
+
+        entry = {
+            "entry_id": _next_entry_id(entries),
+            "run_id": run_name,
+            "case_id": case_id,
+            "model": model_name,
+            "rater_id": rater_id.strip(),
+            "prompt_hash": record.get("prompt_sha256") or "",
+            "ai_response_ref": (
+                f"outputs/{run_name}/responses.jsonl"
+                f"#case_id={case_id}&model_name={model_name}"
+            ),
+            "rubric_scores": {k: int(scores[k]) for k in RUBRIC_DIM_KEYS},
+            "judgement": judgement,
+            "reasoning": reasoning.strip(),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+        }
+        if judgement == "refine":
+            entry["refine_detail"] = refine_detail.strip()
+
+        # Validate candidate against schema before writing.
+        try:
+            import jsonschema
+            schema = load_json(JUDGEMENT_SCHEMA)
+            jsonschema.Draft202012Validator(schema).validate(entry)
+        except Exception as e:  # noqa: BLE001
+            st.error(f"Entry failed schema validation: {e}")
+            return
+
+        new_entries = list(entries) + [entry]
+        JUDGEMENT_ENTRIES.write_text(
+            json.dumps(new_entries, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        check = validate_entries(JUDGEMENT_ENTRIES, JUDGEMENT_SCHEMA)
+        if not check["ok"]:
+            # Roll back write if full-file validation fails.
+            JUDGEMENT_ENTRIES.write_text(
+                json.dumps(entries, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            st.error("Appended entry made the log invalid — write rolled back.")
+            for err in check["errors"]:
+                st.write(f"- {err}")
+            return
+
+        st.success(
+            f"Saved `{entry['entry_id']}` · {case_id} × {model_name} · "
+            f"{judgement} · total {check['n_entries']} entries"
+        )
+        st.rerun()
+
+    if st.button("Validate judgement log"):
+        check = validate_entries(JUDGEMENT_ENTRIES, JUDGEMENT_SCHEMA)
+        if check["ok"]:
+            st.success(f"OK: {check['n_entries']} entries valid")
+            if check["n_entries"]:
+                st.write(check["rater_counts"], check["judgement_counts"])
+        else:
+            st.error(f"FAILED: {len(check['errors'])} issue(s)")
+            for err in check["errors"]:
+                st.write(f"- {err}")
+
+
 # ---------------------------------------------------------------------------
 # App shell
 # ---------------------------------------------------------------------------
@@ -478,7 +734,9 @@ def main() -> None:
     st.title("SIT724 Feedback-Evaluation Pipeline")
     st.caption("Local GUI · same validation & generation logic as the CLI scripts")
 
-    tabs = st.tabs(["Benchmark", "Rubric", "Run Pipeline", "Past Runs", "Config"])
+    tabs = st.tabs(
+        ["Benchmark", "Rubric", "Run Pipeline", "Past Runs", "Score", "Config"]
+    )
     with tabs[0]:
         view_benchmark()
     with tabs[1]:
@@ -488,6 +746,8 @@ def main() -> None:
     with tabs[3]:
         view_past_runs()
     with tabs[4]:
+        view_score()
+    with tabs[5]:
         view_config()
 
 

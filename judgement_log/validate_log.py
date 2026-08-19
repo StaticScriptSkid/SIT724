@@ -20,8 +20,7 @@ from pathlib import Path
 try:
     import jsonschema
 except ImportError:
-    print("ERROR: jsonschema not installed. Run: pip install jsonschema --break-system-packages")
-    sys.exit(1)
+    jsonschema = None
 
 
 def load_json(path):
@@ -29,24 +28,69 @@ def load_json(path):
         return json.load(f)
 
 
-def main():
-    here = Path(__file__).parent
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--entries", default=str(here / "entries.json"))
-    parser.add_argument("--schema", default=str(here / "schema.json"))
-    args = parser.parse_args()
+def validate_entries(entries_path, schema_path) -> dict:
+    """
+    Validate judgement log entries. Returns a result dict (does not exit).
 
-    schema = load_json(args.schema)
-    entries = load_json(args.entries)
+    Keys: ok, errors, n_entries, rater_counts, judgement_counts,
+          n_cases, n_models, entries_path
+    """
+    entries_path = Path(entries_path)
+    schema_path = Path(schema_path)
+
+    if jsonschema is None:
+        return {
+            "ok": False,
+            "errors": ["jsonschema not installed. Run: pip install jsonschema"],
+            "n_entries": 0,
+            "rater_counts": {},
+            "judgement_counts": {},
+            "n_cases": 0,
+            "n_models": 0,
+            "entries_path": str(entries_path),
+        }
+    if not entries_path.exists():
+        return {
+            "ok": False,
+            "errors": [f"entries file not found: {entries_path}"],
+            "n_entries": 0,
+            "rater_counts": {},
+            "judgement_counts": {},
+            "n_cases": 0,
+            "n_models": 0,
+            "entries_path": str(entries_path),
+        }
+    if not schema_path.exists():
+        return {
+            "ok": False,
+            "errors": [f"schema file not found: {schema_path}"],
+            "n_entries": 0,
+            "rater_counts": {},
+            "judgement_counts": {},
+            "n_cases": 0,
+            "n_models": 0,
+            "entries_path": str(entries_path),
+        }
+
+    schema = load_json(schema_path)
+    entries = load_json(entries_path)
 
     if not isinstance(entries, list):
-        print("ERROR: entries.json must be a JSON array.")
-        sys.exit(1)
+        return {
+            "ok": False,
+            "errors": ["entries.json must be a JSON array."],
+            "n_entries": 0,
+            "rater_counts": {},
+            "judgement_counts": {},
+            "n_cases": 0,
+            "n_models": 0,
+            "entries_path": str(entries_path),
+        }
 
     validator = jsonschema.Draft202012Validator(schema)
     errors = []
     seen_ids = set()
-    seen_triples = Counter()  # (case_id, model, rater_id) -> count
+    seen_triples = Counter()
     judgement_counts = Counter()
     rater_counts = Counter()
 
@@ -72,21 +116,52 @@ def main():
         if count > 1:
             errors.append(f"duplicate (case_id, model, rater_id) triple {triple}: {count} entries")
 
-    if errors:
-        print(f"FAILED: {len(errors)} issue(s) found in {args.entries}\n")
-        for e in errors:
+    cases = {e.get("case_id") for e in entries if e.get("case_id")}
+    models = {e.get("model") for e in entries if e.get("model")}
+
+    return {
+        "ok": len(errors) == 0,
+        "errors": errors,
+        "n_entries": len(entries),
+        "rater_counts": dict(rater_counts),
+        "judgement_counts": dict(judgement_counts),
+        "n_cases": len(cases),
+        "n_models": len(models),
+        "entries_path": str(entries_path),
+    }
+
+
+def main():
+    here = Path(__file__).parent
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--entries", default=str(here / "entries.json"))
+    parser.add_argument("--schema", default=str(here / "schema.json"))
+    args = parser.parse_args()
+
+    if jsonschema is None:
+        print(
+            "ERROR: jsonschema not installed. Run: pip install jsonschema --break-system-packages",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    result = validate_entries(args.entries, args.schema)
+    if not result["ok"]:
+        print(f"FAILED: {len(result['errors'])} issue(s) found in {result['entries_path']}\n")
+        for e in result["errors"]:
             print(f"  - {e}")
         sys.exit(1)
 
-    print(f"OK: {len(entries)} judgement log entries valid against schema.")
-    if entries:
-        print(f"Raters: {dict(rater_counts)}")
-        print(f"Judgements: {dict(judgement_counts)}")
-        cases = {e.get("case_id") for e in entries}
-        models = {e.get("model") for e in entries}
-        print(f"Coverage: {len(cases)} case(s), {len(models)} model(s)")
+    print(f"OK: {result['n_entries']} judgement log entries valid against schema.")
+    if result["n_entries"]:
+        print(f"Raters: {result['rater_counts']}")
+        print(f"Judgements: {result['judgement_counts']}")
+        print(f"Coverage: {result['n_cases']} case(s), {result['n_models']} model(s)")
     else:
-        print("(entries.json is empty — expected until the live pipeline run + first scoring pass happen)")
+        print(
+            "(entries.json is empty — expected until the live pipeline run "
+            "+ first scoring pass happen)"
+        )
 
 
 if __name__ == "__main__":

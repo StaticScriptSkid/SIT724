@@ -46,8 +46,8 @@ API keys: copy `.env.example` to `.env` and fill in the values. `.env` is gitign
 
 A local Streamlit UI wraps the same validation and generation functions used by the CLI
 (`pipeline/validate_cases.py`, `pipeline/generate.py`) — browse cases, view the rubric,
-run dry/live pipelines, inspect past outputs, and confirm `config.yaml` (API keys are
-never shown; only env var names — put real keys in `.env`).
+run dry/live pipelines, inspect past outputs, score responses into `judgement_log/`,
+and confirm `config.yaml` (API keys are never shown; only env var names — put real keys in `.env`).
 
 ```bash
 pip install -r requirements.txt
