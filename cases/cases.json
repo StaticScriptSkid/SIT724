@@ -229,7 +229,7 @@
       "correct_answer": "False\nTrue",
       "wrong_answer": "True\nTrue",
       "misconception": "Confuses 'is' (identity \u2014 are these the same object in memory) with '==' (equality \u2014 do these have the same value). Assumes two lists with identical contents are automatically the same object.",
-      "notes": "Complements Q18/Q22 (aliasing via assignment) by testing the opposite direction: two genuinely separate objects that happen to have equal contents."
+      "notes": "Complements Q13/Q22 (aliasing via assignment) by testing the opposite direction: two genuinely separate objects that happen to have equal contents."
     },
     {
       "id": "Q25",
