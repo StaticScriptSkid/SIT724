@@ -258,6 +258,46 @@ def _is_permanent_error(message: str) -> bool:
     return any(marker in message for marker in permanent_markers)
 
 
+def _is_rate_limit_error(message: str) -> bool:
+    lower = message.lower()
+    return (
+        "429" in message
+        or "rate_limit" in lower
+        or "rate limit" in lower
+        or "rpm" in lower
+    )
+
+
+def _rate_limit_sleep_seconds(message: str, params: dict, model_cfg: dict) -> float:
+    """Prefer the provider's 'try again after N seconds' hint; else a longer default."""
+    match = re.search(r"try again after\s+(\d+)\s+seconds?", message, re.IGNORECASE)
+    hinted = float(match.group(1)) + 1.0 if match else 0.0
+    configured = float(
+        model_cfg.get("rate_limit_backoff_seconds")
+        or params.get("rate_limit_backoff_seconds")
+        or 25
+    )
+    return max(hinted, configured, float(params["retry_backoff_seconds"]))
+
+
+# Wall-clock spacing between calls to the same model (Moonshot free tier ~3 RPM).
+_last_call_mono: dict[str, float] = {}
+
+
+def _wait_min_interval(model_cfg: dict) -> None:
+    interval = float(model_cfg.get("min_interval_seconds") or 0)
+    if interval <= 0:
+        return
+    key = model_cfg.get("name") or model_cfg.get("model_id") or "unknown"
+    now = time.monotonic()
+    last = _last_call_mono.get(key)
+    if last is not None:
+        gap = interval - (now - last)
+        if gap > 0:
+            time.sleep(gap)
+    _last_call_mono[key] = time.monotonic()
+
+
 def call_model_with_retries(model_cfg: dict, rendered_prompt: str, params: dict) -> dict:
     """Fallback plan: retry on failure with fixed backoff; log (not crash) on exhaustion."""
     provider = model_cfg["provider"]
@@ -276,8 +316,10 @@ def call_model_with_retries(model_cfg: dict, rendered_prompt: str, params: dict)
             "attempts": 0,
         }
 
+    max_attempts = int(params["retries"]) + int(model_cfg.get("rate_limit_extra_retries") or 0)
     last_error = None
-    for attempt in range(1, params["retries"] + 1):
+    for attempt in range(1, max_attempts + 1):
+        _wait_min_interval(model_cfg)
         try:
             text = func(model_cfg, rendered_prompt, params)
             return {"response_text": text, "error": None, "attempts": attempt}
@@ -285,9 +327,12 @@ def call_model_with_retries(model_cfg: dict, rendered_prompt: str, params: dict)
             last_error = _redact_secrets(str(e))
             if _is_permanent_error(last_error):
                 return {"response_text": None, "error": last_error, "attempts": attempt}
-            if attempt < params["retries"]:
-                time.sleep(params["retry_backoff_seconds"])
-    return {"response_text": None, "error": last_error, "attempts": params["retries"]}
+            if attempt < max_attempts:
+                if _is_rate_limit_error(last_error):
+                    time.sleep(_rate_limit_sleep_seconds(last_error, params, model_cfg))
+                else:
+                    time.sleep(params["retry_backoff_seconds"])
+    return {"response_text": None, "error": last_error, "attempts": max_attempts}
 
 
 # ---------------------------------------------------------------------------

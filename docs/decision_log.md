@@ -18,6 +18,7 @@ Running record of key methodology/build decisions and why they were made, for th
 | 2026-08-12 | Gemini live calls use maxOutputTokens ≥ 2048 and join non-thought text parts (not only parts[0]) | Paid quota did not fix 38–70 char stubs; Gemini was being cut off / returning a thought fragment as `parts[0]`. Other models still use config `max_tokens: 400` |
 | 2026-08-19 | Kimi model_id changed from `kimi-k2.6-instant` (404) to `kimi-k2.6`, with per-model `temperature: 1` and `max_tokens: 800` | Live run failed: Moonshot has no `kimi-k2.6-instant`; available list is kimi-k2.6 / kimi-k3 / code variants, and kimi-k2.6 rejects temperature 0.0 |
 | 2026-08-19 | Kimi uses `thinking: {type: disabled}` and `temperature: 0.6` | Live run `…7a73233f` had 3/10 Kimi failures: empty `content`, only `reasoning_content`. Disabling thinking fills the visible reply; Moonshot then requires temp 0.6 |
+| 2026-08-19 | Kimi live calls use `min_interval_seconds: 22`, longer 429 backoff, and extra rate-limit retries | 30-case run `…a4a73323` lost Q22/Q29 Kimi to Moonshot RPM (~3/min); fixed 5s×3 retries were not enough |
 
 ## Open decisions (pending discussion with Jack)
 

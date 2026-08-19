@@ -43,6 +43,10 @@ models:
     request_extras:
       thinking:
         type: disabled
+    # Free-tier Moonshot is ~3 RPM; space calls and retry longer on 429.
+    min_interval_seconds: 22
+    rate_limit_backoff_seconds: 25
+    rate_limit_extra_retries: 3
 
 # Pricing left unfilled — needed before --estimate gives a real dollar figure.
 # Fill in USD per 1K tokens (input/output) once the model list is confirmed with Jack.
