@@ -254,6 +254,11 @@ def _is_permanent_error(message: str) -> bool:
         "Unknown provider",
         "The 'requests' package is not installed",
         "404 Client Error",
+        # Billing / auth failures arrive as 429 or 401/403 but never clear on retry.
+        "Insufficient balance",
+        "insufficient_quota",
+        "401 Client Error",
+        "403 Client Error",
     )
     return any(marker in message for marker in permanent_markers)
 

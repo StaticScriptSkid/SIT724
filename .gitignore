@@ -55,3 +55,7 @@ Thumbs.db
 
 # NOTE: Do NOT ignore outputs/ — run folders are intentional audit-trail
 # evidence for this research project and must stay tracked in git.
+
+# Generated blinded peer-review pack (rebuild: python pipeline/peer_review.py --build).
+# blind_map.json unblinds model names — never send that file to a rater.
+peer_review/generated/

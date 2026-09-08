@@ -35,7 +35,6 @@ from pipeline.peer_review import (
     DEFAULT_RUN_ID as PEER_RUN_ID,
     build_pack,
     import_peer_file,
-    next_entry_id,
     pack_leak_warnings,
     write_generated_pack,
 )
@@ -500,15 +499,43 @@ def _load_judgement_entries() -> list[dict]:
     return data if isinstance(data, list) else []
 
 
-def _next_entry_id(entries: list[dict]) -> str:
-    return next_entry_id(entries)
-
-
-def _scored_triples(entries: list[dict], rater_id: str) -> set[tuple[str, str, str]]:
+def build_judgement_entry(
+    *,
+    rater_id: str,
+    pack_id: str,
+    run_id: str,
+    blind_id: str,
+    case_id: str,
+    variant_index: int,
+    prompt_hash: str,
+    rubric_scores: dict[str, int],
+    judgement: str,
+    reasoning: str,
+    refine_detail: str = "",
+    timestamp: str | None = None,
+) -> dict:
+    """Build one judgement_log row in the current blinded schema (no model name)."""
     return {
-        (e.get("case_id"), e.get("model"), e.get("rater_id"))
+        "rater_id": rater_id.strip(),
+        "pack_id": pack_id,
+        "run_id": run_id,
+        "blind_id": blind_id,
+        "case_id": case_id,
+        "variant_index": int(variant_index),
+        "prompt_hash": prompt_hash,
+        "rubric_scores": {k: int(rubric_scores[k]) for k in RUBRIC_DIM_KEYS},
+        "judgement": judgement,
+        "reasoning": reasoning.strip(),
+        "refine_detail": refine_detail.strip() if judgement == "refine" else "",
+        "timestamp": timestamp or datetime.now(timezone.utc).isoformat(),
+    }
+
+
+def _scored_blind_ids(entries: list[dict], rater_id: str) -> set[str]:
+    return {
+        e.get("blind_id")
         for e in entries
-        if e.get("rater_id") == rater_id
+        if e.get("rater_id") == rater_id and e.get("blind_id")
     }
 
 
@@ -517,7 +544,7 @@ def view_score() -> None:
     st.caption(
         "Write reliability judgements into `judgement_log/entries.json` "
         "(Jack’s accept/reject/refine + 7 rubric scores). "
-        "Uses the same schema as `judgement_log/validate_log.py`."
+        "Uses the blinded schema in `judgement_log/schema.json` — no model names."
     )
 
     runs = _list_run_dirs()
@@ -526,68 +553,64 @@ def view_score() -> None:
         st.info("No live runs under `outputs/` yet — run the pipeline first.")
         return
 
-    preferred = "20260819T010032Z-477c3a3e"
     run_names = [p.name for p in live_runs]
-    default_idx = run_names.index(preferred) if preferred in run_names else 0
+    default_idx = run_names.index(PEER_RUN_ID) if PEER_RUN_ID in run_names else 0
 
     rater_id = st.text_input("Rater ID", value="andrei", help="Must stay consistent for kappa joins.")
     run_name = st.selectbox("Pipeline run to score", options=run_names, index=default_idx)
-    run_dir = OUTPUTS_DIR / run_name
-    records = [
-        r for r in _load_responses(run_dir)
-        if r.get("response_text") and not r.get("error") and "DRY RUN" not in (r.get("response_text") or "")
-    ]
-    if not records:
+    try:
+        pack, _blind_map = build_pack(run_id=run_name)
+    except (FileNotFoundError, ValueError) as e:
+        st.warning(str(e))
+        return
+
+    items = pack.get("items") or []
+    if not items:
         st.warning("This run has no scorable live responses.")
         return
 
     cases_by_id = {c["id"]: c for c in _load_cases_table()[0]}
     entries = _load_judgement_entries()
-    scored = _scored_triples(entries, rater_id.strip())
+    scored = _scored_blind_ids(entries, rater_id.strip())
 
     case_ids = sorted(
-        {r["case_id"] for r in records},
+        {it["case_id"] for it in items},
         key=lambda x: (len(x), int(x[1:]) if x[1:].isdigit() else x),
     )
 
-    show_unscored_only = st.checkbox("Only show unscored (case × model) for this rater", value=True)
+    show_unscored_only = st.checkbox(
+        "Only show unscored blinded items for this rater",
+        value=True,
+    )
 
     c1, c2 = st.columns(2)
     with c1:
         case_id = st.selectbox("Case", options=case_ids)
     with c2:
-        models_for_case = sorted({
-            r["model_name"] for r in records if r["case_id"] == case_id
-        })
+        variants = [it for it in items if it["case_id"] == case_id]
+        variants.sort(key=lambda it: it.get("variant_index") or 0)
         if show_unscored_only:
-            models_for_case = [
-                m for m in models_for_case
-                if (case_id, m, rater_id.strip()) not in scored
-            ]
-        if not models_for_case:
-            st.info("All models for this case are already scored by this rater.")
-            model_name = None
+            variants = [it for it in variants if it["blind_id"] not in scored]
+        if not variants:
+            st.info("All blinded replies for this case are already scored by this rater.")
+            item = None
         else:
-            model_name = st.selectbox("Model", options=models_for_case)
+            labels = {
+                it["blind_id"]: (
+                    f"{it['blind_id']} · AI reply {it['variant_index']} of {it['variant_total']}"
+                )
+                for it in variants
+            }
+            chosen = st.selectbox("Blinded reply", options=list(labels.keys()), format_func=lambda b: labels[b])
+            item = next(it for it in variants if it["blind_id"] == chosen)
 
     st.caption(
         f"Log coverage for `{rater_id.strip() or '?'}`: "
         f"{sum(1 for e in entries if e.get('rater_id') == rater_id.strip())} entries "
-        f"· run has {len(records)} scorable responses"
+        f"· pack `{pack.get('pack_id', '')}` has {len(items)} blinded items"
     )
 
-    if not model_name or not rater_id.strip():
-        return
-
-    record = next(
-        (
-            r for r in records
-            if r["case_id"] == case_id and r["model_name"] == model_name
-        ),
-        None,
-    )
-    if record is None:
-        st.error("No response found for that case × model.")
+    if not item or not rater_id.strip():
         return
 
     case = cases_by_id.get(case_id, {})
@@ -605,10 +628,13 @@ def view_score() -> None:
         st.write(f"Wrong: `{case.get('wrong_answer', '')}`")
         st.write(f"Misconception: {case.get('misconception', '')}")
     with right:
-        st.write(f"**AI response** (`{model_name}`)")
+        st.write(
+            f"**AI reply {item['variant_index']} of {item['variant_total']}** "
+            f"(`{item['blind_id']}` — model hidden)"
+        )
         st.text_area(
             "response",
-            value=record.get("response_text") or "",
+            value=item.get("response_text") or "",
             height=280,
             disabled=True,
             label_visibility="collapsed",
@@ -623,9 +649,12 @@ def view_score() -> None:
                 + " · ".join(f"{i}: {anchors.get(str(i), '')}" for i in range(1, 6))
             )
 
-    already = (case_id, model_name, rater_id.strip()) in scored
+    already = item["blind_id"] in scored
     if already:
-        st.warning("This rater already has an entry for this case × model. Saving would create a duplicate (validator will reject).")
+        st.warning(
+            "This rater already has an entry for this blind_id. "
+            "Saving would create a duplicate (validator will reject)."
+        )
 
     with st.form("score_entry_form"):
         st.write("**Rubric scores (1–5)**")
@@ -662,24 +691,19 @@ def view_score() -> None:
             st.error("refine_detail is required when judgement is refine.")
             return
 
-        entry = {
-            "entry_id": _next_entry_id(entries),
-            "run_id": run_name,
-            "case_id": case_id,
-            "model": model_name,
-            "rater_id": rater_id.strip(),
-            "prompt_hash": record.get("prompt_sha256") or "",
-            "ai_response_ref": (
-                f"outputs/{run_name}/responses.jsonl"
-                f"#case_id={case_id}&model_name={model_name}"
-            ),
-            "rubric_scores": {k: int(scores[k]) for k in RUBRIC_DIM_KEYS},
-            "judgement": judgement,
-            "reasoning": reasoning.strip(),
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-        }
-        if judgement == "refine":
-            entry["refine_detail"] = refine_detail.strip()
+        entry = build_judgement_entry(
+            rater_id=rater_id.strip(),
+            pack_id=pack["pack_id"],
+            run_id=pack["run_id"],
+            blind_id=item["blind_id"],
+            case_id=case_id,
+            variant_index=item["variant_index"],
+            prompt_hash=item.get("prompt_hash") or "",
+            rubric_scores=scores,
+            judgement=judgement,
+            reasoning=reasoning,
+            refine_detail=refine_detail,
+        )
 
         # Validate candidate against schema before writing.
         try:
@@ -708,7 +732,7 @@ def view_score() -> None:
             return
 
         st.success(
-            f"Saved `{entry['entry_id']}` · {case_id} × {model_name} · "
+            f"Saved `{entry['blind_id']}` · {case_id} · "
             f"{judgement} · total {check['n_entries']} entries"
         )
         st.rerun()

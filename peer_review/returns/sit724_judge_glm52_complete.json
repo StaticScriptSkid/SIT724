@@ -1,0 +1,3026 @@
+{
+  "pack_id": "sit724-150-bycase-20260819T010032Z-477c3a3e-seed724",
+  "run_id": "20260819T010032Z-477c3a3e",
+  "rater_id": "GLM-5.2",
+  "rater_name": "GLM-5.2 (AI judge)",
+  "completed_at": "2026-09-08T19:45:11.744956+00:00",
+  "n_items": 150,
+  "n_complete": 150,
+  "judge_meta": {
+    "provider": "openai-compatible",
+    "model_id": "glm-5.2",
+    "api_host": "api.z.ai",
+    "temperature": 0.0,
+    "max_tokens": 600,
+    "request_extras": {
+      "thinking": {
+        "type": "disabled"
+      }
+    },
+    "judge_prompt_sha256": "8ee20261ab481a96f0fa55e915c0c7a7e4a1793e3cd95e212331f9d6cba1e5dc",
+    "blind_to_model": true,
+    "started_at": "2026-09-08T19:35:42.283193+00:00"
+  },
+  "responses": [
+    {
+      "blind_id": "I001",
+      "case_id": "Q16",
+      "variant_index": 1,
+      "prompt_hash": "70f20a2f8896bc1eac5c71c35bbea09d0414e4c1267a42495112bee51a81813a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the mutable default argument issue, explains why it causes the observed accumulation, and provides the standard Pythonic fix.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:35:45.577778+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I002",
+      "case_id": "Q16",
+      "variant_index": 2,
+      "prompt_hash": "70f20a2f8896bc1eac5c71c35bbea09d0414e4c1267a42495112bee51a81813a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the mutable default argument misconception, explains the underlying Python behavior clearly, and provides the standard idiomatic fix.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:35:48.689313+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I003",
+      "case_id": "Q16",
+      "variant_index": 3,
+      "prompt_hash": "70f20a2f8896bc1eac5c71c35bbea09d0414e4c1267a42495112bee51a81813a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the specific mutable default argument misconception, explains clearly why the list persists across calls, and provides the standard Pythonic fix using None.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:35:52.762677+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I004",
+      "case_id": "Q16",
+      "variant_index": 4,
+      "prompt_hash": "70f20a2f8896bc1eac5c71c35bbea09d0414e4c1267a42495112bee51a81813a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the mutable default argument misconception, explains why the list is reused across calls, and provides the standard Pythonic fix using None.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:35:56.368315+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I005",
+      "case_id": "Q16",
+      "variant_index": 5,
+      "prompt_hash": "70f20a2f8896bc1eac5c71c35bbea09d0414e4c1267a42495112bee51a81813a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the mutable default argument misconception, explains the underlying Python behavior clearly, and provides the standard idiomatic solution.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:35:59.711759+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I006",
+      "case_id": "Q26",
+      "variant_index": 1,
+      "prompt_hash": "f1dff39f3bba027d63e4ca7a564b809724292b5a820e153d10457753ebf5cc0c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 4,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 4,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "The feedback correctly identifies the truthiness issue but misses the specific misconception that the student likely thought 'if items:' checks for variable existence rather than its value.",
+      "refine_detail": "The feedback should explicitly address the misconception by clarifying that 'if items:' does not check if the variable was assigned or exists, but rather evaluates the truthiness of its current value.",
+      "timestamp": "2026-09-08T19:36:03.550998+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I007",
+      "case_id": "Q26",
+      "variant_index": 2,
+      "prompt_hash": "f1dff39f3bba027d63e4ca7a564b809724292b5a820e153d10457753ebf5cc0c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the specific misconception by clearly explaining truthiness, showing that an empty list is falsy, and providing a helpful command to prove it.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:36:16.386316+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I008",
+      "case_id": "Q26",
+      "variant_index": 3,
+      "prompt_hash": "f1dff39f3bba027d63e4ca7a564b809724292b5a820e153d10457753ebf5cc0c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the specific misconception, accurately explains the concept of truthiness, and provides a helpful next step for the student to test their understanding.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:36:20.042829+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I009",
+      "case_id": "Q26",
+      "variant_index": 4,
+      "prompt_hash": "f1dff39f3bba027d63e4ca7a564b809724292b5a820e153d10457753ebf5cc0c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the specific misconception, accurately explains Python's truthiness rules for lists, and provides a helpful, actionable next step for the student.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:36:23.603082+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I010",
+      "case_id": "Q26",
+      "variant_index": 5,
+      "prompt_hash": "f1dff39f3bba027d63e4ca7a564b809724292b5a820e153d10457753ebf5cc0c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the truthiness misconception, explains why an empty list evaluates to False, and provides actionable next steps for the learner.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:36:26.851248+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I011",
+      "case_id": "Q5",
+      "variant_index": 1,
+      "prompt_hash": "e7a433c2be4f9720a17312097eafe1c1498216038a6c66d7cf0308afaa7caaf8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the zero-based indexing misconception, uses an excellent analogy to clarify the concept, and provides actionable next steps for the student.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:36:30.113869+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I012",
+      "case_id": "Q5",
+      "variant_index": 2,
+      "prompt_hash": "e7a433c2be4f9720a17312097eafe1c1498216038a6c66d7cf0308afaa7caaf8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the zero-based indexing misconception, explains the correct output clearly, and provides the proper syntax to access the first element.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:36:36.100361+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I013",
+      "case_id": "Q5",
+      "variant_index": 3,
+      "prompt_hash": "e7a433c2be4f9720a17312097eafe1c1498216038a6c66d7cf0308afaa7caaf8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The feedback accurately identifies the beginner's likely misconception about zero-based indexing, clearly explains the correct mapping of indices to values, and provides a helpful next step for practice.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:36:39.778540+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I014",
+      "case_id": "Q5",
+      "variant_index": 4,
+      "prompt_hash": "e7a433c2be4f9720a17312097eafe1c1498216038a6c66d7cf0308afaa7caaf8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the misconception, clearly explains zero-based indexing with direct examples from the provided code, and offers a helpful visual strategy for beginners.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:36:43.505938+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I015",
+      "case_id": "Q5",
+      "variant_index": 5,
+      "prompt_hash": "e7a433c2be4f9720a17312097eafe1c1498216038a6c66d7cf0308afaa7caaf8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the misconception, clearly explains zero-based indexing, and provides an engaging follow-up exercise to reinforce the concept.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:36:46.613764+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I016",
+      "case_id": "Q1",
+      "variant_index": 1,
+      "prompt_hash": "2226bb6a98888b884a12cd3c84ad675f2771d922de27f7a925f715ffb1a5c46a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the correct value of 7, directly addresses the misconception by explaining how the right side is evaluated before overwriting the old value, and provides a helpful, encouraging next step.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:36:50.137876+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I017",
+      "case_id": "Q1",
+      "variant_index": 2,
+      "prompt_hash": "2226bb6a98888b884a12cd3c84ad675f2771d922de27f7a925f715ffb1a5c46a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the misconception, clearly explains how variable updating works in Python, and provides the correct final value of 7.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:36:53.330024+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I018",
+      "case_id": "Q1",
+      "variant_index": 3,
+      "prompt_hash": "2226bb6a98888b884a12cd3c84ad675f2771d922de27f7a925f715ffb1a5c46a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies and corrects the misconception by clearly explaining the update process, using a helpful analogy, and providing a practical way to verify the answer.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:36:56.702860+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I019",
+      "case_id": "Q1",
+      "variant_index": 4,
+      "prompt_hash": "2226bb6a98888b884a12cd3c84ad675f2771d922de27f7a925f715ffb1a5c46a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the specific misconception, clearly explains the assignment operator, provides the correct answer, and offers a relevant practice problem to reinforce the concept.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:37:00.501429+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I020",
+      "case_id": "Q1",
+      "variant_index": 5,
+      "prompt_hash": "2226bb6a98888b884a12cd3c84ad675f2771d922de27f7a925f715ffb1a5c46a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response correctly identifies the value as 7, accurately addresses the specific misconception that the variable does not update, and provides a clear, actionable next step for the student.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:37:03.816385+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I021",
+      "case_id": "Q2",
+      "variant_index": 1,
+      "prompt_hash": "062a991ed84bf09e86edb1e16af59af94455311ff7403382fb26bd748cc6f3b1",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately explains assignment, directly addresses the likely equality misconception using a helpful analogy, and provides actionable code examples.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:37:07.509615+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I022",
+      "case_id": "Q2",
+      "variant_index": 2,
+      "prompt_hash": "062a991ed84bf09e86edb1e16af59af94455311ff7403382fb26bd748cc6f3b1",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 4,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "The response correctly identifies the misconception and explains the difference between assignment and comparison, but it incorrectly assumes the user made a mistake when the prompt is just a direct question.",
+      "refine_detail": "The response should be adjusted to address the question neutrally rather than assuming a mistake was made, while still proactively explaining the difference between `=` and `==` to prevent the known misconception.",
+      "timestamp": "2026-09-08T19:37:11.778120+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I023",
+      "case_id": "Q2",
+      "variant_index": 3,
+      "prompt_hash": "062a991ed84bf09e86edb1e16af59af94455311ff7403382fb26bd748cc6f3b1",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately answers the question while directly addressing the common misconception between assignment and equality comparison with clear, actionable advice.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:37:15.587635+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I024",
+      "case_id": "Q2",
+      "variant_index": 4,
+      "prompt_hash": "062a991ed84bf09e86edb1e16af59af94455311ff7403382fb26bd748cc6f3b1",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies and corrects the misconception by explaining the difference between assignment (`=`) and equality (`==`), while providing a helpful, actionable next step for the student.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:37:18.982627+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I025",
+      "case_id": "Q2",
+      "variant_index": 5,
+      "prompt_hash": "062a991ed84bf09e86edb1e16af59af94455311ff7403382fb26bd748cc6f3b1",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 1,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 4,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "The response incorrectly assumes the user made a mistake and patronizingly addresses a misconception that was never expressed in the simple question provided.",
+      "refine_detail": "Remove the presumptuous 'Great attempt!' framing and directly answer the question by explaining that the statement assigns the value 10 to the variable x, optionally adding the comparison context only as a helpful tip.",
+      "timestamp": "2026-09-08T19:37:23.145339+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I026",
+      "case_id": "Q11",
+      "variant_index": 1,
+      "prompt_hash": "5b8eff5d477a20ca796632153917685a29fbde29c8a9bc4804329c1d110133ab",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the KeyError, correctly addresses the specific misconception about None, and provides a helpful alternative using .get().",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:37:26.326344+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I027",
+      "case_id": "Q11",
+      "variant_index": 2,
+      "prompt_hash": "5b8eff5d477a20ca796632153917685a29fbde29c8a9bc4804329c1d110133ab",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the KeyError, correctly addresses the specific None misconception by contrasting it with the .get() method, and provides a clear actionable next step.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:37:29.673822+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I028",
+      "case_id": "Q11",
+      "variant_index": 3,
+      "prompt_hash": "5b8eff5d477a20ca796632153917685a29fbde29c8a9bc4804329c1d110133ab",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the KeyError and directly addresses the misconception by contrasting the direct access with the .get() method.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:37:32.746398+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I029",
+      "case_id": "Q11",
+      "variant_index": 4,
+      "prompt_hash": "5b8eff5d477a20ca796632153917685a29fbde29c8a9bc4804329c1d110133ab",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the KeyError misconception and clearly explains the difference between bracket notation and the .get() method.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:37:35.997148+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I030",
+      "case_id": "Q11",
+      "variant_index": 5,
+      "prompt_hash": "5b8eff5d477a20ca796632153917685a29fbde29c8a9bc4804329c1d110133ab",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the KeyError and perfectly addresses the specific misconception by explicitly contrasting the strict bracket access with the forgiving .get() method.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:37:39.253870+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I031",
+      "case_id": "Q25",
+      "variant_index": 1,
+      "prompt_hash": "e24be538bd5cf2ffef7e7da7140e23c3f6f78b715485d420e2f01db8730b3492",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the missing base case as the root cause, directly addresses the targeted misconception, and provides an excellent, actionable next step for the student.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:37:42.274167+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I032",
+      "case_id": "Q25",
+      "variant_index": 2,
+      "prompt_hash": "e24be538bd5cf2ffef7e7da7140e23c3f6f78b715485d420e2f01db8730b3492",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the missing base case misconception, explains why the error occurs, and provides the exact code needed to fix it.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:37:45.757166+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I033",
+      "case_id": "Q25",
+      "variant_index": 3,
+      "prompt_hash": "e24be538bd5cf2ffef7e7da7140e23c3f6f78b715485d420e2f01db8730b3492",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the missing base case, explains the resulting recursion limit, and provides the exact code needed to fix the misconception.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:37:49.272296+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I034",
+      "case_id": "Q25",
+      "variant_index": 4,
+      "prompt_hash": "e24be538bd5cf2ffef7e7da7140e23c3f6f78b715485d420e2f01db8730b3492",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the missing base case, explains the resulting recursion limit error, and provides a clear, correct code snippet to fix the issue.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:37:52.753661+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I035",
+      "case_id": "Q25",
+      "variant_index": 5,
+      "prompt_hash": "e24be538bd5cf2ffef7e7da7140e23c3f6f78b715485d420e2f01db8730b3492",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the missing base case misconception, explains why the error occurs, and provides the exact code needed to fix it.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:37:58.952416+00:00",
+      "judge_attempts": 2
+    },
+    {
+      "blind_id": "I036",
+      "case_id": "Q20",
+      "variant_index": 1,
+      "prompt_hash": "981fdb58750d53df49bdee06271d62078a8d0b28aad93d58afc6bd6bdf02654a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the implicit type coercion misconception, clearly explains why Python throws a TypeError, and provides both the explicit str() and f-string solutions with an encouraging tone.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:38:02.495798+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I037",
+      "case_id": "Q20",
+      "variant_index": 2,
+      "prompt_hash": "981fdb58750d53df49bdee06271d62078a8d0b28aad93d58afc6bd6bdf02654a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the TypeError, correctly addresses the implicit coercion misconception, and provides clear, actionable solutions using both str() and f-strings.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:38:05.962783+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I038",
+      "case_id": "Q20",
+      "variant_index": 3,
+      "prompt_hash": "981fdb58750d53df49bdee06271d62078a8d0b28aad93d58afc6bd6bdf02654a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the implicit type coercion misconception and provides clear, accurate solutions using both str() and f-strings.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:38:09.266578+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I039",
+      "case_id": "Q20",
+      "variant_index": 4,
+      "prompt_hash": "981fdb58750d53df49bdee06271d62078a8d0b28aad93d58afc6bd6bdf02654a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the TypeError, correctly diagnoses the implicit type coercion misconception, and provides clear, specific solutions using str() and f-strings.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:38:12.862359+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I040",
+      "case_id": "Q20",
+      "variant_index": 5,
+      "prompt_hash": "981fdb58750d53df49bdee06271d62078a8d0b28aad93d58afc6bd6bdf02654a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the implicit type coercion misconception and provides accurate, actionable solutions using both str() and f-strings.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:38:16.065508+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I041",
+      "case_id": "Q17",
+      "variant_index": 1,
+      "prompt_hash": "2e26cba57c32636cd476524739c4dc31de6ce5658ea888216a617bed27538e79",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the floating-point misconception, explains the binary representation issue clearly, and provides the correct standard Python solution using math.isclose().",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:38:19.368456+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I042",
+      "case_id": "Q17",
+      "variant_index": 2,
+      "prompt_hash": "2e26cba57c32636cd476524739c4dc31de6ce5658ea888216a617bed27538e79",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response correctly identifies the floating-point representation issue, directly addresses the misconception, and provides a practical code solution.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:38:22.865538+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I043",
+      "case_id": "Q17",
+      "variant_index": 3,
+      "prompt_hash": "2e26cba57c32636cd476524739c4dc31de6ce5658ea888216a617bed27538e79",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the floating-point arithmetic misconception, explains the binary representation issue clearly, and provides actionable solutions like rounding or using a tolerance.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:38:26.334454+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I044",
+      "case_id": "Q17",
+      "variant_index": 4,
+      "prompt_hash": "2e26cba57c32636cd476524739c4dc31de6ce5658ea888216a617bed27538e79",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the floating-point arithmetic issue, explains the binary representation root cause, and provides a practical solution using math.isclose().",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:38:29.618383+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I045",
+      "case_id": "Q17",
+      "variant_index": 5,
+      "prompt_hash": "2e26cba57c32636cd476524739c4dc31de6ce5658ea888216a617bed27538e79",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the floating-point arithmetic misconception, explains the underlying binary representation issue clearly, and provides the correct tolerance-based solution.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:38:32.749836+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I046",
+      "case_id": "Q6",
+      "variant_index": 1,
+      "prompt_hash": "839e405cde0cefef0a9a0413c6deb4c6991a2435554b39844f993239164c6e6c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly targets the specific misconception by clearly explaining string concatenation and confirming the correct output, while maintaining an encouraging tone.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:38:35.780849+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I047",
+      "case_id": "Q6",
+      "variant_index": 2,
+      "prompt_hash": "839e405cde0cefef0a9a0413c6deb4c6991a2435554b39844f993239164c6e6c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response correctly identifies that the code is error-free, directly addresses the misconception by explaining string concatenation, and provides a clear, encouraging explanation.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:38:39.081551+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I048",
+      "case_id": "Q6",
+      "variant_index": 3,
+      "prompt_hash": "839e405cde0cefef0a9a0413c6deb4c6991a2435554b39844f993239164c6e6c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately corrects the misconception, clearly explains string concatenation, and provides a helpful follow-up exercise.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:38:42.024937+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I049",
+      "case_id": "Q6",
+      "variant_index": 4,
+      "prompt_hash": "839e405cde0cefef0a9a0413c6deb4c6991a2435554b39844f993239164c6e6c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the misconception, clearly explains string concatenation, and provides a helpful next step for the learner.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:38:45.131975+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I050",
+      "case_id": "Q6",
+      "variant_index": 5,
+      "prompt_hash": "839e405cde0cefef0a9a0413c6deb4c6991a2435554b39844f993239164c6e6c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies and corrects the misconception about string concatenation using the '+' operator, provides clear examples, and maintains an encouraging tone.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:38:48.267177+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I051",
+      "case_id": "Q22",
+      "variant_index": 1,
+      "prompt_hash": "4480016d083e202b6bb36892c246a78fbfd5b4a37a704f8ef94f3b778e3d09ea",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the misconception, explains the shared memory reference clearly, provides the correct solution, and offers a helpful verification technique.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:38:51.718714+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I052",
+      "case_id": "Q22",
+      "variant_index": 2,
+      "prompt_hash": "4480016d083e202b6bb36892c246a78fbfd5b4a37a704f8ef94f3b778e3d09ea",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "The explanation of the shared reference is perfectly accurate and clear, but the suggested next step incorrectly claims that creating `a = []` and `b = []` separately will still result in `a` affecting `b`.",
+      "refine_detail": "Change the suggested next step to say that creating them separately using `a = []` and `b = []` will result in two distinct lists, so modifying `a` will NOT affect `b`.",
+      "timestamp": "2026-09-08T19:38:56.054813+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I053",
+      "case_id": "Q22",
+      "variant_index": 3,
+      "prompt_hash": "4480016d083e202b6bb36892c246a78fbfd5b4a37a704f8ef94f3b778e3d09ea",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the aliasing misconception, explains the underlying mechanics clearly, and provides the correct code fix.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:38:59.223579+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I054",
+      "case_id": "Q22",
+      "variant_index": 4,
+      "prompt_hash": "4480016d083e202b6bb36892c246a78fbfd5b4a37a704f8ef94f3b778e3d09ea",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the shared reference misconception, explains the outcome clearly, and provides a helpful code snippet for the user to practice the correct behavior.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:39:02.567046+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I055",
+      "case_id": "Q22",
+      "variant_index": 5,
+      "prompt_hash": "4480016d083e202b6bb36892c246a78fbfd5b4a37a704f8ef94f3b778e3d09ea",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 4,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately and clearly explains the aliasing misconception and provides a correct, actionable next step for creating independent lists.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:39:05.890694+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I056",
+      "case_id": "Q24",
+      "variant_index": 1,
+      "prompt_hash": "ecb9a36802345059ea33f88db5b7f8c7ab8b2b9d352f702018a74c4eacc7ccc3",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the misconception by clearly explaining the difference between identity and equality, and providing a helpful command to visualize the memory addresses.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:39:09.214672+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I057",
+      "case_id": "Q24",
+      "variant_index": 2,
+      "prompt_hash": "ecb9a36802345059ea33f88db5b7f8c7ab8b2b9d352f702018a74c4eacc7ccc3",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately and clearly addresses the exact misconception by explaining the difference between identity and equality and correctly applying it to the provided code.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:39:12.521670+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I058",
+      "case_id": "Q24",
+      "variant_index": 3,
+      "prompt_hash": "ecb9a36802345059ea33f88db5b7f8c7ab8b2b9d352f702018a74c4eacc7ccc3",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the misconception by clearly explaining the difference between identity and equality and providing a helpful command to demonstrate the differing memory addresses.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:39:16.226654+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I059",
+      "case_id": "Q24",
+      "variant_index": 4,
+      "prompt_hash": "ecb9a36802345059ea33f88db5b7f8c7ab8b2b9d352f702018a74c4eacc7ccc3",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the misconception, clearly explains the difference between identity and equality, and provides a helpful interactive next step for the student to verify the concept.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:39:19.744317+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I060",
+      "case_id": "Q24",
+      "variant_index": 5,
+      "prompt_hash": "ecb9a36802345059ea33f88db5b7f8c7ab8b2b9d352f702018a74c4eacc7ccc3",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately and clearly distinguishes between identity and equality, directly addressing the misconception while providing a helpful follow-up experiment to reinforce the concept.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:39:23.001520+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I061",
+      "case_id": "Q14",
+      "variant_index": 1,
+      "prompt_hash": "51cc4f41c05738bb938285230f7b21bb771a2d0faf1143d8ad06598229ba93f6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 4,
+        "specificity": 4,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the specific misconception about local and global variables and clearly explains why the global x remains unchanged without needing further refinement.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:39:26.664614+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I062",
+      "case_id": "Q14",
+      "variant_index": 2,
+      "prompt_hash": "51cc4f41c05738bb938285230f7b21bb771a2d0faf1143d8ad06598229ba93f6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the misconception by accurately explaining variable scope and how assigning to 'x' inside the function creates a local variable that doesn't affect the global one.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:39:30.232080+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I063",
+      "case_id": "Q14",
+      "variant_index": 3,
+      "prompt_hash": "51cc4f41c05738bb938285230f7b21bb771a2d0faf1143d8ad06598229ba93f6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the misconception by clearly explaining that the inner assignment creates a local variable, leaving the global variable unchanged, and provides a helpful next step to explore the global keyword.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:39:33.688831+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I064",
+      "case_id": "Q14",
+      "variant_index": 4,
+      "prompt_hash": "51cc4f41c05738bb938285230f7b21bb771a2d0faf1143d8ad06598229ba93f6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the misconception, clearly explains the distinction between local and global variables using a helpful analogy, and provides actionable advice for tracing the code.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:39:36.862177+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I065",
+      "case_id": "Q14",
+      "variant_index": 5,
+      "prompt_hash": "51cc4f41c05738bb938285230f7b21bb771a2d0faf1143d8ad06598229ba93f6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 4,
+        "specificity": 4,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response correctly identifies the misconception about local and global variables and provides a clear, actionable next step to help the student understand the concept.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:39:42.934169+00:00",
+      "judge_attempts": 2
+    },
+    {
+      "blind_id": "I066",
+      "case_id": "Q23",
+      "variant_index": 1,
+      "prompt_hash": "fcdab44aab261e21385b28a009845e4a563c374a917e295234682eaa70f6414f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the root cause of the iteration-skipping bug and provides the standard, correct Pythonic solution using a list slice copy.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:39:46.553878+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I067",
+      "case_id": "Q23",
+      "variant_index": 2,
+      "prompt_hash": "fcdab44aab261e21385b28a009845e4a563c374a917e295234682eaa70f6414f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the internal index shifting issue, explains the exact sequence of events step-by-step, and provides a correct and pythonic alternative solution.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:39:49.816446+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I068",
+      "case_id": "Q23",
+      "variant_index": 3,
+      "prompt_hash": "fcdab44aab261e21385b28a009845e4a563c374a917e295234682eaa70f6414f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly explains the index-shifting mechanism that causes the bug, provides the correct list copy fix, and accurately states the final output.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:39:53.337282+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I069",
+      "case_id": "Q23",
+      "variant_index": 4,
+      "prompt_hash": "fcdab44aab261e21385b28a009845e4a563c374a917e295234682eaa70f6414f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 4,
+        "specificity": 3,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "The feedback correctly identifies the underlying issue and offers good general solutions, but it lacks the specific step-by-step trace of the list indices that is needed to fully clear up the targeted misconception.",
+      "refine_detail": "Add a brief, concrete trace of how the internal index moves and the list shifts (e.g., after removing 2, the next index lands on 5, causing 4 to be skipped) to directly address the misconception.",
+      "timestamp": "2026-09-08T19:39:57.746766+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I070",
+      "case_id": "Q23",
+      "variant_index": 5,
+      "prompt_hash": "fcdab44aab261e21385b28a009845e4a563c374a917e295234682eaa70f6414f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly pinpoints the internal index shifting mechanism that causes 4 to be skipped, correctly identifies the final output state, and provides excellent alternative solutions.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:40:01.317020+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I071",
+      "case_id": "Q13",
+      "variant_index": 1,
+      "prompt_hash": "d2578e9e91be1a6b27ecec5a98b560ea538aec868f72972f8dfd6049e7ded8a8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The feedback perfectly identifies the aliasing misconception, explains why the output is what it is, provides the correct solution, and names the underlying concept.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:40:04.633527+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I072",
+      "case_id": "Q13",
+      "variant_index": 2,
+      "prompt_hash": "d2578e9e91be1a6b27ecec5a98b560ea538aec868f72972f8dfd6049e7ded8a8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the correct output, clearly explains the exact misconception being tested, and provides a relevant next step for the student to learn about copying lists.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:40:07.981661+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I073",
+      "case_id": "Q13",
+      "variant_index": 3,
+      "prompt_hash": "d2578e9e91be1a6b27ecec5a98b560ea538aec868f72972f8dfd6049e7ded8a8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the specific misconception, clearly explains the difference between references and copies, provides the correct solution, and offers an excellent interactive example to prove the concept.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:40:11.042783+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I074",
+      "case_id": "Q13",
+      "variant_index": 4,
+      "prompt_hash": "d2578e9e91be1a6b27ecec5a98b560ea538aec868f72972f8dfd6049e7ded8a8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the exact misconception, explains the concept of references clearly, and provides the correct syntax to fix the issue.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:40:14.819164+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I075",
+      "case_id": "Q13",
+      "variant_index": 5,
+      "prompt_hash": "d2578e9e91be1a6b27ecec5a98b560ea538aec868f72972f8dfd6049e7ded8a8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the reference misconception, explains the underlying memory behavior clearly, and provides the correct syntax to fix it.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:40:18.316383+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I076",
+      "case_id": "Q27",
+      "variant_index": 1,
+      "prompt_hash": "cf2b1754fd8ec7d7e0637558bcc2531d9365e0d6eb414cdc675fb0474f398d8f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the exact misconception and TypeError, clearly explains why it happens, and provides the correct code fix.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:40:21.751219+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I077",
+      "case_id": "Q27",
+      "variant_index": 2,
+      "prompt_hash": "cf2b1754fd8ec7d7e0637558bcc2531d9365e0d6eb414cdc675fb0474f398d8f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the core misconception by explaining that input() returns a string, explicitly states the resulting TypeError, and provides the correct fix using int().",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:40:25.044971+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I078",
+      "case_id": "Q27",
+      "variant_index": 3,
+      "prompt_hash": "cf2b1754fd8ec7d7e0637558bcc2531d9365e0d6eb414cdc675fb0474f398d8f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the TypeError, clearly explains the underlying misconception about input() returning strings, and provides the correct fix using int().",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:40:28.213778+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I079",
+      "case_id": "Q27",
+      "variant_index": 4,
+      "prompt_hash": "cf2b1754fd8ec7d7e0637558bcc2531d9365e0d6eb414cdc675fb0474f398d8f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the misconception by explaining that input() returns a string, states the resulting TypeError, and provides the correct fix using int().",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:40:31.612127+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I080",
+      "case_id": "Q27",
+      "variant_index": 5,
+      "prompt_hash": "cf2b1754fd8ec7d7e0637558bcc2531d9365e0d6eb414cdc675fb0474f398d8f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the string-to-int comparison issue, explains the underlying misconception clearly, and provides the exact code fix needed to resolve the TypeError.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:40:35.294986+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I081",
+      "case_id": "Q28",
+      "variant_index": 1,
+      "prompt_hash": "71616323787d6680755b1d8addbce694bed04691e5351655df4f57b1a8e461c8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the misconception, accurately explains why the bare except silently swallows the error and returns None, and provides a helpful concrete example for the next step.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:40:39.435163+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I082",
+      "case_id": "Q28",
+      "variant_index": 2,
+      "prompt_hash": "71616323787d6680755b1d8addbce694bed04691e5351655df4f57b1a8e461c8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly addresses the misconception by explaining that the bare except silently swallows the error, causing the function to return None, and provides a helpful next step for the user.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:40:42.966571+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I083",
+      "case_id": "Q28",
+      "variant_index": 3,
+      "prompt_hash": "71616323787d6680755b1d8addbce694bed04691e5351655df4f57b1a8e461c8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 4,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 4,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "The response correctly identifies the core issue of silently swallowing errors, but it should explicitly mention that a bare 'except' catches all exceptions, not just ZeroDivisionError.",
+      "refine_detail": "Add a brief note explaining that using a bare 'except:' is dangerous because it catches all exceptions (like KeyboardInterrupt or TypeError), and recommend catching specific exceptions like 'ZeroDivisionError' instead.",
+      "timestamp": "2026-09-08T19:40:47.333459+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I084",
+      "case_id": "Q28",
+      "variant_index": 4,
+      "prompt_hash": "71616323787d6680755b1d8addbce694bed04691e5351655df4f57b1a8e461c8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the core misconception by explaining that the bare except swallows all errors and returns None, while providing a clear, actionable solution to catch specific exceptions.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:40:50.766540+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I085",
+      "case_id": "Q28",
+      "variant_index": 5,
+      "prompt_hash": "71616323787d6680755b1d8addbce694bed04691e5351655df4f57b1a8e461c8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly addresses the core misconception by clearly explaining that 'except: pass' silently swallows the error and causes the function to return None, while providing actionable steps to fix or observe the behavior.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:40:54.491674+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I086",
+      "case_id": "Q9",
+      "variant_index": 1,
+      "prompt_hash": "2047b8ea8aab2a67b79235be0965a5e921f7a0a808ce5f7e56479231bc9deaf6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the misconception, clearly explains the difference between / and //, provides the correct answer, and offers excellent practice examples including a negative number to fully illustrate floor division behavior.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:40:58.146916+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I087",
+      "case_id": "Q9",
+      "variant_index": 2,
+      "prompt_hash": "2047b8ea8aab2a67b79235be0965a5e921f7a0a808ce5f7e56479231bc9deaf6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the student's misconception, clearly explains the difference between normal and floor division, and provides an excellent follow-up exercise to reinforce the concept.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:41:01.832820+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I088",
+      "case_id": "Q9",
+      "variant_index": 3,
+      "prompt_hash": "2047b8ea8aab2a67b79235be0965a5e921f7a0a808ce5f7e56479231bc9deaf6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the misconception, clearly explains floor division, and provides an intuitive example to help the student understand the concept.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:41:05.257217+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I089",
+      "case_id": "Q9",
+      "variant_index": 4,
+      "prompt_hash": "2047b8ea8aab2a67b79235be0965a5e921f7a0a808ce5f7e56479231bc9deaf6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the misconception, clearly explains the difference between floor and normal division, provides the correct answer, and offers a helpful next step for the student.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:41:08.733006+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I090",
+      "case_id": "Q9",
+      "variant_index": 5,
+      "prompt_hash": "2047b8ea8aab2a67b79235be0965a5e921f7a0a808ce5f7e56479231bc9deaf6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the misconception, clearly explains floor division with an intuitive example, and provides actionable next steps for the student.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:41:12.814007+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I091",
+      "case_id": "Q19",
+      "variant_index": 1,
+      "prompt_hash": "ebfc0086d1af9db51468e0b8de77b3024dde49c1db145317272247d00f62dd1d",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the missing return statement, directly addresses the specific misconception by explaining that Python does not automatically return the last computed value, and provides a clear, corrected code example.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:41:16.638104+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I092",
+      "case_id": "Q19",
+      "variant_index": 2,
+      "prompt_hash": "ebfc0086d1af9db51468e0b8de77b3024dde49c1db145317272247d00f62dd1d",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the missing return statement, explains why Python returns None without it, and provides the exact code needed to fix the misconception.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:41:20.315777+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I093",
+      "case_id": "Q19",
+      "variant_index": 3,
+      "prompt_hash": "ebfc0086d1af9db51468e0b8de77b3024dde49c1db145317272247d00f62dd1d",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the missing return statement, correctly explains why the output is None, and provides the exact code needed to fix the misconception.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:41:24.052798+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I094",
+      "case_id": "Q19",
+      "variant_index": 4,
+      "prompt_hash": "ebfc0086d1af9db51468e0b8de77b3024dde49c1db145317272247d00f62dd1d",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the misconception, accurately explains Python's return behavior, and provides the exact fix needed for the code.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:41:27.306048+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I095",
+      "case_id": "Q19",
+      "variant_index": 5,
+      "prompt_hash": "ebfc0086d1af9db51468e0b8de77b3024dde49c1db145317272247d00f62dd1d",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the missing return statement, explains why Python returns None without it, and provides the exact code needed to fix the issue while remaining encouraging.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:41:30.897731+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I096",
+      "case_id": "Q21",
+      "variant_index": 1,
+      "prompt_hash": "93a5c9adb4ae7fc99f5f01b03e0dc899d6b43062e81fd9e04266ab37b99e9daf",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the IndexError, clearly explains the mismatch between the 1-based range and 0-based list indexing, and effectively prompts the user to correct the starting index.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:41:34.932670+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I097",
+      "case_id": "Q21",
+      "variant_index": 2,
+      "prompt_hash": "93a5c9adb4ae7fc99f5f01b03e0dc899d6b43062e81fd9e04266ab37b99e9daf",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the IndexError, clearly explains the 0-based indexing misconception, and provides the correct fix.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:41:38.015785+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I098",
+      "case_id": "Q21",
+      "variant_index": 3,
+      "prompt_hash": "93a5c9adb4ae7fc99f5f01b03e0dc899d6b43062e81fd9e04266ab37b99e9daf",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the IndexError, clearly explains the 0-based indexing mismatch, and provides the correct fix.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:41:41.186718+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I099",
+      "case_id": "Q21",
+      "variant_index": 4,
+      "prompt_hash": "93a5c9adb4ae7fc99f5f01b03e0dc899d6b43062e81fd9e04266ab37b99e9daf",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 4,
+        "specificity": 4,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the 0-based indexing mismatch and provides the correct fix, though it could be slightly more specific by explicitly mentioning the exact iteration where the IndexError occurs.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:41:44.614774+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I100",
+      "case_id": "Q21",
+      "variant_index": 5,
+      "prompt_hash": "93a5c9adb4ae7fc99f5f01b03e0dc899d6b43062e81fd9e04266ab37b99e9daf",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the off-by-one error, clearly explains why the 1-based range causes an IndexError on the 0-based list, and provides excellent corrected alternatives.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:41:48.343415+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I101",
+      "case_id": "Q15",
+      "variant_index": 1,
+      "prompt_hash": "01732c7ed12184fd63c7146d23ba1ab492b41193fd516b912907c74b825b83a2",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the TypeError, directly addresses the list comparison misconception by explaining string immutability, and provides a correct alternative solution.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:41:51.944448+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I102",
+      "case_id": "Q15",
+      "variant_index": 2,
+      "prompt_hash": "01732c7ed12184fd63c7146d23ba1ab492b41193fd516b912907c74b825b83a2",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the TypeError, clearly explains string immutibility to address the specific misconception, and provides a correct alternative solution.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:41:54.896545+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I103",
+      "case_id": "Q15",
+      "variant_index": 3,
+      "prompt_hash": "01732c7ed12184fd63c7146d23ba1ab492b41193fd516b912907c74b825b83a2",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the TypeError, clearly explains the immutability of strings, provides a working alternative using concatenation, and suggests a relevant experiment to contrast string and list behavior.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:41:58.213015+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I104",
+      "case_id": "Q15",
+      "variant_index": 4,
+      "prompt_hash": "01732c7ed12184fd63c7146d23ba1ab492b41193fd516b912907c74b825b83a2",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the TypeError, correctly diagnoses the exact misconception by contrasting strings with lists, and provides a clear, working alternative using string slicing.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:42:01.784539+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I105",
+      "case_id": "Q15",
+      "variant_index": 5,
+      "prompt_hash": "01732c7ed12184fd63c7146d23ba1ab492b41193fd516b912907c74b825b83a2",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the TypeError, correctly explains the underlying concept of string immutability, and provides a clear, working alternative to achieve the user's intended result.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:42:05.066941+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I106",
+      "case_id": "Q7",
+      "variant_index": 1,
+      "prompt_hash": "f07c75a29ec7027321d948416b0f55143707d525a394a2286efbd0fdde879957",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 4,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the logical outcome of 'True and False', directly addresses the misconception with a helpful analogy, and provides actionable next steps for the learner.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:42:08.879174+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I107",
+      "case_id": "Q7",
+      "variant_index": 2,
+      "prompt_hash": "f07c75a29ec7027321d948416b0f55143707d525a394a2286efbd0fdde879957",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the logical error, clearly explains how the 'and' operator works, and provides an encouraging, actionable next step for the student.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:42:12.586638+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I108",
+      "case_id": "Q7",
+      "variant_index": 3,
+      "prompt_hash": "f07c75a29ec7027321d948416b0f55143707d525a394a2286efbd0fdde879957",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 4,
+        "specificity": 3,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "The feedback correctly identifies the misconception and explains the 'and' operator, but it misses a prime opportunity to explicitly correct the specific misunderstanding by stating that 'True' is not the correct answer because 'False' is inherently false.",
+      "refine_detail": "The response should explicitly state that because 'False' is one of the operands, the 'and' operation evaluates to 'False', directly addressing why the user's likely input of 'True' was incorrect.",
+      "timestamp": "2026-09-08T19:42:17.379325+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I109",
+      "case_id": "Q7",
+      "variant_index": 4,
+      "prompt_hash": "f07c75a29ec7027321d948416b0f55143707d525a394a2286efbd0fdde879957",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 4,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the logical error, clearly explains the mechanics of the 'and' operator using a helpful analogy, and provides actionable practice steps.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:42:21.602523+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I110",
+      "case_id": "Q7",
+      "variant_index": 5,
+      "prompt_hash": "f07c75a29ec7027321d948416b0f55143707d525a394a2286efbd0fdde879957",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 4,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the logical rule for the 'and' operator and provides a helpful, encouraging explanation that directly addresses the misconception.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:42:45.855779+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I111",
+      "case_id": "Q29",
+      "variant_index": 1,
+      "prompt_hash": "2a748af8bd4dbd8ca09436b31a458621fed28f4e18c43b3d4a5d9bec5414c5ac",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the ValueError, directly addresses the specific misconception about silently ignoring extra values, and provides actionable solutions.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:42:49.517989+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I112",
+      "case_id": "Q29",
+      "variant_index": 2,
+      "prompt_hash": "2a748af8bd4dbd8ca09436b31a458621fed28f4e18c43b3d4a5d9bec5414c5ac",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the ValueError, directly addresses the misconception by emphasizing that extras are not silently ignored, and provides excellent alternative solutions.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:42:53.624318+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I113",
+      "case_id": "Q29",
+      "variant_index": 3,
+      "prompt_hash": "2a748af8bd4dbd8ca09436b31a458621fed28f4e18c43b3d4a5d9bec5414c5ac",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the specific misconception, explains why the code fails, and provides clear, actionable solutions.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:42:56.999546+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I114",
+      "case_id": "Q29",
+      "variant_index": 4,
+      "prompt_hash": "2a748af8bd4dbd8ca09436b31a458621fed28f4e18c43b3d4a5d9bec5414c5ac",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the ValueError, correctly diagnoses the specific slicing misconception, and provides two perfectly tailored solutions.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:43:00.175500+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I115",
+      "case_id": "Q29",
+      "variant_index": 5,
+      "prompt_hash": "2a748af8bd4dbd8ca09436b31a458621fed28f4e18c43b3d4a5d9bec5414c5ac",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the ValueError, correctly diagnoses the specific misconception about silent ignoring, and provides the exact syntax needed to fix the code.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:43:03.441897+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I116",
+      "case_id": "Q12",
+      "variant_index": 1,
+      "prompt_hash": "3649828017b303d8423f130fc15f3f94675d0715e62b27196c39ffdc818572f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the missing increment, directly addresses the misconception about how the loop condition is evaluated, and provides a clear, actionable tip for debugging.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:43:07.602628+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I117",
+      "case_id": "Q12",
+      "variant_index": 2,
+      "prompt_hash": "3649828017b303d8423f130fc15f3f94675d0715e62b27196c39ffdc818572f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the infinite loop issue, explains clearly why it happens, and provides the exact code needed to fix it.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:43:10.816250+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I118",
+      "case_id": "Q12",
+      "variant_index": 3,
+      "prompt_hash": "3649828017b303d8423f130fc15f3f94675d0715e62b27196c39ffdc818572f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the infinite loop issue, explains the underlying misconception clearly, and provides the exact code fix needed to resolve it.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:43:14.036128+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I119",
+      "case_id": "Q12",
+      "variant_index": 4,
+      "prompt_hash": "3649828017b303d8423f130fc15f3f94675d0715e62b27196c39ffdc818572f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the missing loop update, explains the resulting infinite loop, and provides the correct fix while directly addressing the tested misconception.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:43:17.356943+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I120",
+      "case_id": "Q12",
+      "variant_index": 5,
+      "prompt_hash": "3649828017b303d8423f130fc15f3f94675d0715e62b27196c39ffdc818572f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the infinite loop, accurately explains the missing increment step, and encourages the beginner to fix it without giving away the exact code.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:43:21.141358+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I121",
+      "case_id": "Q3",
+      "variant_index": 1,
+      "prompt_hash": "048b92a1bb7e4a8fe55533ed1afc59ae16e9fdec63c92a6937ca75ce81ed6f96",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the correct output and effectively addresses the misconception by clearly explaining how the comparison operator evaluates the condition step-by-step.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:43:24.398908+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I122",
+      "case_id": "Q3",
+      "variant_index": 2,
+      "prompt_hash": "048b92a1bb7e4a8fe55533ed1afc59ae16e9fdec63c92a6937ca75ce81ed6f96",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the correct output, clearly explains the evaluation of the >= comparison operator, and provides a helpful interactive next step for the beginner.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:43:27.650876+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I123",
+      "case_id": "Q3",
+      "variant_index": 3,
+      "prompt_hash": "048b92a1bb7e4a8fe55533ed1afc59ae16e9fdec63c92a6937ca75ce81ed6f96",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the error, clearly explains why the condition evaluates to False, and provides helpful examples to reinforce understanding of the comparison operator.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:43:31.111011+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I124",
+      "case_id": "Q3",
+      "variant_index": 4,
+      "prompt_hash": "048b92a1bb7e4a8fe55533ed1afc59ae16e9fdec63c92a6937ca75ce81ed6f96",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 4,
+        "specificity": 3,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "The response correctly identifies the output but fails to address the actual syntax error in the user's code caused by using semicolons and colons to write an inline if-else statement.",
+      "refine_detail": "The feedback should point out that the code will raise a SyntaxError due to the inline formatting, and show the user how to properly format the if-else statement across multiple lines.",
+      "timestamp": "2026-09-08T19:43:39.507795+00:00",
+      "judge_attempts": 2
+    },
+    {
+      "blind_id": "I125",
+      "case_id": "Q3",
+      "variant_index": 5,
+      "prompt_hash": "048b92a1bb7e4a8fe55533ed1afc59ae16e9fdec63c92a6937ca75ce81ed6f96",
+      "rubric_scores": {
+        "accuracy": 1,
+        "selectivity": 1,
+        "clarity": 2,
+        "informativeness": 1,
+        "specificity": 1,
+        "level_of_detail": 1,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "The model incorrectly claims the user's code is wrong and tells them to change the age variable, completely missing that the code as written correctly outputs 'Minor' and contains no syntax errors.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:43:44.017380+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I126",
+      "case_id": "Q10",
+      "variant_index": 1,
+      "prompt_hash": "9ab75a7e568c25cf7c231680029944c8f5a3cf06e204d4d8084cb1649a8b14be",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the missing closing parenthesis, provides a clear corrected example, and offers encouraging next steps without being overly verbose.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:43:47.208985+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I127",
+      "case_id": "Q10",
+      "variant_index": 2,
+      "prompt_hash": "9ab75a7e568c25cf7c231680029944c8f5a3cf06e204d4d8084cb1649a8b14be",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the missing closing parenthesis, correctly notes that the single quote is already present, and provides clear, actionable advice for the beginner.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:43:50.352549+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I128",
+      "case_id": "Q10",
+      "variant_index": 3,
+      "prompt_hash": "9ab75a7e568c25cf7c231680029944c8f5a3cf06e204d4d8084cb1649a8b14be",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the missing closing parenthesis, clearly explains the syntax rule, and provides a helpful next step for the beginner.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:43:54.086419+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I129",
+      "case_id": "Q10",
+      "variant_index": 4,
+      "prompt_hash": "9ab75a7e568c25cf7c231680029944c8f5a3cf06e204d4d8084cb1649a8b14be",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies both the missing closing parenthesis and the missing closing quote, directly addressing the known misconception by ensuring the syntax error is fully resolved.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:43:57.817955+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I130",
+      "case_id": "Q10",
+      "variant_index": 5,
+      "prompt_hash": "9ab75a7e568c25cf7c231680029944c8f5a3cf06e204d4d8084cb1649a8b14be",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response correctly identifies the missing closing parenthesis, explains the syntax rule clearly, and provides the exact fix needed.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:44:00.989055+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I131",
+      "case_id": "Q4",
+      "variant_index": 1,
+      "prompt_hash": "37ba07f9cc3e9919fac43bbf6b1d828ff17a9e10b8c0d06410e546e904ea8187",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately and clearly identifies the misconception about how `range(3)` works by explaining that it starts at 0 and stops before 3, resulting in exactly 3 iterations.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:44:04.985112+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I132",
+      "case_id": "Q4",
+      "variant_index": 2,
+      "prompt_hash": "37ba07f9cc3e9919fac43bbf6b1d828ff17a9e10b8c0d06410e546e904ea8187",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately and clearly explains the misconception by specifying that range(3) starts at 0 and stops before 3, resulting in exactly 3 iterations.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:44:08.439631+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I133",
+      "case_id": "Q4",
+      "variant_index": 3,
+      "prompt_hash": "37ba07f9cc3e9919fac43bbf6b1d828ff17a9e10b8c0d06410e546e904ea8187",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the off-by-one misconception, clearly explains how range works with a helpful example, and provides an encouraging tone.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:44:11.837458+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I134",
+      "case_id": "Q4",
+      "variant_index": 4,
+      "prompt_hash": "37ba07f9cc3e9919fac43bbf6b1d828ff17a9e10b8c0d06410e546e904ea8187",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the misconception about range start/stop, clearly explains the behavior with a helpful tip, and provides a practical command to verify the output.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:44:15.454236+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I135",
+      "case_id": "Q4",
+      "variant_index": 5,
+      "prompt_hash": "37ba07f9cc3e9919fac43bbf6b1d828ff17a9e10b8c0d06410e546e904ea8187",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 4,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "The feedback is highly accurate and pedagogical, but it assumes the user made a specific error (expecting 4 numbers) rather than addressing the actual provided code which is perfectly correct.",
+      "refine_detail": "The feedback should be adjusted to acknowledge that the provided code is actually correct and prints exactly 3 numbers, rather than assuming the user expected 4.",
+      "timestamp": "2026-09-08T19:44:19.727273+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I136",
+      "case_id": "Q18",
+      "variant_index": 1,
+      "prompt_hash": "a4a565f945bcc64b2764bcda20a8424ba781a37c34a2f1cb05e619901c50803a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the C/Java-style 64-bit overflow misconception and clearly explains Python's arbitrary precision integers, while providing a helpful next step to test the concept.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:44:23.043213+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I137",
+      "case_id": "Q18",
+      "variant_index": 2,
+      "prompt_hash": "a4a565f945bcc64b2764bcda20a8424ba781a37c34a2f1cb05e619901c50803a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the specific misconception about fixed-width integer overflow, accurately explains Python's arbitrary precision, and provides the correct numerical result.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:44:26.240951+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I138",
+      "case_id": "Q18",
+      "variant_index": 3,
+      "prompt_hash": "a4a565f945bcc64b2764bcda20a8424ba781a37c34a2f1cb05e619901c50803a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 4,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "The feedback correctly identifies and addresses the fixed bit-width misconception, but it fails to explicitly state the correct positive output of the code.",
+      "refine_detail": "Include the actual correct output (9223372036854775808) in the explanation so the learner sees exactly what Python prints instead of a negative number.",
+      "timestamp": "2026-09-08T19:44:30.273659+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I139",
+      "case_id": "Q18",
+      "variant_index": 4,
+      "prompt_hash": "a4a565f945bcc64b2764bcda20a8424ba781a37c34a2f1cb05e619901c50803a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 4,
+        "specificity": 3,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "The feedback correctly identifies the misconception but fails to provide the actual correct output of the code.",
+      "refine_detail": "The response should be updated to explicitly state that the code will successfully output 9223372036854775808 without overflowing.",
+      "timestamp": "2026-09-08T19:44:34.105146+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I140",
+      "case_id": "Q18",
+      "variant_index": 5,
+      "prompt_hash": "a4a565f945bcc64b2764bcda20a8424ba781a37c34a2f1cb05e619901c50803a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the specific fixed bit-width overflow misconception, accurately explains Python's arbitrary-precision integers, provides the correct numerical answer, and offers a relevant next step for exploration.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:44:37.594046+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I141",
+      "case_id": "Q30",
+      "variant_index": 1,
+      "prompt_hash": "e517bed337b1f683e724c564028b517609c6959dfc4113074ce32eb0ebe7dbe9",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the missing f-string prefix, explains why the literal braces are being printed, and provides the exact corrected code needed to fix the beginner mistake.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:44:41.132973+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I142",
+      "case_id": "Q30",
+      "variant_index": 2,
+      "prompt_hash": "e517bed337b1f683e724c564028b517609c6959dfc4113074ce32eb0ebe7dbe9",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the missing f-prefix, clearly explains why the original code fails, and provides the exact corrected code needed to fix the beginner's misconception.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:44:44.629999+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I143",
+      "case_id": "Q30",
+      "variant_index": 3,
+      "prompt_hash": "e517bed337b1f683e724c564028b517609c6959dfc4113074ce32eb0ebe7dbe9",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the missing f-string prefix, clearly explains the misconception, and provides an actionable next step for the student to learn the difference.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:44:48.475572+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I144",
+      "case_id": "Q30",
+      "variant_index": 4,
+      "prompt_hash": "e517bed337b1f683e724c564028b517609c6959dfc4113074ce32eb0ebe7dbe9",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the misconception, provides the correct f-string solution, and explains the fix clearly and encouragingly.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:44:51.655898+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I145",
+      "case_id": "Q30",
+      "variant_index": 5,
+      "prompt_hash": "e517bed337b1f683e724c564028b517609c6959dfc4113074ce32eb0ebe7dbe9",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly identifies the misconception, explains why the literal string is printed without an f-string, and provides the exact corrected code needed to fix the issue.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:44:55.450643+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I146",
+      "case_id": "Q8",
+      "variant_index": 1,
+      "prompt_hash": "05fcdde08a457b3756cf6a0751bcd610b04d3787a1360f2c2f50a87c1b43d4f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response correctly identifies the beginner misconception that a function call doesn't produce a visible output and provides the exact code needed to fix it.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:44:58.567171+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I147",
+      "case_id": "Q8",
+      "variant_index": 2,
+      "prompt_hash": "05fcdde08a457b3756cf6a0751bcd610b04d3787a1360f2c2f50a87c1b43d4f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly addresses the misconception by confirming the function does produce a value and explaining why it isn't visible without using print().",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:45:01.812591+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I148",
+      "case_id": "Q8",
+      "variant_index": 3,
+      "prompt_hash": "05fcdde08a457b3756cf6a0751bcd610b04d3787a1360f2c2f50a87c1b43d4f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response accurately identifies the misconception by explaining that the function does return a value but it is not displayed without a print statement, providing a clear and actionable solution.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:45:05.148637+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I149",
+      "case_id": "Q8",
+      "variant_index": 4,
+      "prompt_hash": "05fcdde08a457b3756cf6a0751bcd610b04d3787a1360f2c2f50a87c1b43d4f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly addresses the specific misconception by explaining that the function does produce a value and provides the correct solution of using print to display it.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:45:08.433378+00:00",
+      "judge_attempts": 1
+    },
+    {
+      "blind_id": "I150",
+      "case_id": "Q8",
+      "variant_index": 5,
+      "prompt_hash": "05fcdde08a457b3756cf6a0751bcd610b04d3787a1360f2c2f50a87c1b43d4f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "The response perfectly addresses the misconception by explaining the difference between returning a value and printing it, while providing a clear, actionable next step to see the output.",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T19:45:11.741311+00:00",
+      "judge_attempts": 1
+    }
+  ]
+}

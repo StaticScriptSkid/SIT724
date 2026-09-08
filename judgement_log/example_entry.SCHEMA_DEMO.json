@@ -1,12 +1,12 @@
 {
   "_NOTE": "SCHEMA FORMAT DEMO ONLY — this file is NOT a real judgement, NOT a real AI response, and must never be copied into entries.json or cited as evidence. It exists only so a human filling in a real entry can see the expected shape. Every text field below is a placeholder, deliberately written as a placeholder rather than realistic-sounding text, so it cannot be mistaken for genuine research data if this file is ever read out of context.",
-  "entry_id": "EXAMPLE-DO-NOT-USE",
-  "run_id": "PLACEHOLDER-RUN-ID",
-  "case_id": "Q1",
-  "model": "PLACEHOLDER-MODEL-NAME",
   "rater_id": "PLACEHOLDER-RATER",
+  "pack_id": "PLACEHOLDER-PACK-ID",
+  "run_id": "PLACEHOLDER-RUN-ID",
+  "blind_id": "I000",
+  "case_id": "Q1",
+  "variant_index": 1,
   "prompt_hash": "PLACEHOLDER-SHA256-HASH",
-  "ai_response_ref": "PLACEHOLDER — path or pointer to the actual response file, once one exists",
   "rubric_scores": {
     "accuracy": 0,
     "selectivity": 0,
@@ -18,5 +18,6 @@
   },
   "judgement": "accept",
   "reasoning": "PLACEHOLDER — replace with the rater's actual reasoning once a real response is being scored. Note: rubric_scores of 0 above are outside the real 1-5 range on purpose, as a visual flag that this is not a usable entry.",
+  "refine_detail": "",
   "timestamp": "PLACEHOLDER-ISO-TIMESTAMP"
 }

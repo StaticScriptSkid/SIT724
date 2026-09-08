@@ -2,49 +2,55 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://sit724.local/judgement_log/schema.json",
   "title": "SIT724 Reliability Judgement Log Entry",
-  "description": "One record per (case, model, rater) triple. Captures the human judgement behind a rubric score, not just the score itself, per Jack's 5 Aug 2026 feedback: the reliability metric needs a documented judgement/reflection process, not only a weighted-kappa statistic.",
+  "description": "One record per (rater, blinded item) pair. Captures the judgement behind a rubric score, not just the score itself, per Jack's 5 Aug 2026 feedback. Entries stay blinded (blind_id / case_id / variant_index) until an unblinding map is applied; they do not store model name.",
   "type": "object",
   "required": [
-    "entry_id",
-    "run_id",
-    "case_id",
-    "model",
     "rater_id",
+    "pack_id",
+    "run_id",
+    "blind_id",
+    "case_id",
+    "variant_index",
     "prompt_hash",
-    "ai_response_ref",
     "rubric_scores",
     "judgement",
     "reasoning",
+    "refine_detail",
     "timestamp"
   ],
   "properties": {
-    "entry_id": {
+    "rater_id": {
       "type": "string",
-      "description": "Unique ID for this log entry, e.g. 'JL-0001'."
+      "minLength": 1,
+      "description": "Who made this judgement, e.g. 'SS' (human peer) or 'GLM-5.2' (AI judge). Must match the rater_id used in the scoring/kappa calculation."
+    },
+    "pack_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Blinded form / pack identifier the rater scored, e.g. 'sit724-150-bycase-…-seed724'."
     },
     "run_id": {
       "type": "string",
-      "description": "The pipeline run directory this response came from (matches the write-once timestamped run folder, e.g. '20260721T203201Z')."
+      "minLength": 1,
+      "description": "The pipeline run directory this response came from (matches the write-once timestamped run folder)."
+    },
+    "blind_id": {
+      "type": "string",
+      "description": "Blinded item id from the peer-review pack, e.g. 'I001'. Shared across raters so rows join item-for-item without revealing the model."
     },
     "case_id": {
       "type": "string",
       "description": "References the case id in cases/cases.json, e.g. 'Q1'."
     },
-    "model": {
-      "type": "string",
-      "description": "Model name as used in config.yaml, e.g. 'deepseek-chat'."
-    },
-    "rater_id": {
-      "type": "string",
-      "description": "Who made this judgement: 'andrei', 'jack', 'rater2', or a peer-review contact's initials. Must match the rater_id used in the scoring/kappa calculation so entries can be joined for the reliability analysis."
+    "variant_index": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Which of the (usually 5) blinded AI replies for this case the rater scored, 1-based."
     },
     "prompt_hash": {
       "type": "string",
-      "description": "SHA-256 hash of the exact prompt sent (from the pipeline's existing hashing), so this entry is provably tied to the locked prompt version, not a paraphrase."
-    },
-    "ai_response_ref": {
-      "type": "string",
-      "description": "Pointer to the verbatim AI response this judgement is about — either a file path into the run's output records or the response recorded inline. Never paraphrase the response being judged."
+      "minLength": 1,
+      "description": "SHA-256 hash of the exact prompt sent (from the pipeline's existing hashing), so this entry is provably tied to the locked prompt version."
     },
     "rubric_scores": {
       "type": "object",
@@ -64,21 +70,36 @@
     "judgement": {
       "type": "string",
       "enum": ["accept", "reject", "refine"],
-      "description": "accept = scores stand as-is and response is usable as evidence. reject = response is unusable for this case (e.g. off-topic, unsafe, contradicts the correct_answer) and is excluded, with reasoning logged. refine = rater's own understanding of the correct rubric score changed after closer reading; scores were revised, and the revision is explained."
+      "description": "accept = scores stand as-is and response is usable as evidence. reject = response is unusable for this case and is excluded, with reasoning logged. refine = rater's own understanding of the correct rubric score changed after closer reading; refine_detail explains what should change."
     },
     "reasoning": {
       "type": "string",
-      "description": "Free-text reflection: what was asked, what the AI actually said, and WHY this judgement was made — not just the score. This is the field Jack specifically asked for; it is what separates this log from a bare statistic."
+      "minLength": 1,
+      "description": "Free-text reflection: what was asked, what the AI actually said, and WHY this judgement was made — not just the score."
     },
     "refine_detail": {
       "type": "string",
-      "description": "Only present if judgement = 'refine'. What changed between the rater's first read and the final scores, and what in the response triggered the change."
+      "description": "Required non-empty when judgement is 'refine'. Empty string for accept/reject."
     },
     "timestamp": {
       "type": "string",
-      "format": "date-time",
+      "minLength": 1,
       "description": "When this judgement was made (not when the response was generated)."
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "if": {
+    "properties": { "judgement": { "const": "refine" } },
+    "required": ["judgement"]
+  },
+  "then": {
+    "properties": {
+      "refine_detail": { "type": "string", "minLength": 1 }
+    }
+  },
+  "else": {
+    "properties": {
+      "refine_detail": { "type": "string", "maxLength": 0 }
+    }
+  }
 }

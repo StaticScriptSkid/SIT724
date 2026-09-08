@@ -7,24 +7,25 @@ and reasoning; this file is just the quick orientation.
 
 | File | Purpose |
 |---|---|
-| `schema.json` | JSON Schema for one log entry (one case + model + rater judgement). |
+| `schema.json` | JSON Schema for one log entry: one rater × one blinded item (`blind_id`). No model name. |
 | `PROCESS.md` | Why this exists, when an entry gets created, the accept/reject/refine workflow, and how it feeds the kappa calculation and the peer-review survey. |
-| `entries.json` | The actual log. **Currently `[]`** — stays empty until the live pipeline run exists and a real scoring pass happens. Do not pre-fill. |
+| `entries.json` | The live log. Currently **300** rows (150 `SS` + 150 `GLM-5.2`) for pack `sit724-150-bycase-20260819T010032Z-477c3a3e-seed724`. Do not invent extra judgements. |
 | `example_entry.SCHEMA_DEMO.json` | Format reference only. Deliberately uses out-of-range placeholder values (score `0`, which fails schema validation on purpose) so it can never be mistaken for a real entry or accidentally pass validation if copy-pasted without editing. |
-| `validate_log.py` | Validates `entries.json` against `schema.json`, checks for duplicate entries, and prints a coverage summary (raters / cases / models / accept-reject-refine mix). Run: `python3 validate_log.py`. |
+| `validate_log.py` | Validates `entries.json` against `schema.json`, checks for duplicate `(rater_id, blind_id)` pairs, score ranges, refine_detail rules, and (for complete 150-row raters) 30 cases × 5 variants. Run: `python3 validate_log.py`. |
 
-## Drop-in instructions
+## Entry shape (current)
 
-Copy this whole `judgement_log/` folder into the repo root (alongside
-`cases/`, `rubric/`, `pipeline/`), then:
+Each row must have: `rater_id`, `pack_id`, `run_id`, `blind_id`,
+`case_id`, `variant_index`, `prompt_hash`, `rubric_scores` (7 dims, 1–5),
+`judgement` (`accept` / `reject` / `refine`), `reasoning` (non-empty),
+`refine_detail` (non-empty iff `refine`, otherwise `""`), `timestamp`.
 
-1. Add a line to `PROJECT_CONTEXT.md`'s repo-structure section pointing at
-   `judgement_log/` and `PROCESS.md`, so Cursor knows this exists and
-   what it's for.
-2. `pip install jsonschema` if not already installed (same dependency
+Model names live only in `peer_review/generated/blind_map.json`, not here.
+
+## Check the log
+
+1. `pip install jsonschema` if not already installed (same dependency
    `validate_cases.py` uses).
-3. Run `python3 judgement_log/validate_log.py` to confirm it's wired up —
-   should print `OK: 0 judgement log entries valid against schema.`
-4. Leave `entries.json` empty until the live pipeline run happens and a
-   real scoring pass is done. This log is infrastructure right now, not
-   data — see the Status section of `PROCESS.md`.
+2. Run `python3 judgement_log/validate_log.py` — should print
+   `OK: 300 judgement log entries valid against schema.` when the SS +
+   GLM-5.2 merge is in place.

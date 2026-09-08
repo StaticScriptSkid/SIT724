@@ -48,6 +48,25 @@ models:
     rate_limit_backoff_seconds: 25
     rate_limit_extra_retries: 3
 
+# LLM-as-judge pilot (pipeline/llm_judge.py): scores the same blinded 150 responses a
+# human rater scored, so AI-judge vs human-judge agreement can be compared. This is a
+# *rater*, not one of the models under evaluation, so it is deliberately outside `models:`.
+judge:
+  rater_id: GLM-5.2
+  rater_name: "GLM-5.2 (AI judge)"
+  provider: openai-compatible
+  api_base_env: GLM_API_BASE
+  api_key_env: GLM_API_KEY
+  model_id: glm-5.2
+  temperature: 0.0          # reproducible, matches generation_params
+  max_tokens: 600           # the JSON verdict is short; headroom for long reasoning
+  request_extras:
+    thinking:
+      type: disabled        # keep the reply to the bare JSON (no reasoning_content)
+  retries: 3
+  retry_backoff_seconds: 5
+  min_interval_seconds: 0.5
+
 # Pricing left unfilled — needed before --estimate gives a real dollar figure.
 # Fill in USD per 1K tokens (input/output) once the model list is confirmed with Jack.
 pricing_usd_per_1k_tokens:

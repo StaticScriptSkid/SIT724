@@ -18,6 +18,10 @@ prompts/PROMPT_LOCK.md Policy for why/how the prompt is locked
 config.yaml             Models, generation params, pricing (unfilled)
 pipeline/validate_cases.py   Validates cases.json against schema.json, reports topic coverage
 pipeline/generate.py         Renders prompts, calls each model, logs results (or --dry-run)
+pipeline/peer_review.py      Builds the blinded peer HTML form; imports returned scores
+pipeline/llm_judge.py        LLM-as-judge pilot: GLM-5.2 scores the same blinded pack (config.yaml judge:)
+peer_review/                 Form template + README (generated HTML is gitignored)
+peer_review/returns/         Returned rater files (human JSON exports, AI-judge output)
 docs/decision_log.md   Running log of methodology decisions and open questions
 outputs/<run_id>/      One folder per run: manifest.json + responses.jsonl (write-once)
 ```
@@ -47,7 +51,25 @@ API keys: copy `.env.example` to `.env` and fill in the values. `.env` is gitign
 A local Streamlit UI wraps the same validation and generation functions used by the CLI
 (`pipeline/validate_cases.py`, `pipeline/generate.py`) — browse cases, view the rubric,
 run dry/live pipelines, inspect past outputs, score responses into `judgement_log/`,
+run a blinded peer-review form (or download the HTML for a friend),
 and confirm `config.yaml` (API keys are never shown; only env var names — put real keys in `.env`).
+
+Peer form (150/150 run, Q1–Q30 × 5 models, model names hidden):
+
+```bash
+python pipeline/peer_review.py --build
+# email peer_review/generated/SIT724_peer_review.html to the reviewer
+python pipeline/peer_review.py --import path/to/their-download.json
+```
+
+See `peer_review/README.md`.
+
+LLM-as-judge pilot (needs `GLM_API_KEY` in `.env`; judge model set in `config.yaml` → `judge:`):
+
+```bash
+python pipeline/llm_judge.py --match peer_review/returns/sit724-peer-SS-complete.json
+# resumable; writes peer_review/returns/sit724_judge_glm52_complete.json in the same shape as a human export
+```
 
 ```bash
 pip install -r requirements.txt

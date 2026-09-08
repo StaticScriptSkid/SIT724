@@ -1,0 +1,2861 @@
+{
+  "pack_id": "sit724-150-bycase-20260819T010032Z-477c3a3e-seed724",
+  "run_id": "20260819T010032Z-477c3a3e",
+  "rater_id": "SS",
+  "rater_name": "Sarvesh",
+  "completed_at": "2026-09-08T11:54:23.994Z",
+  "n_items": 150,
+  "n_complete": 150,
+  "responses": [
+    {
+      "blind_id": "I001",
+      "case_id": "Q16",
+      "variant_index": 1,
+      "prompt_hash": "70f20a2f8896bc1eac5c71c35bbea09d0414e4c1267a42495112bee51a81813a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "short and sweet",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:41:48.002Z"
+    },
+    {
+      "blind_id": "I002",
+      "case_id": "Q16",
+      "variant_index": 2,
+      "prompt_hash": "70f20a2f8896bc1eac5c71c35bbea09d0414e4c1267a42495112bee51a81813a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 3,
+        "informativeness": 3,
+        "specificity": 5,
+        "level_of_detail": 2,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "it doesn't actually properly explain the concept of mutability and if I was a beginner, I wouldn't really understand or know what to call this type of error going forward",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:43:00.716Z"
+    },
+    {
+      "blind_id": "I003",
+      "case_id": "Q16",
+      "variant_index": 3,
+      "prompt_hash": "70f20a2f8896bc1eac5c71c35bbea09d0414e4c1267a42495112bee51a81813a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:43:35.815Z"
+    },
+    {
+      "blind_id": "I004",
+      "case_id": "Q16",
+      "variant_index": 4,
+      "prompt_hash": "70f20a2f8896bc1eac5c71c35bbea09d0414e4c1267a42495112bee51a81813a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 2,
+        "informativeness": 2,
+        "specificity": 2,
+        "level_of_detail": 2,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "doesn't really dive into what changes are being made and why and how they affect the code",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:44:19.947Z"
+    },
+    {
+      "blind_id": "I005",
+      "case_id": "Q16",
+      "variant_index": 5,
+      "prompt_hash": "70f20a2f8896bc1eac5c71c35bbea09d0414e4c1267a42495112bee51a81813a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 2,
+        "clarity": 2,
+        "informativeness": 2,
+        "specificity": 3,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "doesn't really explain the concept of mutable objects",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:51:42.380Z"
+    },
+    {
+      "blind_id": "I006",
+      "case_id": "Q26",
+      "variant_index": 1,
+      "prompt_hash": "f1dff39f3bba027d63e4ca7a564b809724292b5a820e153d10457753ebf5cc0c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 4,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 2,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "interesting choice of words with \"falsy\" but did the job well regardless",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:47:08.326Z"
+    },
+    {
+      "blind_id": "I007",
+      "case_id": "Q26",
+      "variant_index": 2,
+      "prompt_hash": "f1dff39f3bba027d63e4ca7a564b809724292b5a820e153d10457753ebf5cc0c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:47:42.809Z"
+    },
+    {
+      "blind_id": "I008",
+      "case_id": "Q26",
+      "variant_index": 3,
+      "prompt_hash": "f1dff39f3bba027d63e4ca7a564b809724292b5a820e153d10457753ebf5cc0c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 3,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 3,
+        "level_of_detail": 2,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "second part of this response was useless to the question and answer",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:48:25.108Z"
+    },
+    {
+      "blind_id": "I009",
+      "case_id": "Q26",
+      "variant_index": 4,
+      "prompt_hash": "f1dff39f3bba027d63e4ca7a564b809724292b5a820e153d10457753ebf5cc0c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "I like the little mental test that it gave at the end",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:48:54.023Z"
+    },
+    {
+      "blind_id": "I010",
+      "case_id": "Q26",
+      "variant_index": 5,
+      "prompt_hash": "f1dff39f3bba027d63e4ca7a564b809724292b5a820e153d10457753ebf5cc0c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:49:19.090Z"
+    },
+    {
+      "blind_id": "I011",
+      "case_id": "Q5",
+      "variant_index": 1,
+      "prompt_hash": "e7a433c2be4f9720a17312097eafe1c1498216038a6c66d7cf0308afaa7caaf8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:49:43.022Z"
+    },
+    {
+      "blind_id": "I012",
+      "case_id": "Q5",
+      "variant_index": 2,
+      "prompt_hash": "e7a433c2be4f9720a17312097eafe1c1498216038a6c66d7cf0308afaa7caaf8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 2,
+        "clarity": 2,
+        "informativeness": 2,
+        "specificity": 5,
+        "level_of_detail": 2,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "not enough detail nor does it explain that this is common for most coding languages",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:50:27.238Z"
+    },
+    {
+      "blind_id": "I013",
+      "case_id": "Q5",
+      "variant_index": 3,
+      "prompt_hash": "e7a433c2be4f9720a17312097eafe1c1498216038a6c66d7cf0308afaa7caaf8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "short and sweet",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:50:46.654Z"
+    },
+    {
+      "blind_id": "I014",
+      "case_id": "Q5",
+      "variant_index": 4,
+      "prompt_hash": "e7a433c2be4f9720a17312097eafe1c1498216038a6c66d7cf0308afaa7caaf8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:51:13.353Z"
+    },
+    {
+      "blind_id": "I015",
+      "case_id": "Q5",
+      "variant_index": 5,
+      "prompt_hash": "e7a433c2be4f9720a17312097eafe1c1498216038a6c66d7cf0308afaa7caaf8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:51:31.536Z"
+    },
+    {
+      "blind_id": "I016",
+      "case_id": "Q1",
+      "variant_index": 1,
+      "prompt_hash": "2226bb6a98888b884a12cd3c84ad675f2771d922de27f7a925f715ffb1a5c46a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "does a pretty good job on how python deals with assignments",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:52:35.384Z"
+    },
+    {
+      "blind_id": "I017",
+      "case_id": "Q1",
+      "variant_index": 2,
+      "prompt_hash": "2226bb6a98888b884a12cd3c84ad675f2771d922de27f7a925f715ffb1a5c46a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 2,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "doesn't explain how the code reads and figures out the value 7",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:53:24.000Z"
+    },
+    {
+      "blind_id": "I018",
+      "case_id": "Q1",
+      "variant_index": 3,
+      "prompt_hash": "2226bb6a98888b884a12cd3c84ad675f2771d922de27f7a925f715ffb1a5c46a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:53:48.449Z"
+    },
+    {
+      "blind_id": "I019",
+      "case_id": "Q1",
+      "variant_index": 4,
+      "prompt_hash": "2226bb6a98888b884a12cd3c84ad675f2771d922de27f7a925f715ffb1a5c46a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect answer with a mental quiz at the end",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:54:11.283Z"
+    },
+    {
+      "blind_id": "I020",
+      "case_id": "Q1",
+      "variant_index": 5,
+      "prompt_hash": "2226bb6a98888b884a12cd3c84ad675f2771d922de27f7a925f715ffb1a5c46a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 3,
+        "informativeness": 3,
+        "specificity": 3,
+        "level_of_detail": 1,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "I don't actually think it does a good job explaining why it works like that to a beginner",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:54:44.231Z"
+    },
+    {
+      "blind_id": "I021",
+      "case_id": "Q2",
+      "variant_index": 1,
+      "prompt_hash": "062a991ed84bf09e86edb1e16af59af94455311ff7403382fb26bd748cc6f3b1",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:55:58.897Z"
+    },
+    {
+      "blind_id": "I022",
+      "case_id": "Q2",
+      "variant_index": 2,
+      "prompt_hash": "062a991ed84bf09e86edb1e16af59af94455311ff7403382fb26bd748cc6f3b1",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 4,
+        "informativeness": 2,
+        "specificity": 2,
+        "level_of_detail": 2,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "I don't think this does a good job explaining this operation",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:56:39.511Z"
+    },
+    {
+      "blind_id": "I023",
+      "case_id": "Q2",
+      "variant_index": 3,
+      "prompt_hash": "062a991ed84bf09e86edb1e16af59af94455311ff7403382fb26bd748cc6f3b1",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 4,
+        "specificity": 4,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "does a mediocre job compared to the first model",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:57:16.243Z"
+    },
+    {
+      "blind_id": "I024",
+      "case_id": "Q2",
+      "variant_index": 4,
+      "prompt_hash": "062a991ed84bf09e86edb1e16af59af94455311ff7403382fb26bd748cc6f3b1",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T13:57:38.960Z"
+    },
+    {
+      "blind_id": "I025",
+      "case_id": "Q2",
+      "variant_index": 5,
+      "prompt_hash": "062a991ed84bf09e86edb1e16af59af94455311ff7403382fb26bd748cc6f3b1",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 4,
+        "informativeness": 4,
+        "specificity": 3,
+        "level_of_detail": 2,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "a little example never hurt anyone",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:51:36.991Z"
+    },
+    {
+      "blind_id": "I026",
+      "case_id": "Q11",
+      "variant_index": 1,
+      "prompt_hash": "5b8eff5d477a20ca796632153917685a29fbde29c8a9bc4804329c1d110133ab",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 2,
+        "clarity": 1,
+        "informativeness": 1,
+        "specificity": 1,
+        "level_of_detail": 2,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "doesn't explain anything",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T14:01:32.054Z"
+    },
+    {
+      "blind_id": "I027",
+      "case_id": "Q11",
+      "variant_index": 2,
+      "prompt_hash": "5b8eff5d477a20ca796632153917685a29fbde29c8a9bc4804329c1d110133ab",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 4,
+        "informativeness": 3,
+        "specificity": 3,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "can't really follow along well",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T14:02:50.370Z"
+    },
+    {
+      "blind_id": "I028",
+      "case_id": "Q11",
+      "variant_index": 3,
+      "prompt_hash": "5b8eff5d477a20ca796632153917685a29fbde29c8a9bc4804329c1d110133ab",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T14:03:11.285Z"
+    },
+    {
+      "blind_id": "I029",
+      "case_id": "Q11",
+      "variant_index": 4,
+      "prompt_hash": "5b8eff5d477a20ca796632153917685a29fbde29c8a9bc4804329c1d110133ab",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 3,
+        "clarity": 4,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "needs slight refinement, otherwise, good overall",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:51:52.794Z"
+    },
+    {
+      "blind_id": "I030",
+      "case_id": "Q11",
+      "variant_index": 5,
+      "prompt_hash": "5b8eff5d477a20ca796632153917685a29fbde29c8a9bc4804329c1d110133ab",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect example",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T14:10:14.406Z"
+    },
+    {
+      "blind_id": "I031",
+      "case_id": "Q25",
+      "variant_index": 1,
+      "prompt_hash": "e24be538bd5cf2ffef7e7da7140e23c3f6f78b715485d420e2f01db8730b3492",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 2,
+        "clarity": 2,
+        "informativeness": 2,
+        "specificity": 2,
+        "level_of_detail": 1,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "very unclear what a base case is without an example, especially on something as hard as recursion",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T14:45:16.783Z"
+    },
+    {
+      "blind_id": "I032",
+      "case_id": "Q25",
+      "variant_index": 2,
+      "prompt_hash": "e24be538bd5cf2ffef7e7da7140e23c3f6f78b715485d420e2f01db8730b3492",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 2,
+        "clarity": 2,
+        "informativeness": 2,
+        "specificity": 2,
+        "level_of_detail": 1,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "doesn't really explain what a base case is with an example",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T14:45:49.783Z"
+    },
+    {
+      "blind_id": "I033",
+      "case_id": "Q25",
+      "variant_index": 3,
+      "prompt_hash": "e24be538bd5cf2ffef7e7da7140e23c3f6f78b715485d420e2f01db8730b3492",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 4,
+        "informativeness": 3,
+        "specificity": 5,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lacks some details but pretty good and has an example",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T14:46:25.150Z"
+    },
+    {
+      "blind_id": "I034",
+      "case_id": "Q25",
+      "variant_index": 4,
+      "prompt_hash": "e24be538bd5cf2ffef7e7da7140e23c3f6f78b715485d420e2f01db8730b3492",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T14:46:52.232Z"
+    },
+    {
+      "blind_id": "I035",
+      "case_id": "Q25",
+      "variant_index": 5,
+      "prompt_hash": "e24be538bd5cf2ffef7e7da7140e23c3f6f78b715485d420e2f01db8730b3492",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 3,
+        "clarity": 3,
+        "informativeness": 3,
+        "specificity": 3,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "passable",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T14:47:10.832Z"
+    },
+    {
+      "blind_id": "I036",
+      "case_id": "Q20",
+      "variant_index": 1,
+      "prompt_hash": "981fdb58750d53df49bdee06271d62078a8d0b28aad93d58afc6bd6bdf02654a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 4,
+        "informativeness": 4,
+        "specificity": 5,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "doesn't really explain what an f string is or what type casting is in the greater context of coding",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T14:59:39.149Z"
+    },
+    {
+      "blind_id": "I037",
+      "case_id": "Q20",
+      "variant_index": 2,
+      "prompt_hash": "981fdb58750d53df49bdee06271d62078a8d0b28aad93d58afc6bd6bdf02654a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 2,
+        "informativeness": 2,
+        "specificity": 5,
+        "level_of_detail": 2,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "doesn't really explain what an f string is or what type casting is in the greater context of coding",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T14:59:57.799Z"
+    },
+    {
+      "blind_id": "I038",
+      "case_id": "Q20",
+      "variant_index": 3,
+      "prompt_hash": "981fdb58750d53df49bdee06271d62078a8d0b28aad93d58afc6bd6bdf02654a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 2,
+        "clarity": 2,
+        "informativeness": 1,
+        "specificity": 4,
+        "level_of_detail": 1,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "doesn't really explain what an f string is or what type casting is in the greater context of coding",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:00:19.816Z"
+    },
+    {
+      "blind_id": "I039",
+      "case_id": "Q20",
+      "variant_index": 4,
+      "prompt_hash": "981fdb58750d53df49bdee06271d62078a8d0b28aad93d58afc6bd6bdf02654a",
+      "rubric_scores": {
+        "accuracy": 4,
+        "selectivity": 3,
+        "clarity": 2,
+        "informativeness": 2,
+        "specificity": 2,
+        "level_of_detail": 2,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "doesn't really explain what an f string is or what type casting is in the greater context of coding",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:00:43.115Z"
+    },
+    {
+      "blind_id": "I040",
+      "case_id": "Q20",
+      "variant_index": 5,
+      "prompt_hash": "981fdb58750d53df49bdee06271d62078a8d0b28aad93d58afc6bd6bdf02654a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 3,
+        "clarity": 3,
+        "informativeness": 4,
+        "specificity": 4,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "doesn't really explain what an f string is or what type casting is in the greater context of coding",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:01:06.383Z"
+    },
+    {
+      "blind_id": "I041",
+      "case_id": "Q17",
+      "variant_index": 1,
+      "prompt_hash": "2e26cba57c32636cd476524739c4dc31de6ce5658ea888216a617bed27538e79",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 4,
+        "clarity": 3,
+        "informativeness": 2,
+        "specificity": 2,
+        "level_of_detail": 2,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "good enough but doesn't explain proper double type casting",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:02:05.848Z"
+    },
+    {
+      "blind_id": "I042",
+      "case_id": "Q17",
+      "variant_index": 2,
+      "prompt_hash": "2e26cba57c32636cd476524739c4dc31de6ce5658ea888216a617bed27538e79",
+      "rubric_scores": {
+        "accuracy": 1,
+        "selectivity": 1,
+        "clarity": 1,
+        "informativeness": 1,
+        "specificity": 1,
+        "level_of_detail": 1,
+        "ethics_safety": 1
+      },
+      "judgement": "reject",
+      "reasoning": "I don't even know why it would recommend this method",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:02:38.516Z"
+    },
+    {
+      "blind_id": "I043",
+      "case_id": "Q17",
+      "variant_index": 3,
+      "prompt_hash": "2e26cba57c32636cd476524739c4dc31de6ce5658ea888216a617bed27538e79",
+      "rubric_scores": {
+        "accuracy": 1,
+        "selectivity": 1,
+        "clarity": 1,
+        "informativeness": 1,
+        "specificity": 1,
+        "level_of_detail": 1,
+        "ethics_safety": 1
+      },
+      "judgement": "reject",
+      "reasoning": "that's not the correct way to teach someone new to coding",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:03:10.249Z"
+    },
+    {
+      "blind_id": "I044",
+      "case_id": "Q17",
+      "variant_index": 4,
+      "prompt_hash": "2e26cba57c32636cd476524739c4dc31de6ce5658ea888216a617bed27538e79",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:03:23.516Z"
+    },
+    {
+      "blind_id": "I045",
+      "case_id": "Q17",
+      "variant_index": 5,
+      "prompt_hash": "2e26cba57c32636cd476524739c4dc31de6ce5658ea888216a617bed27538e79",
+      "rubric_scores": {
+        "accuracy": 1,
+        "selectivity": 1,
+        "clarity": 1,
+        "informativeness": 1,
+        "specificity": 1,
+        "level_of_detail": 1,
+        "ethics_safety": 1
+      },
+      "judgement": "reject",
+      "reasoning": "not sure why any of the models didn't come close to using doubles or just typecasting it into a double",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:03:59.999Z"
+    },
+    {
+      "blind_id": "I046",
+      "case_id": "Q6",
+      "variant_index": 1,
+      "prompt_hash": "839e405cde0cefef0a9a0413c6deb4c6991a2435554b39844f993239164c6e6c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 4,
+        "clarity": 4,
+        "informativeness": 4,
+        "specificity": 4,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:04:35.983Z"
+    },
+    {
+      "blind_id": "I047",
+      "case_id": "Q6",
+      "variant_index": 2,
+      "prompt_hash": "839e405cde0cefef0a9a0413c6deb4c6991a2435554b39844f993239164c6e6c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 4,
+        "clarity": 4,
+        "informativeness": 4,
+        "specificity": 4,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "fine",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:05:04.248Z"
+    },
+    {
+      "blind_id": "I048",
+      "case_id": "Q6",
+      "variant_index": 3,
+      "prompt_hash": "839e405cde0cefef0a9a0413c6deb4c6991a2435554b39844f993239164c6e6c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect example",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:05:26.433Z"
+    },
+    {
+      "blind_id": "I049",
+      "case_id": "Q6",
+      "variant_index": 4,
+      "prompt_hash": "839e405cde0cefef0a9a0413c6deb4c6991a2435554b39844f993239164c6e6c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:05:42.616Z"
+    },
+    {
+      "blind_id": "I050",
+      "case_id": "Q6",
+      "variant_index": 5,
+      "prompt_hash": "839e405cde0cefef0a9a0413c6deb4c6991a2435554b39844f993239164c6e6c",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:05:59.732Z"
+    },
+    {
+      "blind_id": "I051",
+      "case_id": "Q22",
+      "variant_index": 1,
+      "prompt_hash": "4480016d083e202b6bb36892c246a78fbfd5b4a37a704f8ef94f3b778e3d09ea",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 2,
+        "informativeness": 2,
+        "specificity": 2,
+        "level_of_detail": 1,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "doesn't really explain for references or pointers are and just says it dumps the data into the same memory when in reality no beginner would know what any of that means lol",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:52:16.607Z"
+    },
+    {
+      "blind_id": "I052",
+      "case_id": "Q22",
+      "variant_index": 2,
+      "prompt_hash": "4480016d083e202b6bb36892c246a78fbfd5b4a37a704f8ef94f3b778e3d09ea",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 2,
+        "informativeness": 2,
+        "specificity": 2,
+        "level_of_detail": 1,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "doesn't really explain for references or pointers are and just says it dumps the data into the same memory when in reality no beginner would know what any of that means lol",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:52:05.032Z"
+    },
+    {
+      "blind_id": "I053",
+      "case_id": "Q22",
+      "variant_index": 3,
+      "prompt_hash": "4480016d083e202b6bb36892c246a78fbfd5b4a37a704f8ef94f3b778e3d09ea",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 4,
+        "clarity": 4,
+        "informativeness": 3,
+        "specificity": 5,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "doesn't really explain for references or pointers are and just says it dumps the data into the same memory when in reality no beginner would know what any of that means lol",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:08:03.623Z"
+    },
+    {
+      "blind_id": "I054",
+      "case_id": "Q22",
+      "variant_index": 4,
+      "prompt_hash": "4480016d083e202b6bb36892c246a78fbfd5b4a37a704f8ef94f3b778e3d09ea",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 1,
+        "informativeness": 1,
+        "specificity": 1,
+        "level_of_detail": 1,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "this is downright horrible, thinking the person who's asking this question would know the jargon",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:08:35.857Z"
+    },
+    {
+      "blind_id": "I055",
+      "case_id": "Q22",
+      "variant_index": 5,
+      "prompt_hash": "4480016d083e202b6bb36892c246a78fbfd5b4a37a704f8ef94f3b778e3d09ea",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 4,
+        "clarity": 1,
+        "informativeness": 1,
+        "specificity": 1,
+        "level_of_detail": 1,
+        "ethics_safety": 1
+      },
+      "judgement": "reject",
+      "reasoning": "doesn't really explain for references or pointers are and just says it dumps the data into the same memory when in reality no beginner would know what any of that means lol",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:08:52.656Z"
+    },
+    {
+      "blind_id": "I056",
+      "case_id": "Q24",
+      "variant_index": 1,
+      "prompt_hash": "ecb9a36802345059ea33f88db5b7f8c7ab8b2b9d352f702018a74c4eacc7ccc3",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 3,
+        "clarity": 1,
+        "informativeness": 2,
+        "specificity": 3,
+        "level_of_detail": 2,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "doesn't really explain for references or pointers are and just says it dumps the data into the same memory when in reality no beginner would know what any of that means",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:52:24.247Z"
+    },
+    {
+      "blind_id": "I057",
+      "case_id": "Q24",
+      "variant_index": 2,
+      "prompt_hash": "ecb9a36802345059ea33f88db5b7f8c7ab8b2b9d352f702018a74c4eacc7ccc3",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 2,
+        "clarity": 1,
+        "informativeness": 1,
+        "specificity": 1,
+        "level_of_detail": 1,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "doesn't really explain for references or pointers are and just says it dumps the data into the same memory when in reality no beginner would know what any of that means lol",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:10:12.123Z"
+    },
+    {
+      "blind_id": "I058",
+      "case_id": "Q24",
+      "variant_index": 3,
+      "prompt_hash": "ecb9a36802345059ea33f88db5b7f8c7ab8b2b9d352f702018a74c4eacc7ccc3",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "this is somewhat acceptable, the only reason for a perfect score is because none of the others even told me they weren't made in the same memory",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:10:56.556Z"
+    },
+    {
+      "blind_id": "I059",
+      "case_id": "Q24",
+      "variant_index": 4,
+      "prompt_hash": "ecb9a36802345059ea33f88db5b7f8c7ab8b2b9d352f702018a74c4eacc7ccc3",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 3,
+        "clarity": 3,
+        "informativeness": 3,
+        "specificity": 4,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "acceptable beccuase it encourages further testing",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:11:23.222Z"
+    },
+    {
+      "blind_id": "I060",
+      "case_id": "Q24",
+      "variant_index": 5,
+      "prompt_hash": "ecb9a36802345059ea33f88db5b7f8c7ab8b2b9d352f702018a74c4eacc7ccc3",
+      "rubric_scores": {
+        "accuracy": 2,
+        "selectivity": 2,
+        "clarity": 1,
+        "informativeness": 1,
+        "specificity": 1,
+        "level_of_detail": 1,
+        "ethics_safety": 1
+      },
+      "judgement": "reject",
+      "reasoning": "poor explanation",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T15:11:58.506Z"
+    },
+    {
+      "blind_id": "I061",
+      "case_id": "Q14",
+      "variant_index": 1,
+      "prompt_hash": "51cc4f41c05738bb938285230f7b21bb771a2d0faf1143d8ad06598229ba93f6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 2,
+        "informativeness": 2,
+        "specificity": 1,
+        "level_of_detail": 1,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "model doesn't describe the scope of a function or a reason as to why the function can't change the variable x",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T23:23:38.110Z"
+    },
+    {
+      "blind_id": "I062",
+      "case_id": "Q14",
+      "variant_index": 2,
+      "prompt_hash": "51cc4f41c05738bb938285230f7b21bb771a2d0faf1143d8ad06598229ba93f6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T23:23:56.826Z"
+    },
+    {
+      "blind_id": "I063",
+      "case_id": "Q14",
+      "variant_index": 3,
+      "prompt_hash": "51cc4f41c05738bb938285230f7b21bb771a2d0faf1143d8ad06598229ba93f6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 2,
+        "clarity": 2,
+        "informativeness": 1,
+        "specificity": 5,
+        "level_of_detail": 1,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "using global is fine for this code, however, teaching them about scopes and locality should be included",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:52:32.480Z"
+    },
+    {
+      "blind_id": "I064",
+      "case_id": "Q14",
+      "variant_index": 4,
+      "prompt_hash": "51cc4f41c05738bb938285230f7b21bb771a2d0faf1143d8ad06598229ba93f6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T23:25:24.107Z"
+    },
+    {
+      "blind_id": "I065",
+      "case_id": "Q14",
+      "variant_index": 5,
+      "prompt_hash": "51cc4f41c05738bb938285230f7b21bb771a2d0faf1143d8ad06598229ba93f6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 1,
+        "informativeness": 1,
+        "specificity": 1,
+        "level_of_detail": 1,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "model didn't produce sufficient detail",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T23:26:32.891Z"
+    },
+    {
+      "blind_id": "I066",
+      "case_id": "Q23",
+      "variant_index": 1,
+      "prompt_hash": "fcdab44aab261e21385b28a009845e4a563c374a917e295234682eaa70f6414f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 1,
+        "informativeness": 2,
+        "specificity": 5,
+        "level_of_detail": 1,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "could use more detail",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:52:37.834Z"
+    },
+    {
+      "blind_id": "I067",
+      "case_id": "Q23",
+      "variant_index": 2,
+      "prompt_hash": "fcdab44aab261e21385b28a009845e4a563c374a917e295234682eaa70f6414f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T23:30:51.990Z"
+    },
+    {
+      "blind_id": "I068",
+      "case_id": "Q23",
+      "variant_index": 3,
+      "prompt_hash": "fcdab44aab261e21385b28a009845e4a563c374a917e295234682eaa70f6414f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T23:31:11.472Z"
+    },
+    {
+      "blind_id": "I069",
+      "case_id": "Q23",
+      "variant_index": 4,
+      "prompt_hash": "fcdab44aab261e21385b28a009845e4a563c374a917e295234682eaa70f6414f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 1,
+        "informativeness": 4,
+        "specificity": 4,
+        "level_of_detail": 1,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "examples would help here",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:52:41.068Z"
+    },
+    {
+      "blind_id": "I070",
+      "case_id": "Q23",
+      "variant_index": 5,
+      "prompt_hash": "fcdab44aab261e21385b28a009845e4a563c374a917e295234682eaa70f6414f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 1,
+        "specificity": 5,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "a bit more of an explanation with the two examples provided would be good",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T23:32:21.439Z"
+    },
+    {
+      "blind_id": "I071",
+      "case_id": "Q13",
+      "variant_index": 1,
+      "prompt_hash": "d2578e9e91be1a6b27ecec5a98b560ea538aec868f72972f8dfd6049e7ded8a8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 4,
+        "clarity": 1,
+        "informativeness": 2,
+        "specificity": 1,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "I would not be able to understand this output as a beginner",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:52:46.446Z"
+    },
+    {
+      "blind_id": "I072",
+      "case_id": "Q13",
+      "variant_index": 2,
+      "prompt_hash": "d2578e9e91be1a6b27ecec5a98b560ea538aec868f72972f8dfd6049e7ded8a8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 4,
+        "clarity": 1,
+        "informativeness": 3,
+        "specificity": 5,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lacks detail on pointers and references",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T23:37:30.388Z"
+    },
+    {
+      "blind_id": "I073",
+      "case_id": "Q13",
+      "variant_index": 3,
+      "prompt_hash": "d2578e9e91be1a6b27ecec5a98b560ea538aec868f72972f8dfd6049e7ded8a8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 2,
+        "informativeness": 4,
+        "specificity": 5,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lacks detail on pointers and references",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T23:39:22.137Z"
+    },
+    {
+      "blind_id": "I074",
+      "case_id": "Q13",
+      "variant_index": 4,
+      "prompt_hash": "d2578e9e91be1a6b27ecec5a98b560ea538aec868f72972f8dfd6049e7ded8a8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "probably the best answer given",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T23:39:56.987Z"
+    },
+    {
+      "blind_id": "I075",
+      "case_id": "Q13",
+      "variant_index": 5,
+      "prompt_hash": "d2578e9e91be1a6b27ecec5a98b560ea538aec868f72972f8dfd6049e7ded8a8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T23:40:16.470Z"
+    },
+    {
+      "blind_id": "I076",
+      "case_id": "Q27",
+      "variant_index": 1,
+      "prompt_hash": "cf2b1754fd8ec7d7e0637558bcc2531d9365e0d6eb414cdc675fb0474f398d8f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 4,
+        "informativeness": 4,
+        "specificity": 4,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "fine but it should explain type casting",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T23:49:13.957Z"
+    },
+    {
+      "blind_id": "I077",
+      "case_id": "Q27",
+      "variant_index": 2,
+      "prompt_hash": "cf2b1754fd8ec7d7e0637558bcc2531d9365e0d6eb414cdc675fb0474f398d8f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 4,
+        "clarity": 4,
+        "informativeness": 4,
+        "specificity": 4,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "fine but it should explain type casting",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T23:49:43.173Z"
+    },
+    {
+      "blind_id": "I078",
+      "case_id": "Q27",
+      "variant_index": 3,
+      "prompt_hash": "cf2b1754fd8ec7d7e0637558bcc2531d9365e0d6eb414cdc675fb0474f398d8f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 4,
+        "clarity": 5,
+        "informativeness": 4,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "fine but it should explain type casting",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T23:50:10.939Z"
+    },
+    {
+      "blind_id": "I079",
+      "case_id": "Q27",
+      "variant_index": 4,
+      "prompt_hash": "cf2b1754fd8ec7d7e0637558bcc2531d9365e0d6eb414cdc675fb0474f398d8f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "short and sweet but didn't explain what type casting actually does and what defensive programming is",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T23:50:55.205Z"
+    },
+    {
+      "blind_id": "I080",
+      "case_id": "Q27",
+      "variant_index": 5,
+      "prompt_hash": "cf2b1754fd8ec7d7e0637558bcc2531d9365e0d6eb414cdc675fb0474f398d8f",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 4,
+        "clarity": 4,
+        "informativeness": 4,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "fine but it should explain type casting",
+      "refine_detail": "",
+      "timestamp": "2026-08-25T23:58:11.310Z"
+    },
+    {
+      "blind_id": "I081",
+      "case_id": "Q28",
+      "variant_index": 1,
+      "prompt_hash": "71616323787d6680755b1d8addbce694bed04691e5351655df4f57b1a8e461c8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 3,
+        "specificity": 4,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "doesn't really explain that you have to know the error beforehand if you want to catch an error and it will throw another error if it's not handled",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:11:11.789Z"
+    },
+    {
+      "blind_id": "I082",
+      "case_id": "Q28",
+      "variant_index": 2,
+      "prompt_hash": "71616323787d6680755b1d8addbce694bed04691e5351655df4f57b1a8e461c8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "this is what I believe the next steps for a beginner should be",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:11:38.771Z"
+    },
+    {
+      "blind_id": "I083",
+      "case_id": "Q28",
+      "variant_index": 3,
+      "prompt_hash": "71616323787d6680755b1d8addbce694bed04691e5351655df4f57b1a8e461c8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 4,
+        "informativeness": 3,
+        "specificity": 5,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "doesn't really explain that you have to know the error beforehand if you want to catch an error and it will throw another error if it's not handled but its fine",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:12:11.237Z"
+    },
+    {
+      "blind_id": "I084",
+      "case_id": "Q28",
+      "variant_index": 4,
+      "prompt_hash": "71616323787d6680755b1d8addbce694bed04691e5351655df4f57b1a8e461c8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 2,
+        "specificity": 4,
+        "level_of_detail": 2,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "need some extra detail on try and catch blocks and what happens if something other than what's handled is spat out",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:52:54.152Z"
+    },
+    {
+      "blind_id": "I085",
+      "case_id": "Q28",
+      "variant_index": 5,
+      "prompt_hash": "71616323787d6680755b1d8addbce694bed04691e5351655df4f57b1a8e461c8",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 4,
+        "clarity": 2,
+        "informativeness": 2,
+        "specificity": 2,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "little information",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:13:42.907Z"
+    },
+    {
+      "blind_id": "I086",
+      "case_id": "Q9",
+      "variant_index": 1,
+      "prompt_hash": "2047b8ea8aab2a67b79235be0965a5e921f7a0a808ce5f7e56479231bc9deaf6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:14:31.175Z"
+    },
+    {
+      "blind_id": "I087",
+      "case_id": "Q9",
+      "variant_index": 2,
+      "prompt_hash": "2047b8ea8aab2a67b79235be0965a5e921f7a0a808ce5f7e56479231bc9deaf6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:14:55.691Z"
+    },
+    {
+      "blind_id": "I088",
+      "case_id": "Q9",
+      "variant_index": 3,
+      "prompt_hash": "2047b8ea8aab2a67b79235be0965a5e921f7a0a808ce5f7e56479231bc9deaf6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:15:13.391Z"
+    },
+    {
+      "blind_id": "I089",
+      "case_id": "Q9",
+      "variant_index": 4,
+      "prompt_hash": "2047b8ea8aab2a67b79235be0965a5e921f7a0a808ce5f7e56479231bc9deaf6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:15:23.974Z"
+    },
+    {
+      "blind_id": "I090",
+      "case_id": "Q9",
+      "variant_index": 5,
+      "prompt_hash": "2047b8ea8aab2a67b79235be0965a5e921f7a0a808ce5f7e56479231bc9deaf6",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:15:38.641Z"
+    },
+    {
+      "blind_id": "I091",
+      "case_id": "Q19",
+      "variant_index": 1,
+      "prompt_hash": "ebfc0086d1af9db51468e0b8de77b3024dde49c1db145317272247d00f62dd1d",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:37:01.339Z"
+    },
+    {
+      "blind_id": "I092",
+      "case_id": "Q19",
+      "variant_index": 2,
+      "prompt_hash": "ebfc0086d1af9db51468e0b8de77b3024dde49c1db145317272247d00f62dd1d",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:39:22.907Z"
+    },
+    {
+      "blind_id": "I093",
+      "case_id": "Q19",
+      "variant_index": 3,
+      "prompt_hash": "ebfc0086d1af9db51468e0b8de77b3024dde49c1db145317272247d00f62dd1d",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:39:41.391Z"
+    },
+    {
+      "blind_id": "I094",
+      "case_id": "Q19",
+      "variant_index": 4,
+      "prompt_hash": "ebfc0086d1af9db51468e0b8de77b3024dde49c1db145317272247d00f62dd1d",
+      "rubric_scores": {
+        "accuracy": 5,
+        "clarity": 5,
+        "selectivity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:40:02.507Z"
+    },
+    {
+      "blind_id": "I095",
+      "case_id": "Q19",
+      "variant_index": 5,
+      "prompt_hash": "ebfc0086d1af9db51468e0b8de77b3024dde49c1db145317272247d00f62dd1d",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:40:18.740Z"
+    },
+    {
+      "blind_id": "I096",
+      "case_id": "Q21",
+      "variant_index": 1,
+      "prompt_hash": "93a5c9adb4ae7fc99f5f01b03e0dc899d6b43062e81fd9e04266ab37b99e9daf",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "lgtm",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:40:53.607Z"
+    },
+    {
+      "blind_id": "I097",
+      "case_id": "Q21",
+      "variant_index": 2,
+      "prompt_hash": "93a5c9adb4ae7fc99f5f01b03e0dc899d6b43062e81fd9e04266ab37b99e9daf",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "doesn't explain what len does",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:41:20.757Z"
+    },
+    {
+      "blind_id": "I098",
+      "case_id": "Q21",
+      "variant_index": 3,
+      "prompt_hash": "93a5c9adb4ae7fc99f5f01b03e0dc899d6b43062e81fd9e04266ab37b99e9daf",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "doesn't explain what len does",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:41:38.757Z"
+    },
+    {
+      "blind_id": "I099",
+      "case_id": "Q21",
+      "variant_index": 4,
+      "prompt_hash": "93a5c9adb4ae7fc99f5f01b03e0dc899d6b43062e81fd9e04266ab37b99e9daf",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 3,
+        "informativeness": 2,
+        "specificity": 5,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "just didn't perform as well as the four others on this simple task",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:42:10.524Z"
+    },
+    {
+      "blind_id": "I100",
+      "case_id": "Q21",
+      "variant_index": 5,
+      "prompt_hash": "93a5c9adb4ae7fc99f5f01b03e0dc899d6b43062e81fd9e04266ab37b99e9daf",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "doesn't explain what len does",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:42:41.756Z"
+    },
+    {
+      "blind_id": "I101",
+      "case_id": "Q15",
+      "variant_index": 1,
+      "prompt_hash": "01732c7ed12184fd63c7146d23ba1ab492b41193fd516b912907c74b825b83a2",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "good response",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:43:33.739Z"
+    },
+    {
+      "blind_id": "I102",
+      "case_id": "Q15",
+      "variant_index": 2,
+      "prompt_hash": "01732c7ed12184fd63c7146d23ba1ab492b41193fd516b912907c74b825b83a2",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 4,
+        "clarity": 5,
+        "informativeness": 4,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "too much detail with trying other lists the student would understand after this explanation",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:44:24.838Z"
+    },
+    {
+      "blind_id": "I103",
+      "case_id": "Q15",
+      "variant_index": 3,
+      "prompt_hash": "01732c7ed12184fd63c7146d23ba1ab492b41193fd516b912907c74b825b83a2",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "doesn't explain mutability",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:53:18.656Z"
+    },
+    {
+      "blind_id": "I104",
+      "case_id": "Q15",
+      "variant_index": 4,
+      "prompt_hash": "01732c7ed12184fd63c7146d23ba1ab492b41193fd516b912907c74b825b83a2",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "while this is a pass on all account via the rubric, it's a refine because it doesn't try to draw any parallels from examples",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:53:17.275Z"
+    },
+    {
+      "blind_id": "I105",
+      "case_id": "Q15",
+      "variant_index": 5,
+      "prompt_hash": "01732c7ed12184fd63c7146d23ba1ab492b41193fd516b912907c74b825b83a2",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 4,
+        "clarity": 3,
+        "informativeness": 5,
+        "specificity": 4,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "doesn't do a good job explaining mutability",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:53:15.501Z"
+    },
+    {
+      "blind_id": "I106",
+      "case_id": "Q7",
+      "variant_index": 1,
+      "prompt_hash": "f07c75a29ec7027321d948416b0f55143707d525a394a2286efbd0fdde879957",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "this looks good to me",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:47:53.855Z"
+    },
+    {
+      "blind_id": "I107",
+      "case_id": "Q7",
+      "variant_index": 2,
+      "prompt_hash": "f07c75a29ec7027321d948416b0f55143707d525a394a2286efbd0fdde879957",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 4,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "it could have just said all the 4 possibilities with two variables instead of saying try it out",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:53:24.168Z"
+    },
+    {
+      "blind_id": "I108",
+      "case_id": "Q7",
+      "variant_index": 3,
+      "prompt_hash": "f07c75a29ec7027321d948416b0f55143707d525a394a2286efbd0fdde879957",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "ethics_safety": 5,
+        "level_of_detail": 5
+      },
+      "judgement": "refine",
+      "reasoning": "should just list out all of the 3 remaining cases",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:53:49.943Z"
+    },
+    {
+      "blind_id": "I109",
+      "case_id": "Q7",
+      "variant_index": 4,
+      "prompt_hash": "f07c75a29ec7027321d948416b0f55143707d525a394a2286efbd0fdde879957",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T00:49:30.305Z"
+    },
+    {
+      "blind_id": "I110",
+      "case_id": "Q7",
+      "variant_index": 5,
+      "prompt_hash": "f07c75a29ec7027321d948416b0f55143707d525a394a2286efbd0fdde879957",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "should just list out all of the 3 remaining cases",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:53:28.328Z"
+    },
+    {
+      "blind_id": "I111",
+      "case_id": "Q29",
+      "variant_index": 1,
+      "prompt_hash": "2a748af8bd4dbd8ca09436b31a458621fed28f4e18c43b3d4a5d9bec5414c5ac",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect response",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T01:47:54.670Z"
+    },
+    {
+      "blind_id": "I112",
+      "case_id": "Q29",
+      "variant_index": 2,
+      "prompt_hash": "2a748af8bd4dbd8ca09436b31a458621fed28f4e18c43b3d4a5d9bec5414c5ac",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 3,
+        "specificity": 5,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "doesn't go into detail what * does in this context",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:53:55.977Z"
+    },
+    {
+      "blind_id": "I113",
+      "case_id": "Q29",
+      "variant_index": 3,
+      "prompt_hash": "2a748af8bd4dbd8ca09436b31a458621fed28f4e18c43b3d4a5d9bec5414c5ac",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 2,
+        "informativeness": 3,
+        "specificity": 3,
+        "level_of_detail": 2,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "doesn't go into detail what * does in this context or give a concrete example of what it does",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T01:49:05.435Z"
+    },
+    {
+      "blind_id": "I114",
+      "case_id": "Q29",
+      "variant_index": 4,
+      "prompt_hash": "2a748af8bd4dbd8ca09436b31a458621fed28f4e18c43b3d4a5d9bec5414c5ac",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect response, however, it should tell the user what * is doing in the backend for deeper understanding",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T01:51:13.982Z"
+    },
+    {
+      "blind_id": "I115",
+      "case_id": "Q29",
+      "variant_index": 5,
+      "prompt_hash": "2a748af8bd4dbd8ca09436b31a458621fed28f4e18c43b3d4a5d9bec5414c5ac",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 3,
+        "specificity": 5,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "doesn't go into detail what * or _ does in this context",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:53:59.387Z"
+    },
+    {
+      "blind_id": "I116",
+      "case_id": "Q12",
+      "variant_index": 1,
+      "prompt_hash": "3649828017b303d8423f130fc15f3f94675d0715e62b27196c39ffdc818572f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 2,
+        "informativeness": 2,
+        "specificity": 2,
+        "level_of_detail": 2,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "they need to specify on how the student can increment the value",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T01:52:43.465Z"
+    },
+    {
+      "blind_id": "I117",
+      "case_id": "Q12",
+      "variant_index": 2,
+      "prompt_hash": "3649828017b303d8423f130fc15f3f94675d0715e62b27196c39ffdc818572f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T01:55:00.412Z"
+    },
+    {
+      "blind_id": "I118",
+      "case_id": "Q12",
+      "variant_index": 3,
+      "prompt_hash": "3649828017b303d8423f130fc15f3f94675d0715e62b27196c39ffdc818572f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T01:55:22.762Z"
+    },
+    {
+      "blind_id": "I119",
+      "case_id": "Q12",
+      "variant_index": 4,
+      "prompt_hash": "3649828017b303d8423f130fc15f3f94675d0715e62b27196c39ffdc818572f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T01:55:42.312Z"
+    },
+    {
+      "blind_id": "I120",
+      "case_id": "Q12",
+      "variant_index": 5,
+      "prompt_hash": "3649828017b303d8423f130fc15f3f94675d0715e62b27196c39ffdc818572f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 1,
+        "informativeness": 1,
+        "specificity": 1,
+        "level_of_detail": 1,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "no beginner will know how to update the value just give the answer here and explain what it does",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T01:56:20.111Z"
+    },
+    {
+      "blind_id": "I121",
+      "case_id": "Q3",
+      "variant_index": 1,
+      "prompt_hash": "048b92a1bb7e4a8fe55533ed1afc59ae16e9fdec63c92a6937ca75ce81ed6f96",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "short and sweet",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T01:58:31.876Z"
+    },
+    {
+      "blind_id": "I122",
+      "case_id": "Q3",
+      "variant_index": 2,
+      "prompt_hash": "048b92a1bb7e4a8fe55533ed1afc59ae16e9fdec63c92a6937ca75ce81ed6f96",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "short and sweet",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T01:58:43.859Z"
+    },
+    {
+      "blind_id": "I123",
+      "case_id": "Q3",
+      "variant_index": 3,
+      "prompt_hash": "048b92a1bb7e4a8fe55533ed1afc59ae16e9fdec63c92a6937ca75ce81ed6f96",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "short and sweet",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T01:58:59.142Z"
+    },
+    {
+      "blind_id": "I124",
+      "case_id": "Q3",
+      "variant_index": 4,
+      "prompt_hash": "048b92a1bb7e4a8fe55533ed1afc59ae16e9fdec63c92a6937ca75ce81ed6f96",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "short and sweet",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T01:59:10.992Z"
+    },
+    {
+      "blind_id": "I125",
+      "case_id": "Q3",
+      "variant_index": 5,
+      "prompt_hash": "048b92a1bb7e4a8fe55533ed1afc59ae16e9fdec63c92a6937ca75ce81ed6f96",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T01:59:27.526Z"
+    },
+    {
+      "blind_id": "I126",
+      "case_id": "Q10",
+      "variant_index": 1,
+      "prompt_hash": "9ab75a7e568c25cf7c231680029944c8f5a3cf06e204d4d8084cb1649a8b14be",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T01:59:47.058Z"
+    },
+    {
+      "blind_id": "I127",
+      "case_id": "Q10",
+      "variant_index": 2,
+      "prompt_hash": "9ab75a7e568c25cf7c231680029944c8f5a3cf06e204d4d8084cb1649a8b14be",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:00:04.158Z"
+    },
+    {
+      "blind_id": "I128",
+      "case_id": "Q10",
+      "variant_index": 3,
+      "prompt_hash": "9ab75a7e568c25cf7c231680029944c8f5a3cf06e204d4d8084cb1649a8b14be",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:00:20.007Z"
+    },
+    {
+      "blind_id": "I129",
+      "case_id": "Q10",
+      "variant_index": 4,
+      "prompt_hash": "9ab75a7e568c25cf7c231680029944c8f5a3cf06e204d4d8084cb1649a8b14be",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:00:40.124Z"
+    },
+    {
+      "blind_id": "I130",
+      "case_id": "Q10",
+      "variant_index": 5,
+      "prompt_hash": "9ab75a7e568c25cf7c231680029944c8f5a3cf06e204d4d8084cb1649a8b14be",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "short and sweet",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:01:14.424Z"
+    },
+    {
+      "blind_id": "I131",
+      "case_id": "Q4",
+      "variant_index": 1,
+      "prompt_hash": "37ba07f9cc3e9919fac43bbf6b1d828ff17a9e10b8c0d06410e546e904ea8187",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:02:20.089Z"
+    },
+    {
+      "blind_id": "I132",
+      "case_id": "Q4",
+      "variant_index": 2,
+      "prompt_hash": "37ba07f9cc3e9919fac43bbf6b1d828ff17a9e10b8c0d06410e546e904ea8187",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:02:30.173Z"
+    },
+    {
+      "blind_id": "I133",
+      "case_id": "Q4",
+      "variant_index": 3,
+      "prompt_hash": "37ba07f9cc3e9919fac43bbf6b1d828ff17a9e10b8c0d06410e546e904ea8187",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:02:42.805Z"
+    },
+    {
+      "blind_id": "I134",
+      "case_id": "Q4",
+      "variant_index": 4,
+      "prompt_hash": "37ba07f9cc3e9919fac43bbf6b1d828ff17a9e10b8c0d06410e546e904ea8187",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:02:52.855Z"
+    },
+    {
+      "blind_id": "I135",
+      "case_id": "Q4",
+      "variant_index": 5,
+      "prompt_hash": "37ba07f9cc3e9919fac43bbf6b1d828ff17a9e10b8c0d06410e546e904ea8187",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:03:03.939Z"
+    },
+    {
+      "blind_id": "I136",
+      "case_id": "Q18",
+      "variant_index": 1,
+      "prompt_hash": "a4a565f945bcc64b2764bcda20a8424ba781a37c34a2f1cb05e619901c50803a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 1,
+        "informativeness": 2,
+        "specificity": 5,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "refine",
+      "reasoning": "acceptable but I have no idea what the term \"arbitrary precision\" would mean and I would kind of like to know how it would work behind the scenes",
+      "refine_detail": "nothing",
+      "timestamp": "2026-09-08T11:54:18.760Z"
+    },
+    {
+      "blind_id": "I137",
+      "case_id": "Q18",
+      "variant_index": 2,
+      "prompt_hash": "a4a565f945bcc64b2764bcda20a8424ba781a37c34a2f1cb05e619901c50803a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 1,
+        "informativeness": 3,
+        "specificity": 5,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "acceptable but I have no idea what the term \"arbitrary precision\" would mean and I would kind of like to know how it would work behind the scenes",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:06:18.502Z"
+    },
+    {
+      "blind_id": "I138",
+      "case_id": "Q18",
+      "variant_index": 3,
+      "prompt_hash": "a4a565f945bcc64b2764bcda20a8424ba781a37c34a2f1cb05e619901c50803a",
+      "rubric_scores": {
+        "selectivity": 5,
+        "clarity": 2,
+        "informativeness": 3,
+        "specificity": 5,
+        "level_of_detail": 3,
+        "ethics_safety": 5,
+        "accuracy": 5
+      },
+      "judgement": "accept",
+      "reasoning": "acceptable but I have no idea what the term \"arbitrary precision\" would mean and I would kind of like to know how it would work behind the scenes",
+      "refine_detail": "",
+      "timestamp": "2026-09-08T11:54:10.859Z"
+    },
+    {
+      "blind_id": "I139",
+      "case_id": "Q18",
+      "variant_index": 4,
+      "prompt_hash": "a4a565f945bcc64b2764bcda20a8424ba781a37c34a2f1cb05e619901c50803a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 2,
+        "informativeness": 2,
+        "specificity": 1,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "reject",
+      "reasoning": "didn't specify my code",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:07:51.334Z"
+    },
+    {
+      "blind_id": "I140",
+      "case_id": "Q18",
+      "variant_index": 5,
+      "prompt_hash": "a4a565f945bcc64b2764bcda20a8424ba781a37c34a2f1cb05e619901c50803a",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 2,
+        "informativeness": 3,
+        "specificity": 5,
+        "level_of_detail": 3,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "acceptable but I have no idea what the term \"arbitrary precision\" would mean and I would kind of like to know how it would work behind the scenes",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:08:24.800Z"
+    },
+    {
+      "blind_id": "I141",
+      "case_id": "Q30",
+      "variant_index": 1,
+      "prompt_hash": "e517bed337b1f683e724c564028b517609c6959dfc4113074ce32eb0ebe7dbe9",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:14:45.293Z"
+    },
+    {
+      "blind_id": "I142",
+      "case_id": "Q30",
+      "variant_index": 2,
+      "prompt_hash": "e517bed337b1f683e724c564028b517609c6959dfc4113074ce32eb0ebe7dbe9",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:15:03.358Z"
+    },
+    {
+      "blind_id": "I143",
+      "case_id": "Q30",
+      "variant_index": 3,
+      "prompt_hash": "e517bed337b1f683e724c564028b517609c6959dfc4113074ce32eb0ebe7dbe9",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:15:14.643Z"
+    },
+    {
+      "blind_id": "I144",
+      "case_id": "Q30",
+      "variant_index": 4,
+      "prompt_hash": "e517bed337b1f683e724c564028b517609c6959dfc4113074ce32eb0ebe7dbe9",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:15:27.842Z"
+    },
+    {
+      "blind_id": "I145",
+      "case_id": "Q30",
+      "variant_index": 5,
+      "prompt_hash": "e517bed337b1f683e724c564028b517609c6959dfc4113074ce32eb0ebe7dbe9",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:15:40.275Z"
+    },
+    {
+      "blind_id": "I146",
+      "case_id": "Q8",
+      "variant_index": 1,
+      "prompt_hash": "05fcdde08a457b3756cf6a0751bcd610b04d3787a1360f2c2f50a87c1b43d4f5",
+      "rubric_scores": {
+        "accuracy": 1,
+        "selectivity": 1,
+        "clarity": 1,
+        "informativeness": 1,
+        "specificity": 1,
+        "level_of_detail": 1,
+        "ethics_safety": 1
+      },
+      "judgement": "reject",
+      "reasoning": "The AI failed to realise there is no print, therefore, there will be no output on this code and that the student is infact correct",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:19:53.192Z"
+    },
+    {
+      "blind_id": "I147",
+      "case_id": "Q8",
+      "variant_index": 2,
+      "prompt_hash": "05fcdde08a457b3756cf6a0751bcd610b04d3787a1360f2c2f50a87c1b43d4f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "perfect",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:20:15.942Z"
+    },
+    {
+      "blind_id": "I148",
+      "case_id": "Q8",
+      "variant_index": 3,
+      "prompt_hash": "05fcdde08a457b3756cf6a0751bcd610b04d3787a1360f2c2f50a87c1b43d4f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "good",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:20:36.025Z"
+    },
+    {
+      "blind_id": "I149",
+      "case_id": "Q8",
+      "variant_index": 4,
+      "prompt_hash": "05fcdde08a457b3756cf6a0751bcd610b04d3787a1360f2c2f50a87c1b43d4f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "fine",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:21:35.775Z"
+    },
+    {
+      "blind_id": "I150",
+      "case_id": "Q8",
+      "variant_index": 5,
+      "prompt_hash": "05fcdde08a457b3756cf6a0751bcd610b04d3787a1360f2c2f50a87c1b43d4f5",
+      "rubric_scores": {
+        "accuracy": 5,
+        "selectivity": 5,
+        "clarity": 5,
+        "informativeness": 5,
+        "specificity": 5,
+        "level_of_detail": 5,
+        "ethics_safety": 5
+      },
+      "judgement": "accept",
+      "reasoning": "fine response",
+      "refine_detail": "",
+      "timestamp": "2026-08-26T02:22:10.058Z"
+    }
+  ]
+}

@@ -231,7 +231,7 @@
       "correct_answer": "[1]",
       "wrong_answer": "[]",
       "misconception": "Doesn't realise 'a = b = []' makes both a and b point to the SAME list object (one list, two names), not two separate empty lists. Mutating through one name is visible through the other.",
-      "notes": "A less obvious variant of the aliasing misconception (Q13/Q18) via chained assignment syntax specifically \u2014 worth keeping if the benchmark wants to test whether feedback generalises the concept or just pattern-matches on 'copy ='."
+      "notes": "A less obvious variant of the aliasing misconception (Q13) via chained assignment syntax specifically \u2014 worth keeping if the benchmark wants to test whether feedback generalises the concept or just pattern-matches on 'copy ='."
     },
     {
       "id": "Q23",

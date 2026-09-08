@@ -1,16 +1,77 @@
 {
-  "_status": "PLACEHOLDER — not yet the verbatim SIT723 baseline text. Open TODO from the Weekly Plan: re-import the exact baseline responses used for Q1-Q10 scoring in the SIT723 thesis before this file is used in a real evaluation run. The text below is a reconstruction in the same short, textbook style described in the thesis (Appendix B: 'fixed textbook style feedback... accurate and focused on the misconception... not highly personalised') and must be checked against the original before Sprint 1 scoring.",
-  "baseline_version": "0.1.0-placeholder",
+  "_status": "Documented from the submitted SIT723 thesis only. Appendix B describes the baseline approach; Table 4 gives per-case scores out of 35. Verbatim baseline response text was not preserved (Appendix E logged the six AI models only). Do not treat baseline_text as recoverable from this repo.",
+  "baseline_version": "1.0.0-sit723-documented",
+  "source": "SIT723 submitted thesis — Appendix B (approach), Table 4 (per-case scores /35)",
   "responses": [
-    { "case_id": "Q1", "baseline_text": "Incorrect. x = x + 2 reassigns x: Python evaluates the right-hand side first (5 + 2 = 7), then stores 7 back into x. The value of x is 7." },
-    { "case_id": "Q2", "baseline_text": "Incorrect. A single '=' is the assignment operator; it stores a value in a variable. x = 10 assigns 10 to x. Equality comparison uses '==', not '='." },
-    { "case_id": "Q3", "baseline_text": "Incorrect. The condition 'age >= 18' is False when age is 17, so the else branch runs. The output is 'Minor'." },
-    { "case_id": "Q4", "baseline_text": "Incorrect. range(3) generates 0, 1, 2 — three values — so the loop body runs 3 times, not 4." },
-    { "case_id": "Q5", "baseline_text": "Incorrect. Python lists are zero-indexed. nums[0] is 10 and nums[1] is 20. The output is 20." },
-    { "case_id": "Q6", "baseline_text": "Incorrect. The '+' operator concatenates strings. word + 's' produces 'cats'; no error occurs." },
-    { "case_id": "Q7", "baseline_text": "Incorrect. 'and' returns True only if both operands are True. Since one operand is False, the result is False." },
-    { "case_id": "Q8", "baseline_text": "Incorrect. The function returns a + b via the return statement. add(2, 3) evaluates to 5, whether or not the result is printed." },
-    { "case_id": "Q9", "baseline_text": "Incorrect. '//' is floor division, which discards the remainder. 7 // 2 evaluates to 3. Use '/' for 3.5." },
-    { "case_id": "Q10", "baseline_text": "Partially correct. The code is missing a closing parenthesis for print(). The quotation marks are correctly matched." }
+    {
+      "case_id": "Q1",
+      "baseline_approach": "Fixed, textbook-style feedback written by hand. Aimed to be accurate and focused on the misconception; not designed to be highly personalised.",
+      "baseline_score": 31,
+      "baseline_text": null,
+      "note": "Verbatim baseline response text was not preserved in the submitted SIT723 thesis (Appendix E only logged the six AI models' outputs) — only the approach description and final score survive."
+    },
+    {
+      "case_id": "Q2",
+      "baseline_approach": "Fixed, textbook-style feedback written by hand. Aimed to be accurate and focused on the misconception; not designed to be highly personalised.",
+      "baseline_score": 30,
+      "baseline_text": null,
+      "note": "Verbatim baseline response text was not preserved in the submitted SIT723 thesis (Appendix E only logged the six AI models' outputs) — only the approach description and final score survive."
+    },
+    {
+      "case_id": "Q3",
+      "baseline_approach": "Fixed, textbook-style feedback written by hand. Aimed to be accurate and focused on the misconception; not designed to be highly personalised.",
+      "baseline_score": 31,
+      "baseline_text": null,
+      "note": "Verbatim baseline response text was not preserved in the submitted SIT723 thesis (Appendix E only logged the six AI models' outputs) — only the approach description and final score survive."
+    },
+    {
+      "case_id": "Q4",
+      "baseline_approach": "Fixed, textbook-style feedback written by hand. Aimed to be accurate and focused on the misconception; not designed to be highly personalised.",
+      "baseline_score": 32,
+      "baseline_text": null,
+      "note": "Verbatim baseline response text was not preserved in the submitted SIT723 thesis (Appendix E only logged the six AI models' outputs) — only the approach description and final score survive."
+    },
+    {
+      "case_id": "Q5",
+      "baseline_approach": "Fixed, textbook-style feedback written by hand. Aimed to be accurate and focused on the misconception; not designed to be highly personalised.",
+      "baseline_score": 32,
+      "baseline_text": null,
+      "note": "Verbatim baseline response text was not preserved in the submitted SIT723 thesis (Appendix E only logged the six AI models' outputs) — only the approach description and final score survive."
+    },
+    {
+      "case_id": "Q6",
+      "baseline_approach": "Fixed, textbook-style feedback written by hand. Aimed to be accurate and focused on the misconception; not designed to be highly personalised.",
+      "baseline_score": 31,
+      "baseline_text": null,
+      "note": "Verbatim baseline response text was not preserved in the submitted SIT723 thesis (Appendix E only logged the six AI models' outputs) — only the approach description and final score survive."
+    },
+    {
+      "case_id": "Q7",
+      "baseline_approach": "Fixed, textbook-style feedback written by hand. Aimed to be accurate and focused on the misconception; not designed to be highly personalised.",
+      "baseline_score": 32,
+      "baseline_text": null,
+      "note": "Verbatim baseline response text was not preserved in the submitted SIT723 thesis (Appendix E only logged the six AI models' outputs) — only the approach description and final score survive."
+    },
+    {
+      "case_id": "Q8",
+      "baseline_approach": "Fixed, textbook-style feedback written by hand. Aimed to be accurate and focused on the misconception; not designed to be highly personalised.",
+      "baseline_score": 30,
+      "baseline_text": null,
+      "note": "Verbatim baseline response text was not preserved in the submitted SIT723 thesis (Appendix E only logged the six AI models' outputs) — only the approach description and final score survive."
+    },
+    {
+      "case_id": "Q9",
+      "baseline_approach": "Fixed, textbook-style feedback written by hand. Aimed to be accurate and focused on the misconception; not designed to be highly personalised.",
+      "baseline_score": 33,
+      "baseline_text": null,
+      "note": "Verbatim baseline response text was not preserved in the submitted SIT723 thesis (Appendix E only logged the six AI models' outputs) — only the approach description and final score survive."
+    },
+    {
+      "case_id": "Q10",
+      "baseline_approach": "Fixed, textbook-style feedback written by hand. Aimed to be accurate and focused on the misconception; not designed to be highly personalised.",
+      "baseline_score": 33,
+      "baseline_text": null,
+      "note": "Verbatim baseline response text was not preserved in the submitted SIT723 thesis (Appendix E only logged the six AI models' outputs) — only the approach description and final score survive."
+    }
   ]
 }
