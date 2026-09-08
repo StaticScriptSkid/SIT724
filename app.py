@@ -31,6 +31,14 @@ from pipeline.generate import (
     missing_api_key_envs,
     run_pipeline,
 )
+from pipeline.peer_review import (
+    DEFAULT_RUN_ID as PEER_RUN_ID,
+    build_pack,
+    import_peer_file,
+    next_entry_id,
+    pack_leak_warnings,
+    write_generated_pack,
+)
 from pipeline.validate_cases import load_json, validate_benchmark
 
 ROOT = Path(__file__).resolve().parent
@@ -218,7 +226,7 @@ def view_benchmark() -> None:
         if c.get("status") in status_filter and c.get("topic") in topic_filter
     ]
 
-    columns = ["id", "topic", "status", "question", "correct_answer", "wrong_answer", "misconception"]
+    columns = ["id", "topic", "status", "difficulty", "question", "correct_answer", "wrong_answer", "misconception"]
     table = [{k: c.get(k, "") for k in columns} for c in filtered]
     st.dataframe(table, width=DF_WIDTH, hide_index=True)
     st.caption(f"Showing {len(filtered)} of {len(cases)} cases")
@@ -243,6 +251,10 @@ def view_benchmark() -> None:
             for topic, count in result["topic_counts"].items()
         ]
         st.dataframe(coverage_rows, width=DF_WIDTH, hide_index=True)
+        st.write(
+            "**Difficulty tiers (final+draft):** "
+            + " · ".join(f"{t} {n}" for t, n in result.get("difficulty_counts", {}).items())
+        )
 
 
 def view_rubric() -> None:
@@ -489,16 +501,7 @@ def _load_judgement_entries() -> list[dict]:
 
 
 def _next_entry_id(entries: list[dict]) -> str:
-    nums = []
-    for e in entries:
-        eid = e.get("entry_id") or ""
-        if eid.startswith("JL-"):
-            try:
-                nums.append(int(eid.split("-", 1)[1]))
-            except ValueError:
-                continue
-    n = (max(nums) + 1) if nums else 1
-    return f"JL-{n:04d}"
+    return next_entry_id(entries)
 
 
 def _scored_triples(entries: list[dict], rater_id: str) -> set[tuple[str, str, str]]:
@@ -722,6 +725,287 @@ def view_score() -> None:
                 st.write(f"- {err}")
 
 
+def _peer_payload_from_session(pack: dict, rater_id: str, rater_name: str) -> dict:
+    answers = st.session_state.get("peer_answers") or {}
+    responses = []
+    for item in pack["items"]:
+        bid = item["blind_id"]
+        saved = answers.get(bid) or {}
+        responses.append(
+            {
+                "blind_id": bid,
+                "case_id": item["case_id"],
+                "prompt_hash": item.get("prompt_hash") or "",
+                "rubric_scores": saved.get("rubric_scores") or {},
+                "judgement": saved.get("judgement") or "",
+                "reasoning": (saved.get("reasoning") or "").strip(),
+                "refine_detail": (saved.get("refine_detail") or "").strip(),
+                "timestamp": saved.get("timestamp") or datetime.now(timezone.utc).isoformat(),
+            }
+        )
+    return {
+        "pack_id": pack["pack_id"],
+        "run_id": pack["run_id"],
+        "rater_id": rater_id.strip(),
+        "rater_name": rater_name.strip(),
+        "completed_at": datetime.now(timezone.utc).isoformat(),
+        "n_items": pack["n_items"],
+        "responses": responses,
+    }
+
+
+def _capture_peer_item(item: dict, dims: list[dict]) -> dict:
+    bid = item["blind_id"]
+    scores = {}
+    for d in dims:
+        val = st.session_state.get(f"peer_dim_{bid}_{d['key']}")
+        if val is not None:
+            scores[d["key"]] = int(val)
+    return {
+        "blind_id": bid,
+        "rubric_scores": scores,
+        "judgement": st.session_state.get(f"peer_j_{bid}") or "",
+        "reasoning": st.session_state.get(f"peer_r_{bid}") or "",
+        "refine_detail": st.session_state.get(f"peer_rd_{bid}") or "",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
+
+
+def _peer_item_ready(ans: dict, dims: list[dict]) -> str | None:
+    if len(ans.get("rubric_scores") or {}) < len(dims):
+        return "Score all 7 dimensions."
+    if not ans.get("judgement"):
+        return "Pick accept, reject, or refine."
+    if not (ans.get("reasoning") or "").strip():
+        return "Reasoning is required."
+    if ans.get("judgement") == "refine" and not (ans.get("refine_detail") or "").strip():
+        return "refine_detail is required when judgement is refine."
+    return None
+
+
+def view_peer_review() -> None:
+    st.subheader("Peer review")
+    st.caption(
+        "Blinded Google-Forms-style scoring of the 150-item run "
+        f"(`{PEER_RUN_ID}`, Q1–Q30 × 5 models). Model names are hidden. "
+        "Email the HTML to a friend, or fill it here."
+    )
+
+    try:
+        if "peer_pack" not in st.session_state:
+            pack, _mmap = build_pack(run_id=PEER_RUN_ID)
+            st.session_state.peer_pack = pack
+        pack = st.session_state.peer_pack
+    except (FileNotFoundError, ValueError) as e:
+        st.error(str(e))
+        return
+
+    dims = pack.get("dimensions") or []
+    st.write(
+        f"**{pack['n_items']} items** · run `{pack['run_id']}` · "
+        "shuffled, model names stripped"
+    )
+
+    mode = st.radio(
+        "Mode",
+        options=["Download HTML for a friend", "Fill here", "Import returned JSON"],
+        horizontal=True,
+    )
+
+    if mode == "Download HTML for a friend":
+        st.markdown(
+            "Send **only** the HTML file. Do not send this repo, `outputs/`, "
+            "or `blind_map.json` — those would unblind the models."
+        )
+        if st.button("Prepare HTML form"):
+            built, mmap = build_pack(run_id=PEER_RUN_ID)
+            leaks = pack_leak_warnings(built)
+            paths = write_generated_pack(built, mmap)
+            st.session_state.peer_html = paths["html"].read_text(encoding="utf-8")
+            if leaks:
+                st.warning("Possible model-name leak in the pack: " + ", ".join(leaks))
+            else:
+                st.success(f"Wrote `{paths['html']}`")
+        if st.session_state.get("peer_html"):
+            st.download_button(
+                "Download SIT724_peer_review.html",
+                data=st.session_state.peer_html,
+                file_name="SIT724_peer_review.html",
+                mime="text/html",
+                type="primary",
+            )
+        return
+
+    if mode == "Import returned JSON":
+        uploaded = st.file_uploader("JSON your friend downloaded", type=["json"])
+        if uploaded is None:
+            return
+        try:
+            payload = json.loads(uploaded.getvalue().decode("utf-8"))
+        except json.JSONDecodeError as e:
+            st.error(f"Not valid JSON: {e}")
+            return
+        if not isinstance(payload, dict):
+            st.error("File must be a JSON object.")
+            return
+        st.write(
+            f"Rater `{payload.get('rater_id') or '?'}` · "
+            f"{len(payload.get('responses') or payload.get('answers') or [])} rows · "
+            f"pack `{payload.get('pack_id') or '?'}`"
+        )
+        if st.button("Import into judgement log", type="primary"):
+            from tempfile import NamedTemporaryFile
+
+            with NamedTemporaryFile(mode="w", suffix=".json", delete=False, encoding="utf-8") as tmp:
+                json.dump(payload, tmp)
+                tmp_path = Path(tmp.name)
+            result = import_peer_file(tmp_path, run_id=payload.get("run_id") or PEER_RUN_ID)
+            tmp_path.unlink(missing_ok=True)
+            for w in result["warnings"]:
+                st.warning(w)
+            if result["ok"]:
+                st.success(
+                    f"Imported {result['n_imported']} entries "
+                    f"(log now has {result['n_total']})."
+                )
+            else:
+                st.error("Import failed.")
+                for err in result["errors"]:
+                    st.write(f"- {err}")
+        return
+
+    # Fill here (blinded, one item at a time).
+    if "peer_idx" not in st.session_state:
+        st.session_state.peer_idx = 0
+    if "peer_answers" not in st.session_state:
+        st.session_state.peer_answers = {}
+
+    rater_cols = st.columns(2)
+    with rater_cols[0]:
+        rater_id = st.text_input("Rater ID", value="", placeholder="e.g. peer-alex")
+    with rater_cols[1]:
+        rater_name = st.text_input("Name (optional)", value="")
+    if not rater_id.strip():
+        st.info("Enter a rater ID to start. Use the same ID if you pause and come back.")
+        return
+
+    items = pack["items"]
+    idx = max(0, min(st.session_state.peer_idx, len(items) - 1))
+    st.session_state.peer_idx = idx
+    item = items[idx]
+    bid = item["blind_id"]
+    n_done = sum(
+        1
+        for it in items
+        if _peer_item_ready(st.session_state.peer_answers.get(it["blind_id"]) or {}, dims) is None
+    )
+    st.progress((idx + 1) / len(items), text=f"{idx + 1} of {len(items)} · {n_done} complete")
+
+    left, right = st.columns(2)
+    with left:
+        st.write(f"**{item['case_id']}** · {item.get('topic', '')} · `{bid}`")
+        st.write("Question")
+        st.code(item.get("question") or "", language=None)
+        st.write(f"Correct: `{item.get('correct_answer', '')}`")
+        st.write(f"Wrong: `{item.get('wrong_answer', '')}`")
+        st.write(f"Misconception: {item.get('misconception', '')}")
+    with right:
+        st.write("**AI feedback** (model hidden)")
+        st.text_area(
+            "ai_feedback",
+            value=item.get("response_text") or "",
+            height=280,
+            disabled=True,
+            label_visibility="collapsed",
+        )
+
+    st.write("**Rubric scores (1–5)**")
+    score_cols = st.columns(4)
+    for i, d in enumerate(dims):
+        with score_cols[i % 4]:
+            st.radio(
+                d.get("name") or d["key"],
+                options=[1, 2, 3, 4, 5],
+                index=None,
+                key=f"peer_dim_{bid}_{d['key']}",
+                help=d.get("definition") or "",
+            )
+
+    with st.expander("Rubric anchors", expanded=False):
+        for d in dims:
+            anchors = d.get("anchors") or {}
+            st.markdown(
+                f"**{d.get('name', d['key'])}** — {d.get('definition', '')}\n\n"
+                + " · ".join(f"{n}: {anchors.get(str(n), '')}" for n in range(1, 6))
+            )
+
+    st.radio(
+        "Judgement",
+        options=["accept", "reject", "refine"],
+        index=None,
+        horizontal=True,
+        key=f"peer_j_{bid}",
+    )
+    st.text_area("Reasoning (required)", key=f"peer_r_{bid}", height=120)
+    if st.session_state.get(f"peer_j_{bid}") == "refine":
+        st.text_area("What changed on the second look", key=f"peer_rd_{bid}", height=80)
+
+    nav1, nav2, nav3 = st.columns([1, 1, 2])
+    with nav1:
+        if st.button("Back", disabled=idx == 0):
+            st.session_state.peer_answers[bid] = _capture_peer_item(item, dims)
+            st.session_state.peer_idx = idx - 1
+            st.rerun()
+    with nav2:
+        next_label = "Finish" if idx == len(items) - 1 else "Next"
+        if st.button(next_label, type="primary"):
+            ans = _capture_peer_item(item, dims)
+            st.session_state.peer_answers[bid] = ans
+            if idx == len(items) - 1:
+                st.session_state.peer_finished = True
+            else:
+                st.session_state.peer_idx = idx + 1
+            st.rerun()
+
+    st.session_state.peer_answers[bid] = _capture_peer_item(item, dims)
+    payload = _peer_payload_from_session(pack, rater_id, rater_name)
+    st.download_button(
+        "Download answers JSON (backup / send this if you used Fill here)",
+        data=json.dumps(payload, indent=2),
+        file_name=f"sit724-peer-{rater_id.strip()}.json",
+        mime="application/json",
+    )
+
+    if st.session_state.get("peer_finished"):
+        ready_n = sum(
+            1 for it in items
+            if _peer_item_ready(st.session_state.peer_answers.get(it["blind_id"]) or {}, dims) is None
+        )
+        if ready_n == len(items):
+            st.success(
+                f"All {len(items)} items have scores. Download the JSON and/or write it to the log."
+            )
+            if st.button("Write this session into the judgement log"):
+                from tempfile import NamedTemporaryFile
+
+                with NamedTemporaryFile(mode="w", suffix=".json", delete=False, encoding="utf-8") as tmp:
+                    json.dump(payload, tmp)
+                    tmp_path = Path(tmp.name)
+                result = import_peer_file(tmp_path, run_id=PEER_RUN_ID)
+                tmp_path.unlink(missing_ok=True)
+                for w in result["warnings"]:
+                    st.warning(w)
+                if result["ok"]:
+                    st.success(f"Imported {result['n_imported']} entries.")
+                    st.session_state.peer_finished = False
+                else:
+                    st.error("Write failed.")
+                    for e in result["errors"]:
+                        st.write(f"- {e}")
+        else:
+            st.warning(f"{ready_n}/{len(items)} complete — go back and finish the rest before importing.")
+
+
 # ---------------------------------------------------------------------------
 # App shell
 # ---------------------------------------------------------------------------
@@ -735,7 +1019,7 @@ def main() -> None:
     st.caption("Local GUI · same validation & generation logic as the CLI scripts")
 
     tabs = st.tabs(
-        ["Benchmark", "Rubric", "Run Pipeline", "Past Runs", "Score", "Config"]
+        ["Benchmark", "Rubric", "Run Pipeline", "Past Runs", "Score", "Peer review", "Config"]
     )
     with tabs[0]:
         view_benchmark()
@@ -748,6 +1032,8 @@ def main() -> None:
     with tabs[4]:
         view_score()
     with tabs[5]:
+        view_peer_review()
+    with tabs[6]:
         view_config()
 
 

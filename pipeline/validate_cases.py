@@ -23,6 +23,10 @@ except ImportError:  # pragma: no cover
     jsonschema = None
 
 
+# Order matters for the coverage report (easy -> hard). Must match the enum in cases/schema.json.
+DIFFICULTY_TIERS = ("easy", "medium", "hard")
+
+
 def load_json(path: Path):
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
@@ -36,6 +40,10 @@ def validate_case_manually(case: dict, required_fields: list) -> list:
             errors.append(f"{case.get('id', '<no id>')}: missing required field '{field}'")
     if "status" in case and case["status"] not in ("final", "draft"):
         errors.append(f"{case.get('id')}: status must be 'final' or 'draft', got {case['status']!r}")
+    if "difficulty" in case and case["difficulty"] not in DIFFICULTY_TIERS:
+        errors.append(
+            f"{case.get('id')}: difficulty must be one of {DIFFICULTY_TIERS}, got {case['difficulty']!r}"
+        )
     return errors
 
 
@@ -45,7 +53,7 @@ def validate_benchmark(cases_path: str | Path, schema_path: str | Path) -> dict:
 
     Returns a dict with keys:
         ok, errors, benchmark_version, n_cases, final_count, draft_count,
-        topic_counts, cases_path
+        topic_counts, difficulty_counts, cases_path
     Does not print or exit — callers (CLI or GUI) decide how to present results.
     """
     cases_path = Path(cases_path)
@@ -60,6 +68,7 @@ def validate_benchmark(cases_path: str | Path, schema_path: str | Path) -> dict:
             "final_count": 0,
             "draft_count": 0,
             "topic_counts": {},
+            "difficulty_counts": {},
             "cases_path": str(cases_path),
         }
     if not schema_path.exists():
@@ -71,6 +80,7 @@ def validate_benchmark(cases_path: str | Path, schema_path: str | Path) -> dict:
             "final_count": 0,
             "draft_count": 0,
             "topic_counts": {},
+            "difficulty_counts": {},
             "cases_path": str(cases_path),
         }
 
@@ -98,6 +108,12 @@ def validate_benchmark(cases_path: str | Path, schema_path: str | Path) -> dict:
     topic_counts = Counter(c.get("topic", "untagged") for c in cases)
     final_count = sum(1 for c in cases if c.get("status") == "final")
     draft_count = sum(1 for c in cases if c.get("status") == "draft")
+    # Fixed easy->hard order so the report reads as a tier ladder, not alphabetically.
+    raw_difficulty = Counter(c.get("difficulty", "untagged") for c in cases)
+    difficulty_counts = {t: raw_difficulty.get(t, 0) for t in DIFFICULTY_TIERS}
+    for other, n in raw_difficulty.items():
+        if other not in DIFFICULTY_TIERS:
+            difficulty_counts[other] = n
 
     return {
         "ok": len(all_errors) == 0,
@@ -107,6 +123,7 @@ def validate_benchmark(cases_path: str | Path, schema_path: str | Path) -> dict:
         "final_count": final_count,
         "draft_count": draft_count,
         "topic_counts": dict(sorted(topic_counts.items())),
+        "difficulty_counts": difficulty_counts,
         "cases_path": str(cases_path),
     }
 
@@ -141,6 +158,9 @@ def main():
     print("Topic coverage (final+draft):")
     for topic, count in result["topic_counts"].items():
         print(f"  {topic:<28}{count}")
+    print("Difficulty tiers (final+draft):")
+    for tier, count in result["difficulty_counts"].items():
+        print(f"  {tier:<28}{count}")
 
     print(f"OK: benchmark v{result['benchmark_version']} is valid")
 

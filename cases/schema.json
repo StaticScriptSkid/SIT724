@@ -7,6 +7,7 @@
     "id",
     "topic",
     "status",
+    "difficulty",
     "question",
     "correct_answer",
     "wrong_answer",
@@ -26,6 +27,11 @@
       "type": "string",
       "enum": ["final", "draft"],
       "description": "'final' cases are locked and enter evaluation runs. 'draft' cases are excluded from runs until promoted to 'final' by the validator config or a supervisor sign-off note in decision_log.md."
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["easy", "medium", "hard"],
+      "description": "Difficulty tier from the SIT724 Benchmark Difficulty Tiers doc (v1.0, 8 Sep 2026), classified case-by-case on two dimensions from novice-programmer research (Qian & Lehman 2017; du Boulay's notional machine): error visibility (SyntaxError / runtime exception / silent wrong output) and depth of misconception (single surface fact vs notional-machine model of execution). easy = visible failure or single fact, one-step reasoning. medium = runtime exception, or silent but a single well-known rule. hard = silent failure and/or multi-step state tracing and/or notional-machine misconception. Tier sizes fall out of the classification (10/12/8), not a forced even split. Added per supervisor feedback (19 Aug 2026)."
     },
     "question": {
       "type": "string",
