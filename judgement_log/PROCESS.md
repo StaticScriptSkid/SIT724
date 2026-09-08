@@ -73,11 +73,23 @@ survey responses map onto `rubric_scores` + `reasoning`, so their input
 joins the same kappa calculation as a third-plus rater rather than being a
 separate, disconnected analysis.
 
+The form they fill is the blinded HTML pack in `peer_review/` (built from
+the 150/150 live run, Q1–Q30 × 5 models). It is Google-Forms-like (one item at a time) but
+stays local: model names are stripped, item order is shuffled, and the
+returned JSON is imported with `python pipeline/peer_review.py --import`.
+Do not send the rater `outputs/` or `peer_review/generated/blind_map.json`.
+
 ## Status
 
-Schema + process designed 12 Aug 2026 (break week). **No entries exist
-yet** — this is infrastructure, not data. Entries can only be created
-honestly once (a) the live pipeline run has produced real AI responses to
-score (blocked on API keys) and (b) at least one rater does a real scoring
-pass. Do not pre-fill `entries.json` with invented judgements — leave it
-as `[]` until real scoring happens.
+Schema + process designed 12 Aug 2026 (break week). Entries can only be
+created honestly once (a) the live pipeline run has produced real AI
+responses to score and (b) a rater does a real scoring pass. Do not
+pre-fill `entries.json` with invented judgements.
+
+**First real scoring pass: 8 Sep 2026.** Peer rater `SS` scored all 150
+responses of run `20260819T010032Z-477c3a3e` (Q1–Q30 × 5 models) through
+the blinded form in `peer_review/`, imported as `JL-0003`–`JL-0152`
+(103 accept / 27 reject / 20 refine). Entries `JL-0001`–`JL-0002`
+(rater `andrei`, 19 Aug) were Score-tab smoke tests during GUI
+development, not a scoring pass — replace or remove them before any
+kappa calculation. A second rater's full pass is still needed for kappa.

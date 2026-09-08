@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>SIT724 — AI feedback review</title>
+  <style>
+    :root {
+      --purple: #673ab7;
+      --purple-dark: #5e35b1;
+      --purple-soft: #ede7f6;
+      --bg: #f0ebf8;
+      --card: #fff;
+      --text: #202124;
+      --muted: #5f6368;
+      --line: #dadce0;
+      --ok: #188038;
+      --ok-soft: #e6f4ea;
+      --warn: #b06000;
+      --warn-soft: #fef7e0;
+      --err: #c5221f;
+    }
+    * { box-sizing: border-box; }
+    /* Keep auto-scrolled controls (focus jumps, scrollIntoView) clear of the fixed bottom bar. */
+    html { scroll-padding-bottom: 96px; }
+    body {
+      margin: 0;
+      font-family: "Google Sans", Roboto, system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+      font-size: 15px;
+    }
+    .banner { height: 10px; background: var(--purple); }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 12px 12px 120px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .card.hero { border-top: 10px solid var(--purple); }
+    h1 { font-size: 28px; font-weight: 400; margin: 0 0 8px; }
+    h2 { font-size: 17px; font-weight: 500; margin: 0 0 8px; }
+    p, li, dd { color: var(--muted); }
+    .dark, p.dark { color: var(--text); }
+    ol, ul { padding-left: 20px; }
+    li { margin: 4px 0; }
+    kbd {
+      font: 12px ui-monospace, Menlo, monospace;
+      border: 1px solid var(--line);
+      border-bottom-width: 2px;
+      border-radius: 4px;
+      padding: 0 5px;
+      background: #f8f9fa;
+      color: var(--text);
+    }
+    code { font-family: ui-monospace, Menlo, monospace; font-size: 13px; }
+
+    /* Sticky header */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(240, 235, 248, 0.96);
+      backdrop-filter: blur(6px);
+      padding: 10px 0 8px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .topbar .row strong { color: var(--text); }
+    .bar { height: 5px; background: #e8def8; border-radius: 5px; overflow: hidden; margin-top: 6px; }
+    .bar > span { display: block; height: 100%; background: var(--purple); transition: width 0.2s; }
+
+    /* Fixed bottom nav */
+    #bottomnav {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 10;
+      background: #fff;
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.06);
+      border-top: 1px solid var(--line);
+      padding: 10px 12px;
+      padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    }
+    #bottomnav .inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    button {
+      font: inherit;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--purple);
+    }
+    button.primary { background: var(--purple); color: #fff; }
+    button.primary:hover { background: var(--purple-dark); }
+    button.ghost:hover { background: var(--purple-soft); }
+    button.linkbtn { padding: 2px 8px; font-size: 13px; }
+    button.linkbtn:hover { text-decoration: underline; }
+    button:disabled { opacity: 0.4; cursor: not-allowed; }
+    select {
+      font: inherit;
+      font-size: 14px;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #fff;
+      max-width: 44vw;
+    }
+
+    /* Case card */
+    .meta { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+    .code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: #f8f9fa;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      white-space: pre-wrap;
+      font-size: 14px;
+    }
+    dl.facts {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4px 14px;
+      margin: 12px 0 0;
+      font-size: 14px;
+    }
+    dl.facts dt { color: var(--muted); white-space: nowrap; }
+    dl.facts dd { margin: 0; color: var(--text); }
+    details.anchors { margin-top: 12px; font-size: 13px; }
+    details.anchors summary { cursor: pointer; color: var(--purple); font-weight: 500; }
+    table.anch { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    table.anch th, table.anch td {
+      border-top: 1px solid var(--line);
+      padding: 6px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    table.anch th { color: var(--text); font-weight: 500; }
+    table.anch thead th { border-top: none; text-align: center; }
+    table.anch tbody th { white-space: nowrap; }
+
+    /* Variant card */
+    .variant { padding: 16px 18px; }
+    .variant header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .variant header h2 { margin: 0; }
+    .badge {
+      font-size: 12px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--warn-soft);
+      color: var(--warn);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+    .badge.done { background: var(--ok-soft); color: var(--ok); }
+    .ai {
+      background: #fafafa;
+      border-left: 4px solid var(--purple);
+      padding: 12px 14px;
+      white-space: pre-wrap;
+      border-radius: 0 8px 8px 0;
+      font-size: 15px;
+      color: var(--text);
+    }
+    .scores { margin-top: 14px; display: grid; gap: 6px; }
+    .dimrow {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      align-items: center;
+      gap: 8px;
+    }
+    .dimlabel {
+      font-size: 14px;
+      cursor: help;
+      border-bottom: 1px dotted var(--line);
+      width: fit-content;
+    }
+    .pills { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .pill {
+      width: 38px;
+      height: 34px;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .pill:hover { border-color: var(--purple); background: var(--purple-soft); }
+    .pill.on { background: var(--purple); border-color: var(--purple); color: #fff; }
+    .pill:focus-visible { outline: 2px solid var(--purple); outline-offset: 1px; }
+    .hint { font-size: 12px; color: var(--muted); flex: 1 1 140px; min-width: 0; }
+    .judge { margin-top: 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    .judge .lbl { font-size: 14px; }
+    .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+    .seg button {
+      border-radius: 0;
+      padding: 8px 14px;
+      color: var(--text);
+      border-right: 1px solid var(--line);
+      font-size: 14px;
+    }
+    .seg button:last-child { border-right: none; }
+    .seg button:hover { background: var(--purple-soft); }
+    .seg button.on { background: var(--purple); color: #fff; }
+    textarea {
+      width: 100%;
+      font: inherit;
+      font-size: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 10px;
+      min-height: 56px;
+      resize: vertical;
+      background: #fff;
+    }
+    textarea:focus { outline: none; border-color: var(--purple); box-shadow: 0 0 0 2px var(--purple-soft); }
+
+    input[type="text"] {
+      width: 100%;
+      font: inherit;
+      border: none;
+      border-bottom: 1px solid var(--line);
+      padding: 8px 0;
+      background: transparent;
+    }
+    input[type="text"]:focus { outline: none; border-bottom: 2px solid var(--purple); }
+    label.field { display: block; font-size: 14px; margin: 12px 0 2px; }
+    .req { color: var(--err); }
+    .hidden { display: none !important; }
+    .footer-note { font-size: 12px; color: var(--muted); margin-top: 14px; }
+    .warnbox {
+      background: var(--warn-soft);
+      color: var(--warn);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+      margin: 10px 0;
+    }
+    .errtxt { color: var(--err); font-size: 13px; margin-top: 8px; min-height: 1em; }
+    .oktxt { color: var(--ok); }
+    ul.missing li { margin: 6px 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+
+    @media (max-width: 600px) {
+      .wrap { padding: 8px 8px 130px; }
+      .card { padding: 14px; }
+      .dimrow { grid-template-columns: 1fr; gap: 4px; }
+      .pill { width: 44px; height: 38px; }
+      h1 { font-size: 24px; }
+      dl.facts { grid-template-columns: 1fr; gap: 2px; }
+      dl.facts dt { margin-top: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="banner"></div>
+  <div class="wrap" id="app"></div>
+  <div id="bottomnav" class="hidden"></div>
+
+  <script>
+    const PACK = __PACK_JSON__;
+    const KEY = "sit724-peer-" + PACK.pack_id;
+    const DIMS = PACK.dimensions || [];
+    const LETTERS = "ABCDEFGH";
+    const JUDGEMENTS = ["accept", "reject", "refine"];
+    const N_ITEMS = PACK.items.length;
+
+    // Group the flat item list into one entry per student question, keeping pack order.
+    const CASES = (function groupCases(items) {
+      const order = [];
+      const byId = {};
+      items.forEach((it) => {
+        if (!byId[it.case_id]) {
+          byId[it.case_id] = {
+            case_id: it.case_id,
+            topic: it.topic,
+            question: it.question,
+            correct_answer: it.correct_answer,
+            wrong_answer: it.wrong_answer,
+            misconception: it.misconception,
+            variants: []
+          };
+          order.push(it.case_id);
+        }
+        byId[it.case_id].variants.push(it);
+      });
+      return order.map((cid) => {
+        const c = byId[cid];
+        c.variants.sort((a, b) => (a.variant_index || 0) - (b.variant_index || 0));
+        return c;
+      });
+    })(PACK.items);
+
+    const STORAGE_OK = (function () {
+      try {
+        localStorage.setItem(KEY + ":probe", "1");
+        localStorage.removeItem(KEY + ":probe");
+        return true;
+      } catch (e) {
+        return false;
+      }
+    })();
+
+    function clamp(n, lo, hi) { return Math.max(lo, Math.min(hi, n)); }
+    function cssEsc(s) { return (window.CSS && CSS.escape) ? CSS.escape(s) : String(s); }
+    function esc(s) {
+      return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    // ---------- state ----------
+    function blankState() {
+      return { rater_id: "", rater_name: "", page: "start", case_index: 0, anchors_open: false, answers: {} };
+    }
+
+    function loadState() {
+      const s = blankState();
+      if (!STORAGE_OK) return s;
+      try {
+        const raw = localStorage.getItem(KEY);
+        if (!raw) return s;
+        const saved = JSON.parse(raw);
+        Object.assign(s, saved);
+        s.answers = saved.answers || {};
+        // Migrate from the earlier one-reply-per-page form (it stored an item index).
+        if (typeof saved.case_index !== "number") {
+          if (typeof saved.index === "number" && PACK.items[saved.index]) {
+            const cid = PACK.items[saved.index].case_id;
+            s.case_index = Math.max(0, CASES.findIndex((c) => c.case_id === cid));
+          } else {
+            s.case_index = 0;
+          }
+        }
+        if (s.page === "item") s.page = "case";
+        delete s.index;
+        Object.values(s.answers).forEach((a) => {
+          if (!a) return;
+          if (!a.rubric_scores) a.rubric_scores = {};
+          if (!a.judgement) a.judgement = "accept";
+        });
+      } catch (e) {
+        return blankState();
+      }
+      if (!["start", "case", "done"].includes(s.page)) s.page = "start";
+      s.case_index = clamp(Number(s.case_index) || 0, 0, CASES.length - 1);
+      return s;
+    }
+
+    const state = loadState();
+
+    let saveTimer = null;
+    function save() {
+      if (!STORAGE_OK) return;
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { console.warn("save failed", e); }
+    }
+    function scheduleSave() {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(save, 250);
+    }
+    window.addEventListener("beforeunload", save);
+    document.addEventListener("visibilitychange", () => { if (document.hidden) save(); });
+
+    function ensureAnswer(bid) {
+      if (!state.answers[bid]) {
+        state.answers[bid] = {
+          blind_id: bid,
+          rubric_scores: {},
+          judgement: "accept",
+          reasoning: "",
+          refine_detail: "",
+          timestamp: null
+        };
+      }
+      return state.answers[bid];
+    }
+
+    function missingFields(ans) {
+      const miss = [];
+      if (!ans) return DIMS.map((d) => d.name).concat(["Reasoning"]);
+      DIMS.forEach((d) => {
+        if (!ans.rubric_scores || !ans.rubric_scores[d.key]) miss.push(d.name || d.key);
+      });
+      if (!ans.judgement) miss.push("Judgement");
+      if (!(ans.reasoning || "").trim()) miss.push("Reasoning");
+      if (ans.judgement === "refine" && !(ans.refine_detail || "").trim()) miss.push("Refine detail");
+      return miss;
+    }
+    function isComplete(ans) { return missingFields(ans).length === 0; }
+    function nComplete() {
+      return PACK.items.reduce((n, it) => n + (isComplete(state.answers[it.blind_id]) ? 1 : 0), 0);
+    }
+    function caseProgress(c) {
+      const done = c.variants.filter((v) => isComplete(state.answers[v.blind_id])).length;
+      return { done, total: c.variants.length };
+    }
+    function totalScore(ans) {
+      let sum = 0, n = 0;
+      DIMS.forEach((d) => {
+        const v = ans && ans.rubric_scores ? ans.rubric_scores[d.key] : 0;
+        if (v) { sum += v; n += 1; }
+      });
+      return { sum, n };
+    }
+    function badgeText(ans) {
+      if (isComplete(ans)) return "\u2713 Done \u00b7 " + totalScore(ans).sum + "/" + (DIMS.length * 5);
+      const m = missingFields(ans).length;
+      return m + " to go";
+    }
+    function caseMark(c) {
+      const p = caseProgress(c);
+      if (p.done === p.total) return "\u2713";
+      return p.done ? p.done + "/" + p.total : "\u00b7";
+    }
+
+    // ---------- rendering ----------
+    function render() {
+      const root = document.getElementById("app");
+      const nav = document.getElementById("bottomnav");
+      if (state.page === "start") {
+        root.innerHTML = startPage();
+        nav.innerHTML = "";
+        nav.classList.add("hidden");
+      } else if (state.page === "done") {
+        root.innerHTML = donePage();
+        nav.innerHTML = "";
+        nav.classList.add("hidden");
+      } else {
+        root.innerHTML = casePage();
+        nav.innerHTML = bottomNav();
+        nav.classList.remove("hidden");
+      }
+      window.scrollTo(0, 0);
+    }
+
+    function startPage() {
+      const done = nComplete();
+      const resume = done > 0;
+      const perCase = CASES.length ? CASES[0].variants.length : 5;
+      return `
+        <div class="card hero">
+          <h1>SIT724 AI feedback review</h1>
+          <p class="dark">You'll see <strong>${CASES.length} beginner Python questions</strong>. Each question comes with
+          <strong>${perCase} AI-written feedback replies</strong> (A\u2013${LETTERS[perCase - 1]}) on the same page. Score every reply, then move on.</p>
+          ${STORAGE_OK
+            ? `<p>Progress saves automatically in this browser \u2014 you can close the tab and come back any time.</p>`
+            : `<div class="warnbox">This browser can't save progress (private mode?). Use <em>Download</em> on the submit page often.</div>`}
+        </div>
+        <div class="card">
+          <h2>How to score a reply</h2>
+          <ol>
+            <li>Read the question, the correct answer, the student's wrong answer, and the misconception \u2014 shown once at the top of each page.</li>
+            <li>For each reply, click <strong>1\u20135</strong> on the seven rubric rows. Hover a row name for its anchor definitions, or open <em>Rubric anchors</em>.</li>
+            <li><strong>Judgement</strong> is pre-set to <em>accept</em>. Switch to <em>reject</em> only if the reply is unusable (off-topic, unsafe, not feedback). Pick <em>refine</em> if you changed your own scores after a second look.</li>
+            <li>Write one or two sentences of reasoning per reply.</li>
+          </ol>
+          <p>Don't try to guess which AI wrote a reply \u2014 the order is shuffled, and that's the point of the study.</p>
+          <p>Faster: click any score, then just type <kbd>1</kbd>\u2013<kbd>5</kbd>; focus jumps to the next row automatically.</p>
+        </div>
+        <div class="card">
+          <label class="field">Your name</label>
+          <input id="rater_name" type="text" value="${esc(state.rater_name)}" placeholder="First name is enough" autocomplete="off">
+          <label class="field">Rater ID <span class="req">*</span></label>
+          <input id="rater_id" type="text" value="${esc(state.rater_id)}" placeholder="e.g. peer-alex \u2014 keep it the same if you pause and resume" autocomplete="off">
+          <div class="errtxt" id="start-err"></div>
+          <div class="actions" style="justify-content:flex-end">
+            <button class="primary" type="button" data-action="start">${resume ? `Resume (${done}/${N_ITEMS} scored)` : "Start"}</button>
+          </div>
+        </div>`;
+    }
+
+    function anchorsTable() {
+      const head = [1, 2, 3, 4, 5].map((n) => `<th>${n}</th>`).join("");
+      const rows = DIMS.map((d) => {
+        const a = d.anchors || {};
+        return `<tr><th title="${esc(d.definition)}">${esc(d.name)}</th>${[1, 2, 3, 4, 5].map((n) => `<td>${esc(a[String(n)] || "")}</td>`).join("")}</tr>`;
+      }).join("");
+      return `<table class="anch"><thead><tr><th>Dimension</th>${head}</tr></thead><tbody>${rows}</tbody></table>`;
+    }
+
+    function casePage() {
+      const ci = state.case_index;
+      const c = CASES[ci];
+      const done = nComplete();
+      const pct = Math.round((done / N_ITEMS) * 100);
+      return `
+        <div class="topbar">
+          <div class="row">
+            <span>Question <strong>${ci + 1}</strong> of ${CASES.length} \u00b7 <span id="prog-text">${done}/${N_ITEMS} replies scored</span></span>
+            <button class="linkbtn" type="button" data-action="review">Review &amp; submit</button>
+          </div>
+          <div class="bar"><span id="prog-bar" style="width:${pct}%"></span></div>
+        </div>
+        <div class="card hero">
+          <div class="meta">${esc(c.case_id)} \u00b7 ${esc(c.topic)}</div>
+          <h2>Student question</h2>
+          <div class="code">${esc(c.question)}</div>
+          <dl class="facts">
+            <dt>Correct answer</dt><dd>${esc(c.correct_answer)}</dd>
+            <dt>Student's wrong answer</dt><dd>${esc(c.wrong_answer)}</dd>
+            <dt>Misconception</dt><dd>${esc(c.misconception)}</dd>
+          </dl>
+          <details class="anchors" data-role="anchors" ${state.anchors_open ? "open" : ""}>
+            <summary>Rubric anchors (what 1\u20135 means for each row)</summary>
+            ${anchorsTable()}
+          </details>
+        </div>
+        <p class="meta" style="margin:4px 4px 8px">Below are ${c.variants.length} different AI replies to this same question. Score each one.</p>
+        ${c.variants.map((v, i) => variantCard(v, i)).join("")}`;
+    }
+
+    function dimRow(bid, d, ans) {
+      const sel = ans.rubric_scores[d.key];
+      const anchors = d.anchors || {};
+      const tip = esc(d.definition + "\n" + [1, 2, 3, 4, 5].map((n) => n + " \u2014 " + (anchors[String(n)] || "")).join("\n"));
+      const pills = [1, 2, 3, 4, 5].map((n) => {
+        const on = sel === n;
+        const focusable = sel ? on : n === 1;
+        return `<button type="button" class="pill ${on ? "on" : ""}" data-action="set-score"
+          data-bid="${esc(bid)}" data-dim="${esc(d.key)}" data-val="${n}" tabindex="${focusable ? 0 : -1}"
+          aria-label="${esc(d.name)} ${n}">${n}</button>`;
+      }).join("");
+      const hint = sel ? esc(sel + " \u2014 " + (anchors[String(sel)] || "")) : "";
+      return `
+        <div class="dimrow" data-dim="${esc(d.key)}">
+          <span class="dimlabel" title="${tip}">${esc(d.name)}</span>
+          <div class="pills">${pills}<span class="hint" data-role="hint">${hint}</span></div>
+        </div>`;
+    }
+
+    function variantCard(v, i) {
+      const ans = ensureAnswer(v.blind_id);
+      const letter = LETTERS[i] || String(i + 1);
+      const seg = JUDGEMENTS.map((j) => `<button type="button" data-action="set-judgement" data-bid="${esc(v.blind_id)}" data-j="${j}"
+        class="${ans.judgement === j ? "on" : ""}">${j}${j === "accept" ? " (default)" : ""}</button>`).join("");
+      return `
+        <section class="card variant" data-bid="${esc(v.blind_id)}">
+          <header>
+            <h2>Reply ${letter}</h2>
+            <span class="badge ${isComplete(ans) ? "done" : ""}" data-role="badge">${badgeText(ans)}</span>
+          </header>
+          <div class="ai">${esc(v.response_text)}</div>
+          <div class="scores">${DIMS.map((d) => dimRow(v.blind_id, d, ans)).join("")}</div>
+          <div class="judge">
+            <span class="lbl">Judgement</span>
+            <div class="seg">${seg}</div>
+          </div>
+          <textarea rows="2" data-field="reasoning" data-bid="${esc(v.blind_id)}"
+            placeholder="Reasoning (required): what stood out in this reply, and why these scores.">${esc(ans.reasoning)}</textarea>
+          <div data-role="refine-wrap" class="${ans.judgement === "refine" ? "" : "hidden"}">
+            <textarea rows="2" data-field="refine_detail" data-bid="${esc(v.blind_id)}"
+              placeholder="Refine: what changed between your first read and the final scores?">${esc(ans.refine_detail)}</textarea>
+          </div>
+        </section>`;
+    }
+
+    function bottomNav() {
+      const ci = state.case_index;
+      const opts = CASES.map((c, i) =>
+        `<option value="${i}" ${i === ci ? "selected" : ""}>${i + 1}. ${esc(c.case_id)} ${caseMark(c)}</option>`
+      ).join("");
+      return `
+        <div class="inner">
+          <button class="ghost" type="button" data-action="back" ${ci === 0 ? "disabled" : ""}>\u2039 Back</button>
+          <select data-action="jump" aria-label="Jump to question">${opts}</select>
+          <button class="primary" type="button" data-action="next">${ci === CASES.length - 1 ? "Finish \u203a" : "Next \u203a"}</button>
+        </div>`;
+    }
+
+    function donePage() {
+      const done = nComplete();
+      const missing = [];
+      CASES.forEach((c, ci) => c.variants.forEach((v, vi) => {
+        const m = missingFields(state.answers[v.blind_id]);
+        if (m.length) missing.push({ ci, cid: c.case_id, letter: LETTERS[vi] || String(vi + 1), m });
+      }));
+      const complete = missing.length === 0;
+      const shown = missing.slice(0, 40);
+      return `
+        <div class="card hero">
+          <h1>${complete ? "All done \u2014 thank you!" : "Review &amp; submit"}</h1>
+          <p class="dark"><strong>${done}</strong> of ${N_ITEMS} replies scored
+            ${state.rater_id ? `\u00b7 rater <code>${esc(state.rater_id)}</code>` : ""}
+            <button class="linkbtn" type="button" data-action="edit-rater">change</button></p>
+          ${complete
+            ? `<p class="oktxt">Every reply has 7 scores, a judgement and reasoning.</p>`
+            : `<div class="warnbox">${missing.length} repl${missing.length === 1 ? "y is" : "ies are"} still incomplete.
+                 You can download a partial file now, but incomplete replies won't count.</div>
+               <ul class="missing">
+                 ${shown.map((x) => `<li><button class="linkbtn" type="button" data-action="goto" data-case="${x.ci}">Question ${x.ci + 1} (${esc(x.cid)}) \u00b7 Reply ${x.letter}</button> \u2014 ${x.m.length >= DIMS.length + 1 ? "not started" : "missing: " + esc(x.m.join(", "))}</li>`).join("")}
+                 ${missing.length > shown.length ? `<li>\u2026and ${missing.length - shown.length} more</li>` : ""}
+               </ul>`}
+          <div class="actions">
+            <button class="ghost" type="button" data-action="goto" data-case="${missing.length ? missing[0].ci : 0}">\u2039 Back to questions</button>
+            <button class="primary" type="button" data-action="download">Download answers (.json)</button>
+            <button class="ghost" type="button" data-action="copy">Copy answers as text</button>
+          </div>
+          <div class="footer-note" id="done-msg"></div>
+          <p class="footer-note">Send the downloaded file \u2014 or paste the copied text \u2014 back to Andrei in the same chat.
+          The file contains no AI names; that mapping happens on his side.</p>
+        </div>`;
+    }
+
+    // ---------- in-place updates (no full re-render while scoring) ----------
+    function variantEl(bid) {
+      return document.querySelector(`.variant[data-bid="${cssEsc(bid)}"]`);
+    }
+
+    function refreshVariant(bid) {
+      const ans = state.answers[bid];
+      const card = variantEl(bid);
+      if (card) {
+        const b = card.querySelector("[data-role='badge']");
+        if (b) {
+          b.textContent = badgeText(ans);
+          b.classList.toggle("done", isComplete(ans));
+        }
+      }
+      const done = nComplete();
+      const pt = document.getElementById("prog-text");
+      if (pt) pt.textContent = done + "/" + N_ITEMS + " replies scored";
+      const pb = document.getElementById("prog-bar");
+      if (pb) pb.style.width = Math.round((done / N_ITEMS) * 100) + "%";
+      const sel = document.querySelector("select[data-action='jump']");
+      if (sel && sel.options[state.case_index]) {
+        const c = CASES[state.case_index];
+        sel.options[state.case_index].textContent = (state.case_index + 1) + ". " + c.case_id + " " + caseMark(c);
+      }
+    }
+
+    function setScore(bid, dim, val) {
+      const ans = ensureAnswer(bid);
+      ans.rubric_scores[dim] = val;
+      ans.timestamp = new Date().toISOString();
+      const card = variantEl(bid);
+      const row = card && card.querySelector(`.dimrow[data-dim="${cssEsc(dim)}"]`);
+      if (row) {
+        row.querySelectorAll(".pill").forEach((p) => {
+          const on = Number(p.dataset.val) === val;
+          p.classList.toggle("on", on);
+          p.tabIndex = on ? 0 : -1;
+        });
+        const d = DIMS.find((x) => x.key === dim);
+        const hint = row.querySelector("[data-role='hint']");
+        if (hint && d) hint.textContent = val + " \u2014 " + ((d.anchors || {})[String(val)] || "");
+      }
+      refreshVariant(bid);
+      scheduleSave();
+    }
+
+    function setJudgement(bid, j) {
+      if (!JUDGEMENTS.includes(j)) return;
+      const ans = ensureAnswer(bid);
+      ans.judgement = j;
+      ans.timestamp = new Date().toISOString();
+      const card = variantEl(bid);
+      if (card) {
+        card.querySelectorAll("[data-action='set-judgement']").forEach((b) => b.classList.toggle("on", b.dataset.j === j));
+        const wrap = card.querySelector("[data-role='refine-wrap']");
+        if (wrap) {
+          wrap.classList.toggle("hidden", j !== "refine");
+          if (j === "refine") {
+            const ta = wrap.querySelector("textarea");
+            if (ta) ta.focus();
+          }
+        }
+      }
+      refreshVariant(bid);
+      scheduleSave();
+    }
+
+    function focusNextRow(pill) {
+      const row = pill.closest(".dimrow");
+      const next = row && row.nextElementSibling;
+      if (next && next.classList.contains("dimrow")) {
+        const p = next.querySelector(".pill[tabindex='0']") || next.querySelector(".pill");
+        if (p) p.focus();
+        return;
+      }
+      const card = pill.closest(".variant");
+      const ta = card && card.querySelector("textarea[data-field='reasoning']");
+      if (ta) ta.focus();
+    }
+
+    // ---------- export ----------
+    function payload() {
+      return {
+        pack_id: PACK.pack_id,
+        run_id: PACK.run_id,
+        rater_id: state.rater_id.trim(),
+        rater_name: state.rater_name.trim(),
+        completed_at: new Date().toISOString(),
+        n_items: N_ITEMS,
+        n_complete: nComplete(),
+        responses: PACK.items.map((it) => {
+          const ans = state.answers[it.blind_id] || {};
+          return {
+            blind_id: it.blind_id,
+            case_id: it.case_id,
+            variant_index: it.variant_index || null,
+            prompt_hash: it.prompt_hash,
+            rubric_scores: ans.rubric_scores || {},
+            judgement: ans.judgement || "",
+            reasoning: (ans.reasoning || "").trim(),
+            refine_detail: (ans.refine_detail || "").trim(),
+            timestamp: ans.timestamp || null
+          };
+        })
+      };
+    }
+
+    function safeName(s) { return (s || "rater").replace(/[^a-z0-9_-]+/gi, "-"); }
+
+    function msg(text, isError) {
+      const el = document.getElementById("done-msg");
+      if (!el) return;
+      el.textContent = text;
+      el.className = "footer-note " + (isError ? "errtxt" : "oktxt");
+    }
+
+    function download() {
+      save();
+      const data = payload();
+      const complete = data.n_complete === N_ITEMS;
+      const name = `sit724-peer-${safeName(data.rater_id)}-${complete ? "complete" : "partial"}.json`;
+      try {
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+        msg("Downloaded " + name + " \u2014 send it to Andrei.");
+      } catch (e) {
+        msg("Download failed in this browser \u2014 use \u201cCopy answers as text\u201d instead.", true);
+      }
+    }
+
+    async function copyAnswers() {
+      save();
+      const text = JSON.stringify(payload(), null, 2);
+      const ok = "Copied \u2014 paste it into your chat with Andrei.";
+      try {
+        await navigator.clipboard.writeText(text);
+        msg(ok);
+      } catch (e) {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        let copied = false;
+        try { copied = document.execCommand("copy"); } catch (e2) { copied = false; }
+        ta.remove();
+        msg(copied ? ok : "Copy isn't available here \u2014 use Download instead.", !copied);
+      }
+    }
+
+    // ---------- navigation ----------
+    function goTo(ci) {
+      save();
+      state.case_index = clamp(ci, 0, CASES.length - 1);
+      state.page = "case";
+      save();
+      render();
+    }
+
+    function onStart() {
+      state.rater_name = (document.getElementById("rater_name").value || "").trim();
+      state.rater_id = (document.getElementById("rater_id").value || "").trim();
+      if (!state.rater_id) {
+        document.getElementById("start-err").textContent = "Please enter a rater ID first.";
+        document.getElementById("rater_id").focus();
+        return;
+      }
+      // Resume where they were if that question is unfinished; otherwise at the first unfinished one.
+      const here = CASES[state.case_index];
+      const hereDone = here && caseProgress(here).done === here.variants.length;
+      if (hereDone || nComplete() === 0) {
+        const first = CASES.findIndex((c) => caseProgress(c).done < c.variants.length);
+        state.case_index = first >= 0 ? first : 0;
+      }
+      goTo(state.case_index);
+    }
+
+    document.addEventListener("click", (e) => {
+      const el = e.target.closest("[data-action]");
+      if (!el || el.tagName === "SELECT") return;
+      const a = el.dataset.action;
+      if (a === "start") return onStart();
+      if (a === "back") return goTo(state.case_index - 1);
+      if (a === "next") {
+        if (state.case_index >= CASES.length - 1) { save(); state.page = "done"; save(); render(); }
+        else goTo(state.case_index + 1);
+        return;
+      }
+      if (a === "review") { save(); state.page = "done"; save(); render(); return; }
+      if (a === "goto") return goTo(Number(el.dataset.case) || 0);
+      if (a === "edit-rater") { save(); state.page = "start"; save(); render(); return; }
+      if (a === "set-score") {
+        setScore(el.dataset.bid, el.dataset.dim, Number(el.dataset.val));
+        // Advance focus so a following 1–5 keypress fills the next row, not this one.
+        focusNextRow(el);
+        return;
+      }
+      if (a === "set-judgement") return setJudgement(el.dataset.bid, el.dataset.j);
+      if (a === "download") return download();
+      if (a === "copy") return copyAnswers();
+    });
+
+    document.addEventListener("change", (e) => {
+      const el = e.target;
+      if (el.matches && el.matches("select[data-action='jump']")) goTo(Number(el.value));
+    });
+
+    document.addEventListener("input", (e) => {
+      const el = e.target;
+      if (!el.matches || !el.matches("textarea[data-field]")) return;
+      const ans = ensureAnswer(el.dataset.bid);
+      ans[el.dataset.field] = el.value;
+      ans.timestamp = new Date().toISOString();
+      refreshVariant(el.dataset.bid);
+      scheduleSave();
+    });
+
+    // <details> toggle doesn't bubble, so listen in the capture phase.
+    document.addEventListener("toggle", (e) => {
+      if (e.target.matches && e.target.matches("details[data-role='anchors']")) {
+        state.anchors_open = e.target.open;
+        scheduleSave();
+      }
+    }, true);
+
+    document.addEventListener("keydown", (e) => {
+      const pill = e.target.closest ? e.target.closest("button[data-action='set-score']") : null;
+      if (!pill) return;
+      if (/^[1-5]$/.test(e.key)) {
+        e.preventDefault();
+        setScore(pill.dataset.bid, pill.dataset.dim, Number(e.key));
+        focusNextRow(pill);
+        return;
+      }
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        const ans = ensureAnswer(pill.dataset.bid);
+        const cur = Number(ans.rubric_scores[pill.dataset.dim]) || Number(pill.dataset.val);
+        const nextVal = clamp(cur + (e.key === "ArrowRight" ? 1 : -1), 1, 5);
+        setScore(pill.dataset.bid, pill.dataset.dim, nextVal);
+        const row = pill.closest(".dimrow");
+        const target = row && row.querySelector(`.pill[data-val="${nextVal}"]`);
+        if (target) target.focus();
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>
